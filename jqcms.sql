@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2018-09-24 14:29:59
+Date: 2018-09-24 16:00:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -213,7 +213,7 @@ INSERT INTO `clt_auth_rule` VALUES ('5', 'Database/database', '数据库备份',
 INSERT INTO `clt_auth_rule` VALUES ('15', 'Auth/adminList', '权限管理', '1', '1', '0', 'icon-lifebuoy', '', '0', '1', '1446535750', '1', '1');
 INSERT INTO `clt_auth_rule` VALUES ('16', 'Auth/adminList', '管理员列表', '1', '1', '0', '', '', '15', '0', '1446535750', '1', '1');
 INSERT INTO `clt_auth_rule` VALUES ('17', 'Auth/adminGroup', '用户组列表', '1', '1', '0', '', '', '15', '1', '1446535750', '1', '1');
-INSERT INTO `clt_auth_rule` VALUES ('18', 'Auth/adminRule', '权限管理', '1', '1', '0', '', '', '15', '2', '1446535750', '1', '1');
+INSERT INTO `clt_auth_rule` VALUES ('18', 'Auth/adminRule', '权限管理', '1', '1', '0', '', '', '15', '2', '1446535750', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('23', 'Help/soft', '软件下载', '1', '1', '0', '', '', '22', '50', '1446711421', '0', '1');
 INSERT INTO `clt_auth_rule` VALUES ('366', 'Heademail/listorder', '首长信件排序', '1', '1', '0', '', '', '337', '8', '1537518962', null, '1');
 INSERT INTO `clt_auth_rule` VALUES ('367', 'Heademail/replymess', '首长信件消息查看', '1', '1', '0', '', '', '337', '9', '1537519117', null, '1');
@@ -259,7 +259,7 @@ INSERT INTO `clt_auth_rule` VALUES ('252', 'Template/edit', '操作-编辑', '1'
 INSERT INTO `clt_auth_rule` VALUES ('180', 'System/source_edit', '操作-修改', '1', '1', '0', '', '', '43', '20', '1461832933', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('181', 'Auth/groupState', '操作-状态', '1', '1', '0', '', '', '17', '50', '1461834340', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('188', 'Plug/donation', '捐赠列表', '1', '1', '0', '', '', '187', '50', '1466563673', '0', '1');
-INSERT INTO `clt_auth_rule` VALUES ('189', 'Module', '模型管理', '1', '1', '0', 'icon-ungroup', '', '0', '3', '1466825363', '0', '0');
+INSERT INTO `clt_auth_rule` VALUES ('189', 'Module', '模型管理', '1', '1', '0', 'icon-ungroup', '', '0', '3', '1466825363', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('190', 'Module/index', '模型列表', '1', '1', '0', '', '', '189', '1', '1466826681', '0', '1');
 INSERT INTO `clt_auth_rule` VALUES ('192', 'Module/edit', '操作-修改', '1', '1', '0', '', '', '190', '2', '1467007920', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('193', 'Module/add', '操作-添加', '1', '1', '0', '', '', '190', '1', '1467007955', '0', '0');
@@ -483,7 +483,7 @@ CREATE TABLE `clt_emailbox` (
   `authorname` varchar(255) NOT NULL DEFAULT '',
   `tel` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL,
-  `is_public` tinyint(3) NOT NULL DEFAULT '0',
+  `is_public` tinyint(3) NOT NULL DEFAULT '1',
   `pwd` varchar(16) NOT NULL DEFAULT '',
   `is_reply` tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -493,7 +493,7 @@ CREATE TABLE `clt_emailbox` (
 -- Records of clt_emailbox
 -- ----------------------------
 INSERT INTO `clt_emailbox` VALUES ('1', '测试标题测试标题测试标题', '0', '', '1', '1537257672', '1537340054', '0', '0', '1', '1', '2', '/uploads/20180919/e1910925f6c35f7e3c412f136df3c95f.rar', '', '', '测试信件内容\n测试信件内容\n测试信件内容\n测试信件内容', '1', '', '1');
-INSERT INTO `clt_emailbox` VALUES ('2', '测试2', '0', '', '0', '1537264343', '0', '0', '0', '1', '1', '2', '', '', '', '测测测测测测测测', '0', '123', '1');
+INSERT INTO `clt_emailbox` VALUES ('2', '测试2', '0', '', '0', '1537264343', '1537775932', '0', '0', '1', '1', '2', '', '', '', '测测测测测测测测', '0', '202cb962ac59075b', '1');
 
 -- ----------------------------
 -- Table structure for clt_field
@@ -596,7 +596,7 @@ INSERT INTO `clt_field` VALUES ('76', '2', 'fromlink', '来源网址', '', '0', 
 INSERT INTO `clt_field` VALUES ('83', '3', 'vido', '视频', '', '0', '0', '0', 'defaul', '', 'vido', 'file', 'array (\n  \'upload_allowext\' => \'zip|rar|doc|ppt|mp4\',\n)', '0', '', '0', '1', '0');
 INSERT INTO `clt_field` VALUES ('431', '51', 'pwd', '信件密码', '', '0', '1', '16', 'defaul', '', 'pwd', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9wd2QiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT0icGFzc3dvcmQiIG5hbWU9InB3ZCIgcGxhY2Vob2xkZXI9Iuivt+i+k+WFpeS/oeS7tuWvhueggSIgIGNsYXNzPSJsYXl1aS1pbnB1dCI+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+\',\n  \'fieldtype\' => \'varchar\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '10', '1', '0');
 INSERT INTO `clt_field` VALUES ('432', '51', 'is_reply', '回复状态', '', '0', '0', '0', 'defaul', '', 'is_reply', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19yZXBseSI+CiAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcmVwbHkiIG5hbWU9ImlzX3JlcGx5IiBpZD0iaXNfcmVwbHlfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlt7Llm57lpI0iIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3JlcGx5IGVxIDEifWNoZWNrZWR7L2lmfSAvPjxpbnB1dCBsYXktZmlsdGVyPSJpc19yZXBseSIgbmFtZT0iaXNfcmVwbHkiIGlkPSJpc19yZXBseV8yIiAgdmFsdWU9IjAiICB0eXBlPSJyYWRpbyIgY2xhc3M9ImFjZSIgdGl0bGU9IuacquWbnuWkjSIge2lmIGNvbmRpdGlvbj0iJGluZm8uaXNfcmVwbHkgZXEgMCJ9Y2hlY2tlZHsvaWZ9Lz4gICAgICAgICAgICAgICAgICAgCiAgICAgICAgPC9kaXY+IA==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'0\',\n)', '0', '', '11', '1', '0');
-INSERT INTO `clt_field` VALUES ('430', '51', 'is_public', '是否公开', '', '0', '0', '0', 'defaul', '', 'expansion', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19wdWJsaWMiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlhazlvIAiIGNoZWNrZWQgLz48aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMiIgIHZhbHVlPSIwIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLkuI3lhazlvIAiIC8+ICAgICAgICAgICAgICAgICAgICA8L2Rpdj4=\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '9', '1', '0');
+INSERT INTO `clt_field` VALUES ('430', '51', 'is_public', '是否公开', '', '0', '0', '0', 'defaul', '', 'expansion', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19wdWJsaWMiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAxIn1jaGVja2Vkey9pZn0gLz48aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMiIgIHZhbHVlPSIwIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLkuI3lhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAwIn1jaGVja2Vkey9pZn0gLz4gICAgICAgICAgICAgICAgICAgIDwvZGl2Pg==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'1\',\n)', '0', '', '9', '1', '0');
 INSERT INTO `clt_field` VALUES ('381', '46', 'name', '语言名称', '', '1', '1', '80', 'defaul', '标题必须为1-80个字符', 'name', 'title', 'array (\n  \'thumb\' => \'0\',\n  \'style\' => \'0\',\n)', '1', '', '2', '1', '1');
 INSERT INTO `clt_field` VALUES ('436', '53', 'is_open', '开启状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'开启|1\r\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '97', '1', '1');
 INSERT INTO `clt_field` VALUES ('435', '53', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
@@ -623,7 +623,7 @@ INSERT INTO `clt_field` VALUES ('447', '54', 'files', '上传附件', '', '0', '
 INSERT INTO `clt_field` VALUES ('448', '54', 'authorname', '姓名', '', '0', '0', '0', 'defaul', '', 'authorname', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '6', '1', '0');
 INSERT INTO `clt_field` VALUES ('449', '54', 'tel', '手机号', '', '0', '0', '0', 'mobile', '', 'tel', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '7', '1', '0');
 INSERT INTO `clt_field` VALUES ('450', '54', 'content', '信件内容', '', '1', '0', '0', 'defaul', '', 'content', 'textarea', 'array (\n  \'fieldtype\' => \'text\',\n  \'default\' => \'\',\n)', '0', '', '8', '1', '0');
-INSERT INTO `clt_field` VALUES ('451', '54', 'is_public', '是否公开', '', '0', '0', '0', 'defaul', '', 'expansion', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19wdWJsaWMiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlhazlvIAiIGNoZWNrZWQgLz48aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMiIgIHZhbHVlPSIwIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLkuI3lhazlvIAiIC8+ICAgICAgICAgICAgICAgICAgICA8L2Rpdj4=\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '9', '1', '0');
+INSERT INTO `clt_field` VALUES ('451', '54', 'is_public', '是否公开', '', '0', '0', '0', 'defaul', '', 'expansion', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19wdWJsaWMiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAxIn1jaGVja2Vkey9pZn0gLz48aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMiIgIHZhbHVlPSIwIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLkuI3lhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAwIn1jaGVja2Vkey9pZn0gLz4gICAgICAgICAgICAgICAgICAgIDwvZGl2Pg==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'1\',\n)', '0', '', '9', '1', '0');
 INSERT INTO `clt_field` VALUES ('452', '54', 'pwd', '信件密码', '', '0', '1', '16', 'defaul', '', 'pwd', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9wd2QiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT0icGFzc3dvcmQiIG5hbWU9InB3ZCIgcGxhY2Vob2xkZXI9Iuivt+i+k+WFpeS/oeS7tuWvhueggSIgIGNsYXNzPSJsYXl1aS1pbnB1dCI+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+\',\n  \'fieldtype\' => \'varchar\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '10', '1', '0');
 INSERT INTO `clt_field` VALUES ('453', '54', 'is_reply', '回复状态', '', '0', '0', '0', 'defaul', '', 'is_reply', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19yZXBseSI+CiAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcmVwbHkiIG5hbWU9ImlzX3JlcGx5IiBpZD0iaXNfcmVwbHlfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlt7Llm57lpI0iIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3JlcGx5IGVxIDEifWNoZWNrZWR7L2lmfSAvPjxpbnB1dCBsYXktZmlsdGVyPSJpc19yZXBseSIgbmFtZT0iaXNfcmVwbHkiIGlkPSJpc19yZXBseV8yIiAgdmFsdWU9IjAiICB0eXBlPSJyYWRpbyIgY2xhc3M9ImFjZSIgdGl0bGU9IuacquWbnuWkjSIge2lmIGNvbmRpdGlvbj0iJGluZm8uaXNfcmVwbHkgZXEgMCJ9Y2hlY2tlZHsvaWZ9Lz4gICAgICAgICAgICAgICAgICAgCiAgICAgICAgPC9kaXY+IA==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'0\',\n)', '0', '', '11', '1', '0');
 INSERT INTO `clt_field` VALUES ('461', '55', 'type', '消息类型', '', '1', '0', '0', 'defaul', '', 'type', 'radio', 'array (\n  \'options\' => \'回复|1\n追问|2\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'default\' => \'1\',\n)', '0', '', '1', '1', '0');
@@ -652,7 +652,7 @@ CREATE TABLE `clt_heademail` (
   `authorname` varchar(255) NOT NULL DEFAULT '',
   `tel` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL,
-  `is_public` tinyint(3) NOT NULL DEFAULT '0',
+  `is_public` tinyint(3) NOT NULL DEFAULT '1',
   `pwd` varchar(16) NOT NULL DEFAULT '',
   `is_reply` tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -757,11 +757,12 @@ CREATE TABLE `clt_opratelog` (
   `adminid` int(11) NOT NULL,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clt_opratelog
 -- ----------------------------
+INSERT INTO `clt_opratelog` VALUES ('140', '部门信件管理：信息更改', '1537775932', '2', 'admin', '1', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for clt_page

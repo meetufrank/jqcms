@@ -226,7 +226,10 @@ class Emailbox extends Common{
         if(isset($fields['updatetime'])) {
             $data['updatetime'] = time();
         }
-
+//密码
+         if(isset($data['pwd'])) {
+            $data['pwd'] = md5($data['pwd']);
+        }
         $title_style ='';
         if (isset($data['style_color'])) {
             $title_style .= 'color:' . $data['style_color'].';';
@@ -381,7 +384,10 @@ class Emailbox extends Common{
                 $data['updatetime'] = $data['createtime'];
             }
         }
-     
+     //密码
+         if(isset($data['pwd'])) {
+            $data['pwd'] = md5($data['pwd']);
+        }
         $title_style ='';
         if (isset($data['style_color'])) {
             $title_style .= 'color:' . $data['style_color'].';';
