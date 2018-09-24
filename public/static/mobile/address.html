@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/address.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <title>邮寄地址</title>
+</head>
+<body>
+    <nav class="HomeNav">
+        <div class="container">
+            <h1 class="clearfix">
+                <a class="float-L" href="information.html">
+                    <span class="icon iconfont icon-fanhui"></span>
+                </a>
+                <span class="title">邮寄地址</span>
+            </h1>
+
+        </div>
+    </nav>
+    <div class="menu">
+        <div class="container content">
+            <div ><a href="index.html"><span>在线考级报名平台</span></a></div>
+            <div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+        </div>
+    </div>
+	 <div class="inBg"></div>
+    <div class="container">
+        <form >
+            <div class="content clearfix">
+                <label class="formLabel float-L">省</label>
+                <div class="formInput float-L">
+                    <select name="province" id="province" data-foolish-msg="请填省份">
+                        <option value="">请填省份</option>
+                        <option value="2">上海</option>
+                        <option value="3">广州</option>
+                        <option value="3">北京</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">市</label>
+                <div class="formInput float-L">
+                    <select name="city" id="city" data-foolish-msg="请填写市">
+                        <option value="">请填写市</option>
+                        <option value="2">上海</option>
+                        <option value="3">北京</option>
+                        <option value="3">深圳</option>
+                    </select>
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">区</label>
+                <div class="formInput float-L">
+                    <select name="Area" id="Area" data-foolish-msg="请填写区/县">
+                        <option value="">请填写区/县</option>
+                        <option value="2">杨浦区</option>
+                        <option value="3">海定区</option>
+                        <option value="3">南山区</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">详细地址</label>
+                <div class="formInput float-L">
+                    <input id="address" class="bor" data-foolish-msg="请输入联系地址" type="text" name="address"  placeholder="请输入联系地址" >
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">邮编</label>
+                <div class="formInput float-L">
+                    <input id="email" class="bor" type="tel" name="email" data-foolish-msg="请输入正确的邮编" placeholder="请填写邮编" >
+                </div>
+            </div>
+            <div style="height:100px;"></div>
+
+        </form>
+    </div>
+    <div style="height:280px;"> </div>
+
+
+    <div id="footer" class="bottom clearfix">
+        <div><a href="information.html"><span class="on">上一步</span></a></div>
+        <div><span class="active">下一步</span></div>
+    </div>
+
+
+    <script>
+        (function () {
+            var timer;
+            changeFixedW();
+            function changeFixedW() {
+                var width = window.screen.width;
+                var fixedW = 750;
+                var scale = width / fixedW;
+                var meta = document.createElement('meta');
+                meta.setAttribute('name','viewport');
+                meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+                document.head.appendChild(meta);
+            }
+            window.addEventListener('resize', function () {
+                clearTimeout(timer);
+                timer = setTimeout(changeFixedW, 300);
+            }, false);
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) {
+                    clearTimeout(timer);
+                    timer = setTimeout(changeFixedW, 300);
+                }
+            }, false);
+        })();
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="mobile/layer.js"></script>
+    <script>
+        var requestData ={};
+        $("#footer .active").click(function() {
+            var valid = true
+            var requestData = {
+                province : $("#province").val(),
+                city : $("#city").val(),
+                Area : $("#Area").val(),
+                address :$("#address").val(),
+                email : $("#email").val()
+            };
+            console.log(requestData);
+            if(valid && requestData.province.length <= 0){
+                valid = false;
+                var tips = $("#province").attr("data-foolish-msg");
+                $("#province").focus();
+
+
+            }
+            if(valid && requestData.city.length <= 0){
+                valid = false;
+                var tips = $("#city").attr("data-foolish-msg");
+                $("#city").focus();
+
+
+            }
+            if(valid && requestData.Area.length <= 0){
+                valid = false;
+                var tips = $("#Area").attr("data-foolish-msg");
+                $("#Area").focus();
+
+
+            }
+            if(valid && requestData.address.length <=0){
+                valid = false;
+                var tips = $("#address").attr("data-foolish-msg");
+                $("#address").focus();
+
+
+            }
+            if(valid && requestData.email.length !==6 ){
+                valid = false;
+                var tips = $("#email").attr("data-foolish-msg");
+                $("#email").focus();
+
+
+            }
+
+            if(valid){
+                window.location.href='cropper.html';
+            }else{
+                layer.open({
+                    content: tips
+                    ,skin: 'msg'
+                    ,time: 1 //2秒后自动关闭
+                });
+            }
+
+
+        });
+
+
+
+
+
+    </script>
+</body>
+</html>

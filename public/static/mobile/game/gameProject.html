@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<title>参赛项目</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<style type="text/css">
+		form{height:80%;}
+		.layui-m-layerchild.layui-m-layer-msg.layui-m-anim-up{
+			font-size: 30px;
+			padding: 10px;
+		}
+		.information .examinee:nth-child(4){
+			position:relative;
+		}
+		.music-radio:nth-child(1){
+			margin-left:0!important;
+		}
+		.prompt{
+			display: inline-block;
+			position:absolute;
+			top:90px;
+			left:0;
+			height:0;
+			font-size:22px;
+			color:red;
+		}
+		.gap-gap{height:60px;}
+	</style>
+</head>
+<body>
+	<nav class="HomeNav">
+		<div class="container">
+			<h1 class="clearfix">
+				<a class="float-L" href="gameAddress.html">
+					<span class="icon iconfont icon-fanhui"></span>
+				</a>
+				<span class="title">参赛项目</span>
+			</h1>
+
+		</div>
+	</nav>
+	<div class="menu">
+		<div class="container content">
+			<div ><a href="gameAddress.html"><span>在线考级报名</span></a></div>
+			<div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+		</div>
+	</div>
+	<div class="show">
+        <div>我的订单</div>
+        <div>审核进度</div>
+        <div>退出</div>
+    </div>
+	<!-- 考生信息 -->
+	<div class="gap-gap">
+		小星球音悦会比赛报名系统
+	</div>
+	<div class="information">
+		<div class="examinee examinee-title border-bottom-solid">参赛者信息</div>
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">姓名</div>
+			<div class="examinee-val g-width-common-val">Frank</div>
+		</div>
+		<div class="examinee examinee-sex">
+			<div class="examinee-info g-width-common-info">性别</div>
+			<div class="examinee-val g-width-common-val">男</div>
+		</div>
+	</div>
+	<!-- 考级信息 -->
+	<div class="inBg"></div>
+	<div class="information">
+		<div class="examinee examinee-title border-bottom-solid">参赛信息</div>
+		<form class="" action="">
+			<div class="examinee border-bottom-solid">
+				<div class="examinee-info g-width-common-info">科目</div>
+				<div class="examinee-val g-width-common-val">钢琴</div>
+			</div>
+			<div class="examinee border-bottom-solid ">
+				<div class="examinee-info g-width-common-info">级别</div>
+				<div class="examinee-val g-width-common-val">
+					<select name="" class="level-select" data-foolish-msg="请选择级别">
+					  <option value="">请选择级别</option>
+					  <option value="1">一级</option>
+					  <option value="2">二级</option>
+					</select>
+				</div>
+			      
+			</div>
+			<div class="examinee border-bottom-solid">
+				<div class="examinee-info g-width-common-info">组别</div>
+				<div class="examinee-val g-width-common-val">
+					<div class="music-radio">
+						<input type="radio" name="music-class" class="radio-btn" value="1" checked="checked" ><label class="music-label">儿童组</label>
+					</div>
+					
+					<div class="music-radio">
+						<input type="radio" name="music-class" class="radio-btn" value="2"><label class="music-label">少年组</label>
+					</div>
+					
+				</div>
+			</div>
+			<div class="examinee border-bottom-solid">
+				<span class="prompt">*请上传视频到腾讯视频中并把链接填写到上方输入框内</span>
+				<div class="examinee-info g-width-common-info">视频链接</div>
+				<div  class="examinee-val g-width-common-val" >
+					<input type="text" name="certificate" class="certificate input-text-font" value="" placeholder="请输入参赛视频链接" data-foolish-msg="请输入正确的参赛视频链接">
+				</div>
+				
+			</div>
+		 
+		</form>
+	
+	</div>
+	<div style="height:200px;"></div>
+	<div class="order-footer">
+		<a href="gameAddress.html"><button class="order-btn-up">上一步</button></a>
+		<button class="order-btn-low">下一步</button>
+	</div>
+	<script>
+	    (function () {
+	        var timer;
+	        changeFixedW();
+	        function changeFixedW() {
+	            var width = window.screen.width;
+	            var fixedW = 750;
+	            var scale = width / fixedW;
+	            var meta = document.createElement('meta');
+	            meta.setAttribute('name','viewport');
+	            meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+	            document.head.appendChild(meta);
+	        }
+	        window.addEventListener('resize', function () {
+	            clearTimeout(timer);
+	            timer = setTimeout(changeFixedW, 300);
+	        }, false);
+	        window.addEventListener('pageshow', function (e) {
+	            if (e.persisted) {
+	                clearTimeout(timer);
+	                timer = setTimeout(changeFixedW, 300);
+	            }
+	        }, false);
+	    })();
+	</script>
+	<script src="../js/jquery-3.2.1.min.js"></script>
+	<script src="../mobile/layer.js"></script>
+	<script >
+		var requestData = {};
+		$(function() {
+        	$('.order-btn-low').on('click', function() {
+            
+            	var requestData = {
+            		Piano_level:$('.level-select').val(),
+            		music_class:$('input:radio[name="music-class"]:checked').val(),
+            		certificate:$('.certificate').val()
+        		}
+        		console.log(requestData)
+            	var valid = true;
+	            if(valid && requestData.Piano_level == ''){
+	                valid = false;
+	                var tips = $(".level-select").attr("data-foolish-msg");
+	                $(".level-select").focus();
+	            }
+	            if(valid && requestData.music_class < 1){
+	                valid = false;
+	                var tips = "请选择乐理等级";
+	                $(".radio-btn").focus();
+	            }
+	            if(valid && !certificate(requestData.certificate)){
+	                valid = false;
+	                var tips = $(".certificate").attr("data-foolish-msg");
+	                $(".certificate").focus();
+	            }
+
+
+	            function certificate(mobile){
+	            	
+	            		if((/^(?:http(?:s|):\/\/|)(?:(?:\w*?)\.|)(?:\w*?)\.(?:\w{2,4})(?:\?.*|\/.*|)$/ig).test(mobile)){
+	            			return true;
+	            		}else{
+	            			return false
+	            		}
+	            	
+	            }
+	            if(valid){
+                    window.location.href='gameOrder.html';
+	            }else{
+	                layer.open({
+		                  content: tips
+		                  ,skin: 'msg'
+		                  ,time: 2 //2秒后自动关闭
+		                });
+	            }
+
+        });
+
+    	})
+
+		$('.menuRight').click(function(){
+			$('.show').toggle(500);
+		});
+	</script>
+</body>
+</html>

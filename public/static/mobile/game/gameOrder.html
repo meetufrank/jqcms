@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<title>订单确认</title>
+	<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="../css/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<nav class="HomeNav">
+		<div class="container">
+			<h1 class="clearfix">
+				<a class="float-L" href="gameProject.html">
+					<span class="icon iconfont icon-fanhui"></span>
+				</a>
+				<span class="title">确认订单</span>
+			</h1>
+
+		</div>
+	</nav>
+	<div class="menu">
+		<div class="container content">
+			<div ><a href="gameProject.html"><span>在线考级报名</span></a></div>
+			<div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+		</div>
+	</div>
+	<div class="show">
+        <div>我的订单</div>
+        <div>审核进度</div>
+        <div>退出</div>
+    </div>
+	<!-- 确认订单 -->
+	<div class="gap-gap">小星球音悦会比赛报名系统</div>
+	<div class="information">
+		<div class="order border-bottom-solid">
+			<div class="examinee-info">总金额</div>
+			<div class="order-val"><span>￥</span>100.00</div>
+		</div>
+		<div class="order-info">
+			<div class="examinee-info">姓名</div>
+			<div class="order-info-val">Frank</div>
+		</div>
+		<div class="order-info">
+			<div class="examinee-info">报名科目</div>
+			<div class="order-info-val">钢琴</div>
+		</div>
+		<div class="order-info">
+			<div class="examinee-info">级别</div>
+			<div class="order-info-val">一级</div>
+		</div>
+		<div class="order-info">
+			<div class="examinee-info">组别</div>
+			<div class="order-info-val">少年组</div>
+		</div>
+		<div class="order-info">
+			<div class="examinee-info">报名费</div>
+			<div class="order-info-val">100元</div>
+		</div>
+		<div class="order-info">
+			<div class="examinee-info">平台服务费</div>
+			<div class="order-info-val">0</div>
+		</div>
+	</div>
+	<div class="order-footer">
+		<a href="gamePersonal.html"><button class="order-btn">完成</button></a>
+	</div>
+	<script>
+	    (function () {
+	        var timer;
+	        changeFixedW();
+	        function changeFixedW() {
+	            var width = window.screen.width;
+	            var fixedW = 750;
+	            var scale = width / fixedW;
+	            var meta = document.createElement('meta');
+	            meta.setAttribute('name','viewport');
+	            meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+	            document.head.appendChild(meta);
+	        }
+	        window.addEventListener('resize', function () {
+	            clearTimeout(timer);
+	            timer = setTimeout(changeFixedW, 300);
+	        }, false);
+	        window.addEventListener('pageshow', function (e) {
+	            if (e.persisted) {
+	                clearTimeout(timer);
+	                timer = setTimeout(changeFixedW, 300);
+	            }
+	        }, false);
+	    })();
+
+	</script>
+	 <script src="../js/jquery-3.2.1.min.js"></script>
+	<script >
+		 (function(){
+	    	$('.menuRight').click(function(){
+				$('.show').toggle(500);
+			});
+	    })();
+	</script>
+</body>
+</html>

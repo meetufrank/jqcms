@@ -1,0 +1,136 @@
+html{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+.gap-gap{
+	width: 100%;
+	height: 16px;
+	background-color: #f3f3f4;
+}
+.information{
+	width: 100%;
+	border-top: 1px solid rgb(213,213,213);
+	border-bottom: 1px solid rgb(213,213,213);
+}
+.information .examinee{
+	line-height: 120px;
+	margin:0 24px;
+}
+.information .examinee-title{
+	font-size: 32px;
+	color: #333333;
+}
+.border-bottom-solid{
+	border-bottom: 1px solid rgb(231,234,236);
+}
+.information .examinee-info{
+	display: inline-block;
+	font-size: 30px;
+	color: #666666;
+}
+.examinee-val{
+	display: inline-block;
+	float: right;
+	font-size: 28px;
+	color: #333333;
+}
+.level-select{
+	display: inline;
+	width: 534px;
+	height: 80px;
+}
+.information .order{
+	line-height: 200px;
+	margin:0 24px;
+	overflow: hidden;
+}
+.information .order-val{
+	display: inline;
+	font-size: 72px;
+	color: #333333;
+	float: right;
+}
+.information .order-val span{
+	font-size: 36px;
+}
+.order-info{
+	line-height: 74px;
+	margin:0 24px;
+}
+.order-info-val{
+	display: inline;
+	font-size: 28px;
+	color: #333333;
+	float: right;
+}
+.order-footer{
+	width: 100%;
+	font-size: 36px;
+	margin-top: 100px;
+	
+}
+.order-btn{
+	width: 100%;
+	height: 100px;
+	color: #ffffff;
+	background-color: rgb(58,54,51);
+	font-size: 36px;
+}
+.order-btn-up{
+	height: 100px;
+	width: 50%;
+	display: inline;
+	font-size: 36px;
+	background-color: #ddd;
+}
+.order-btn-low{
+	height: 100px;
+	width: 50%;
+	display: inline;
+	color: #ffffff;
+	background-color: rgb(58,54,51);
+	float: right;
+	font-size: 36px;
+}
+.g-width-common-info{
+	width: 20%;
+}
+.g-width-common-val{
+	width: 80%;
+}
+select {
+  /*很关键：将默认的select选择框样式清除*/
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  padding-left: 10px;
+  font-size: 30px;
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url("../img/1.png") no-repeat scroll right center transparent;
+}
+select option{
+	font-size: 10px;
+}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+.radio-btn{
+	width: 50px;
+	height: 30px;
+}
+.music-label{
+	padding-left: 5px;
+	line-height: 80px;
+}
+.music-radio{
+	display: inline-block;
+	margin: 0 40px;
+}
+.certificate{
+	background-color: #fff; 
+	border: none;
+}
+.input-text-font{
+	font-size: 30px;
+	outline:none;
+}

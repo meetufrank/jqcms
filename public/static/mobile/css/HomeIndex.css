@@ -1,0 +1,90 @@
+/*首页头部*/
+.HomeNav{
+    height:120px;
+    background-color:#f8f8f8;
+    border:1px solid #ddd
+}
+.HomeNav h1{text-align: center;}
+.HomeNav h1 span{
+    height:120px;
+    line-height:120px;
+    font-size:36px;
+    color:black;
+}
+.HomeNav h1 a{
+    display:inline-block;
+}
+
+/*首页导航*/
+.menu{height:120px;}
+.menu div span{
+    font-size:30px;
+    color:#333333;
+}
+.menu .container{
+    position: relative;
+    height:100%;
+    overflow: hidden;
+}
+.menu .container div{display:inline-block;}
+.menu .menuRight{
+    position: absolute;
+    width:60px;
+    height:60px;
+    top:30px;
+    right:0;
+    margin-right:0;
+    text-align:center;
+    line-height:60px;
+    background-color:#333333;
+}
+.menu .menuRight span{
+    color:#fff;
+}
+
+/*轮播*/
+.banner{
+    height:340px;
+    width:100%;
+}
+.swiper-container {
+    height: 340px;
+}
+.swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction{
+    height:0;
+    bottom:26px;
+}
+.swiper-pagination-bullet{
+    width:20px;
+    border-radius:8px;
+    margin:0 10px;
+}
+.swiper-pagination-bullet-active{
+    background: #fff;
+}
+
+/*首页内容部分*/
+.header{border-bottom:1px solid #ddd;}
+.header .content span{font-size:32px;}
+.quarterly{padding:48px 88px;}
+.quarterly div{
+    display:inline;
+    width:200px;
+    height:200px;
+    text-align: center;
+}
+.quarterly div img{border-radius: 50%;background:#e5e5e5;}
+.quarterly span{
+    display:block;
+    margin-top:36px;
+    font-size:30px;
+    color:#666666;
+}
+
+
+
+
+
+
+
+
