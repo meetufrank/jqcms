@@ -67,14 +67,13 @@
                         {if condition="$co.type eq 1"}
                       <div class="">
                           {else/}
-                        <p class="answer-title"><i class="icon icon-question-sign"></i>追问<span>2018.07.02</span></p>
-                        <p class="question-content-zw">HTML5是HTML最新的修订版本，2014年10月由（W3C）完成标准制定。目标是替换1999年所制定的HTML 4.01和XHTML 1.0标准，使网络标准达到匹配当代的网络需求。
+                        <p class="answer-title"><i class="icon icon-question-sign"></i>追问<span>{$co.createtime}</span></p>
+                        <p class="question-content-zw">{$co.content}
                         </p>
                       </div>
                       <div class="answer-content-wrap answer-content-wrap-bg">
-                        <p class="answer-title custom-answer-title"><i class="icon icon-reply reply-button"></i>追问回复<span>2018.07.02</span></p>
-                        <p class="answer-content custom-backcolor">HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。2008年1月22日，第一份正式草案发布。HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。
-                      HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。</p>
+                        <p class="answer-title custom-answer-title"><i class="icon icon-reply reply-button"></i>追问回复<span>{$co.createtime}</span></p>
+                        <p class="answer-content custom-backcolor">{$co.content}</p>
                       </div>
                         {/if}
                       
@@ -88,19 +87,21 @@
               </p>
               <div class="custom-footer-btn">
                 <button class="btn inquiries" id="inquiries" type="button" data-toggle="collapse" data-target="#collapseExample12" data-id="1">继续追问</button>
-                <a class="btn return-btn" id="zone-return" href="st-mailbox.html">返回</a>
+                <a class="btn return-btn" id="zone-return" href="{:url('home/Index/index',array('id'=>$selectid))}">返回</a>
               </div>
+              <form method="post" action="{:url('Stdetails/submitQuestion')}">
                   <div class="collapse" id="collapseExample12">
                     <div class="with-padding">
-                      <textarea class="form-control" rows="10" placeholder="请输入问题"></textarea>
+                      <textarea class="form-control" rows="10" placeholder="请输入问题" name="content"></textarea>
                       <div class="custom-btn-color">
-                        <button class="btn inquiries-button" type="button">提交</button>
-                        <button class="btn inquiries-button-return" id="inquiries" type="button" data-toggle="collapse" data-target="#collapseExample12" data-id="1">取消追问</button>
+                          <button class="btn inquiries-button" type="submit" >提交</button>
+                          <input TYPE='hidden' name="p_id"value="{$content.mess.id}"/>
+                          <button class="btn inquiries-button-return" id="inquiries" type="button" data-toggle="collapse" data-target="#collapseExample12" data-id="1" >取消追问</button>
                         <!-- <button class="btn inquiries-button-return" type="button">取消追问</button> -->
                       </div>
                     </div>
                   </div>
-                  
+              </form>
             </div>
           </div>
         </div>
