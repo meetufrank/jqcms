@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>信箱</title>
+    <!-- zui -->
+    <link href="__STATIC__/index/css/zui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/mailbox.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/write.css">
+  </head>
+  <body>
+  {include file='hohead'/}
+
+
+    <div class="mailbox-wraper">
+      <div class="container">
+        <div>
+          <div class="bread-current">
+            <img class="bread-icon" src="__STATIC__/index/images/dqwz.png">
+            <span>当前位置：</span>
+          </div>
+          <!-- 面包屑导航 -->
+          <ol class="breadcrumb">
+            <li><a href="index.html">首页</a></li>
+            <li class="active">为兵服务</li>
+          </ol>
+        </div>
+        <!-- 写信栏 -->
+        <div class="mailbox-left">
+          <div class="panel left-panel">
+            <a href="./writer.html" class="panel-heading panel-left-top" style="">
+              <img src="__STATIC__/index/images/xx.png">
+              写信
+            </a>
+            <div class="panel-body left-panel-body">
+              <div class="mailbox-list mailbox-list-top">
+                <div class="mailbox-item"><a href="your/nice/url/2">首长信箱(12)</a></div>
+                <div class="mailbox-item">
+                  <a href="your/nice/url/2">后勤部长信箱(12)</a></div>
+                <div class="mailbox-item active">
+                  <a href="your/nice/url/2">党委信箱(20)</a>
+                  </div>
+                <div class="mailbox-item">
+                <a href="your/nice/url/2">党委信箱(0)</a></div>
+                <div class="mailbox-item">
+                <a href="your/nice/url/2">组织部信箱(0)</a></div>
+                <div class="mailbox-item">
+                  <a href="your/nice/url/2">后勤部长信箱(12)</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel left-panel">
+            <div class="panel-body">
+              <div class="mailbox-list">
+                <div class="">
+                  <p class="mailbox-title">根据信件号查询</p>
+                  <input type="text" class="form-control mailbox-input" placeholder="信件号">
+                  <button class="btn mailbox-button" type="button" data-toggle="modal" data-target="#letter-query-button">查询</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 模态框 -->
+          <div class="modal fade" id="letter-query-button">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header open-common-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                  <div class="">
+                    输入密码
+                  </div>
+                </div>
+                <div class="modal-body return-modal">
+                  <p>您的不公开信件号为：<span class="letter-number">123456789</span></p>
+                  <p>请输入您设置的私密密码：</p>
+                  <input id="inputpassword" type="text" class="form-control" placeholder="">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="letter-query-button-submit" class="btn btn-reset">确定</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 党委信箱 -->
+        <div class="mailbox-right">
+          <div class="panel left-panel">
+            <div class="panel-body">
+              <div class="items">
+                <div class="item frist-item">
+                  <div class="item-content">
+                    <div class="text-title">党委信箱</div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="details.html">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">关于党费的相关事宜
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="items items-hover">
+                <div class="item">
+                  <div class="item-content">
+                    <div class="text-content-title">
+                      <a href="">首长好！
+                        <div class="text-content-title-right">
+                          <span class="text-muted">2013-11-11 16:14:37</span>
+                        <span class="text-state">已回复</span>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="page-wraper">
+                <div class="page-notes">每页10条数据/共100条数据</div>
+                <ul class="pager pager-loose">
+                  <li class="previous active"><a href="your/nice/url">首页</a></li>
+                  <li><a href="your/nice/url">1</a></li>
+                  <li><a href="your/nice/url">2</a></li>
+                  <li><a href="your/nice/url">3</a></li>
+                  <li><a href="your/nice/url">4</a></li>
+                  <li><a href="your/nice/url">5</a></li>
+                  <li class="next active"><a href="your/nice/url">尾页</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
+    <script src="__STATIC__/index/js/jquery-3.3.1.min.js"></script>
+    <!-- ZUI Javascript组件 -->
+    <script src="__STATIC__/index/js/zui.min.js"></script>
+    <script>
+      $('#letter-query-button-submit').on('click',function(){
+        $(location).attr('href', 'http://localhost/army/details.html');
+      })
+      $('.mailbox-list>.mailbox-item').on('click',function(){
+        console.log($(this));
+        $(this).addClass('active').siblings().removeClass('active');
+      })
+    </script>
+  </body>
+</html>

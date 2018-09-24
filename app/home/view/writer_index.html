@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>写信</title>
+    <!-- zui -->
+    <link href="__STATIC__/index/css/zui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/mailbox.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/write.css">
+    <link href="__STATIC__/index/lib/uploader/zui.uploader.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+
+  {include file='hohead'/}
+    <div class="mailbox-wraper">
+      <div class="container">
+        <div>
+          <div class="bread-current">
+            <img class="bread-icon" src="__STATIC__/index/images/dqwz.png">
+            <span>当前位置：</span>
+          </div>
+          <!-- 面包屑导航 -->
+          <ol class="breadcrumb">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="mailbox.html">为兵服务</a></li>
+            <li class="active">写信</li>
+          </ol>
+        </div>
+        <!-- 写信栏 -->
+        <div class="mailbox-left">
+          <div class="panel left-panel">
+            <a href="./writer.html" class="panel-heading panel-left-top">
+              <img src="__STATIC__/index/images/xx.png">
+              写信
+            </a>
+            <div class="panel-body left-panel-body">
+              <div class="mailbox-list">
+                <div class="mailbox-item">首长信箱(12)</div>
+                <div class="mailbox-item">
+                  后勤部长信箱(12)</div>
+                <div class="mailbox-item active">
+                  党委信箱(20)</div>
+                <div class="mailbox-item">党委信箱(0)</div>
+                <div class="mailbox-item">组织部信箱(0)</div>
+                <div class="mailbox-item">首长信箱(0)</div>
+              </div>
+            </div>
+          </div>
+          <div class="panel left-panel">
+            <div class="panel-body">
+              <div class="mailbox-list">
+                <div class="">
+                  <p class="mailbox-title">根据信件号查询</p>
+                  <input type="text" class="form-control mailbox-input" placeholder="信件号">
+                  <button class="btn mailbox-button" type="button">查询</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 写信 -->
+        <div class="mailbox-right">
+          <div class="panel left-panel">
+            <div class="panel-body">
+              <div class="items">
+                <div class="item frist-item">
+                  <div class="item-content">
+                    <div class="text-title">写信</div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel letter-panel">
+                <div class="panel-heading write-content">
+                信件内容
+                </div>
+                <div class="panel-body">
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <label for="write-title" class="col-sm-2">
+                      <span class="letter-start">*</span>信件标题</label>
+                      <div class="col-md-4 col-sm-4">
+                        <input type="text" class="form-control" id="write-title" placeholder="请输入信件标题">
+                      </div>
+                      <label for="letter-type" class="col-sm-2">
+                      <span class="letter-start">*</span>信件类型</label>
+                      <div class="col-sm-4">
+                        <select class="form-control" id="letter-type">
+                          <option value="">请选择</option>
+                          <option value="1">咨询</option>
+                          <option value="2">求助</option>
+                          <option value="3">举报</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputAddress1" class="col-sm-2">
+                      <span class="letter-start">*</span>选择首长</label>
+                      <div class="col-sm-3">
+                        <select class="form-control" id="headerid">
+                          <option value="">请选择</option>
+                          <option value="1">首长</option>
+                          <option value="2">首长2</option>
+                          <option value="3">首长3</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputAddress1" class="col-sm-2">
+                      <span class="letter-start">*</span>信件内容</label>
+                      <div class="col-sm-10">
+                        <textarea id="content" name="content" class="form-control kindeditor" style="height:150px;"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div id='myuploader' class="uploader" data-ride="uploader">
+                        <div class="uploader-message text-center">
+                          <div class="content"></div>
+                          <button type="button" class="close">×</button>
+                        </div>
+                        <div class="uploader-files file-list file-list-lg" data-drag-placeholder="请拖拽文件到此处"></div>
+                        <div class="uploader-actions">
+                          <div class="uploader-status pull-right text-muted"></div>
+                          <button type="button" class="btn btn-link uploader-btn-browse"><i class="icon icon-plus"></i> 选择文件</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="write-name" class="col-sm-2">姓名</label>
+                      <div class="col-md-4 col-sm-4">
+                        <input type="text" class="form-control" id="write-name" placeholder="请输入姓名">
+                      </div>
+                      <label for="write-tall" class="col-sm-2">电话</label>
+                      <div class="col-md-4 col-sm-4">
+                        <input type="text" class="form-control" id="write-tall" placeholder="请输入联系方式">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="write-name" class="col-sm-2">是否公开</label>
+                      <label class="radio-inline">
+                        <input type="radio" name="radioOptionsExample3" checked value="1">公开
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="radioOptionsExample3" value="2"> 不公开
+                      </label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-2">
+                  <button type="submit" id="submit-letter" class="btn btn-default btn-writer">提交</button>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reset-letter">返回</button>
+                </div>
+              </div>
+              <div class="modal fade" id="reset-letter">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                    </div>
+                    <div class="modal-body return-modal">
+                      <p>信件还未发送，确定要返回吗？</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" id="reset-button" class="btn btn-reset">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 点击提交公开 -->
+              <div class="modal fade" id="open-submit">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header open-common-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <div class="">
+                        <i class="icon icon-check-circle-o icon-2x icon-open-color"></i>提交成功
+                      </div>
+                    </div>
+                    <div class="modal-body return-modal">
+                      <p>我们会尽快回复您的问题，请妥善保存您的信件查询号：<span class="letter-number">123456789</span>用于查询自己的信件。</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" id="open-button" class="btn btn-reset">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 不公开 -->
+              <div class="modal fade" id="not-open">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header open-common-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <div class="">
+                        <i class="icon icon-check-circle-o icon-2x icon-open-color"></i>提交成功
+                      </div>
+                    </div>
+                    <div class="modal-body return-modal">
+                      <p>我们会尽快回复您的问题,请妥善保存您的信件查询号:<span class="letter-number">123456789</span>用于查询自己的信件。</p>
+                      <p>请设置您的私密密码：</p>
+                      <input id="inputpassword" type="text" class="form-control" placeholder="至少6位（允许数字、字母）">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" id="no-open-button" class="btn btn-reset">确定</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
+    <script src="__STATIC__/index/js/jquery-3.3.1.min.js"></script>
+    <!-- ZUI Javascript组件 -->
+    <script src="__STATIC__/index/js/zui.min.js"></script>
+    <script src="__STATIC__/index/lib/kindeditor/kindeditor.min.js"></script>
+    <script src="__STATIC__/index/js/writer.js"></script>
+    <script src="__STATIC__/index/lib/uploader/zui.uploader.min.js"></script>
+    <script>
+      var options = {
+      // 初始化选项
+      autoUpload: true,            // 当选择文件后立即自动进行上传操作
+      url: './test.php',
+      deleteActionOnDone: function(file, doRemoveFile) {
+          doRemoveFile();
+      },
+      };
+  $('#myuploader').uploader(options);
+    </script>
+  </body>
+</html>
