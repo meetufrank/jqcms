@@ -1,0 +1,238 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td {
+    margin:0;
+    padding:0;
+}
+body{
+    background:#fff;
+    color:#000;
+    font-size:14px;
+    font-family: 'Microsoft yahei';
+}
+td,th,caption {
+    font-size:14px;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight:normal; font-size:100%;
+}
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style:normal; font-weight:normal;
+}
+a{text-decoration:none;-webkit-tap-highlight-color: rgba(0,0,0,0);}
+
+img{
+    border:none;
+}
+ol,ul,li {
+    list-style:none;
+}
+li{
+    vertical-align:top;
+}
+input, textarea, select, button {
+    font:14px 'Microsoft yahei',Verdana,Helvetica,Arial,sans-serif; }
+table {
+    border-collapse:collapse;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height:0;
+    clear:both;
+    visibility: hidden;
+}
+.clearfix{ *zoom:1; }
+.float-L{
+    float:left;
+}
+.float-R{
+    float:right;
+}
+.border-T{
+    border-top:1px solid #eee;
+}
+.border-B{
+    border-bottom:1px solid #eee;
+}
+.border-L{
+    border-left:1px solid #eee;
+}
+.border-T{
+    border-right:1px solid #eee;
+}
+.text-center{
+    text-align:center;
+}
+.f-s-22{font-size:22px;}
+.f-s-16{font-size:16px;}
+.f-s-12{font-size:12px;}
+.b-r{border:1px solid red;}
+.b-b{border:1px solid blue;}
+.b-g{border:1px solid green;}
+.b-y{border:1px solid yellow;}
+
+
+
+/*公共类*/
+.container{
+    margin:0 24px;
+}
+.content{
+    height:120px;
+    line-height:120px;
+    font-size:30px;
+    color:#333333;
+    /*border-bottom:1px solid rgb(231,234,236);*/
+}
+
+/*首页头部*/
+.HomeNav{
+    height:120px;
+    background-color:#f8f8f8;
+    border:1px solid #ddd
+}
+.HomeNav h1{text-align: center;}
+.HomeNav h1 span{
+    height:120px;
+    line-height:120px;
+    font-size:36px;
+    font-weight: 700;
+    color:rgb(51,51,51);
+}
+.HomeNav h1 a{
+    display:inline-block;
+}
+
+/*首页导航*/
+.menu{height:120px;border-bottom:1px solid #ddd;}
+.menu div span{
+    font-weight: 700;
+    font-size:30px;
+    color:#333333;
+}
+.menu .container{
+    position: relative;
+    height:100%;
+    overflow: hidden;
+
+}
+.menu .container div{display:inline-block;}
+.menu .menuRight{
+    position: absolute;
+    width:60px;
+    height:60px;
+    top:30px;
+    right:0;
+    margin-right:0;
+    text-align:center;
+    line-height:60px;
+    border-radius:8px;
+    background-color:rgb(58,54,51);
+}
+.menu .menuRight span{
+
+    color:#fff;
+}
+.inBg{
+    height:16px;
+    background-color:#f3f3f4;
+}
+
+form .content .formInput input{
+    outline:none;
+    padding-left:20px;
+}
+form{
+    width:100%;
+    height:100%;
+}
+form .content{
+    height:120px;
+    border-bottom:1px solid rgb(231,234,236);
+}
+form .content label{
+    width:20%;
+}
+form .content select{
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    width:100%;
+    height:80px;
+    font-size:28px;
+    padding-left:10px;
+    background: url("../img/1.png") no-repeat scroll right center transparent;
+}
+form .content select option{width:100%;font-size:10px;}
+form .content .formInput{
+    position: relative;
+    width:80%;
+}
+.layui-m-layerchild.layui-m-layer-msg.layui-m-anim-up{font-size:30px!important;padding:10px;}
+
+/*订单*/
+.show{
+    position:absolute;
+    top:240px;
+    left:0;
+    right:0;
+    display: none;
+/*    height:220px;*/
+    height:90px;
+    background: #fff;
+    z-index: 999;
+}
+.show div{
+    font-size:30px;
+    color:#333333;
+    line-height: 60px;
+    padding-left:26px;
+}
+
+/*留白背景*/
+.gap-gap{
+    height:60px;
+    line-height: 60px;
+    font-size: 26px;
+    text-align: center;
+}
+
+/*网络备案*/
+.cyber-security{
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:80px;
+    background:rgb(29,54,51);
+    color:#fff;
+    line-height: 80px;
+    font-size:18px;
+    padding:0 10px;
+}
+.cyber-security img{
+    width:40px;
+    height:40px;
+    position:relative;
+    top:10px;
+    left:0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<title>考生信息</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css">
+		.layui-m-layerchild.layui-m-layer-msg.layui-m-anim-up{
+			font-size: 30px;
+			padding: 10px;
+		}
+		.information{
+			position: relative;
+		}
+		.information .examinee{
+			width:50%;
+			border-bottom:1px solid #eee;
+		}
+		.g-width-common-val{width:70%;}
+		.photo{
+			width:50%;
+			position:absolute;
+			top:10px;
+			right:-25px;
+			
+		}
+		.photo-img{
+			width:295px;
+			height:355px;
+			margin-left:30px;
+			border-style:dashed;
+			border:5px dashed #eee;
+		}
+		.photo-btn{
+	
+			border-top:1px solid #eee;
+			margin-top:50px;
+		}
+		.photo-btn div{
+			display:inline-block;
+			width:48%;
+			height:80px;
+			text-align: center;
+		}
+		.photo-btn div span{
+			display: inline-block;
+			font-size:28px;
+			padding:5px 30px;
+			color:#333;
+			border:1px solid #333;
+		}
+		
+		.photo-btn div span.active{
+			color:#fff;
+			background-color:rgb(58,54,51);
+		}
+		.plus{
+			text-align: center;
+			margin-top:20px;
+		}
+		.puls-img{
+			display: inline-block;
+			border:5px dashed #ddd;
+		}
+		.puls-img a i{
+			display: inline-block;
+			font-size:60px;
+			color:#333;
+			padding:30px 60px;
+		}
+	</style>
+	
+</head>
+<body>
+	<!-- 头部 -->
+	<nav class="HomeNav">
+		<div class="container">
+			<h1 class="clearfix">
+				<a class="float-L" href="PianoInformation.html">
+					<span class="icon iconfont icon-fanhui"></span>
+				</a>
+				<span class="title">考生信息</span>
+			</h1>
+
+		</div>
+	</nav>
+	<div class="menu">
+		<div class="container content">
+			<div ><a href="index.html"><span>在线考级报名</span></a></div>
+			<div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+		</div>
+	</div>
+	<!-- 订单列表 -->
+	<div class="show">
+		<div>我的订单</div>
+		<div>审核进度</div>
+		<div>退出</div>
+	</div>
+	<!-- 考生信息 -->
+	<div class="gap-gap"></div>
+	<div class="information clearfix">
+		<div class="examinee examinee-title border-bottom-solid">考生信息</div>
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">姓名</div>
+			<div class="examinee-val g-width-common-val">Frank</div>
+		</div>
+		<div class="examinee examinee-sex">
+			<div class="examinee-info g-width-common-info">性别</div>
+			<div class="examinee-val g-width-common-val">男</div>
+		</div>
+		<div class="photo">
+			<div class="photo-img">
+				
+			</div>
+		</div>
+		<div class="photo-btn">
+			<div><a href="" title=""><span class="active">报名</span></a></div>
+			<div><a href="" title=""><span class="">编辑</span></a></div>
+		</div>
+	</div>
+	<div class="gap-gap"></div>
+	<div class="plus">
+		<div class="puls-img">
+			<a href="" title=""> <i class="icon iconfont icon-jiahao"></i> </a>
+		</div>
+	</div>
+
+	<script>
+	    (function () {
+	        var timer;
+	        changeFixedW();
+	        function changeFixedW() {
+	            var width = window.screen.width;
+	            var fixedW = 750;
+	            var scale = width / fixedW;
+	            var meta = document.createElement('meta');
+	            meta.setAttribute('name','viewport');
+	            meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+	            document.head.appendChild(meta);
+	        }
+	        window.addEventListener('resize', function () {
+	            clearTimeout(timer);
+	            timer = setTimeout(changeFixedW, 300);
+	        }, false);
+	        window.addEventListener('pageshow', function (e) {
+	            if (e.persisted) {
+	                clearTimeout(timer);
+	                timer = setTimeout(changeFixedW, 300);
+	            }
+	        }, false);
+	    })();
+	</script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$('.menuRight').click(function(){
+			$('.show').toggle(500);
+		});
+	</script>
+</body>
+</html>

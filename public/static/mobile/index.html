@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="css/HomeIndex.css">
+    <script>
+        (function () {
+            var timer;
+            changeFixedW();
+            function changeFixedW() {
+                var width = window.screen.width;
+                var fixedW = 750;
+                var scale = width / fixedW;
+                var meta = document.createElement('meta');
+                meta.setAttribute('name','viewport');
+                meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+                document.head.appendChild(meta);
+            }
+            window.addEventListener('resize', function () {
+                clearTimeout(timer);
+                timer = setTimeout(changeFixedW, 300);
+            }, false);
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) {
+                    clearTimeout(timer);
+                    timer = setTimeout(changeFixedW, 300);
+                }
+            }, false);
+        })();
+    </script>
+
+
+    <title>首页</title>
+</head>
+<body>
+    <nav class="HomeNav">
+        <div class="container">
+            <h1 class="clearfix">
+                <a class="float-L" href="#">
+                    <span class="icon iconfont icon-fanhui"></span>
+                </a>
+                <span class="title">首页</span>
+            </h1>
+
+        </div>
+    </nav>
+    <div class="menu">
+       <div class="container content">
+           <div ><span>在线考级报名</span></div>
+           <div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+       </div>
+    </div>
+    <div class="banner swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="img/5.jpg" alt="" width="100%" height="100%"></div>
+            <div class="swiper-slide"><img src="img/3.png" alt="" width="100%" height="100%"></div>
+            <div class="swiper-slide"><img src="img/4.png" alt="" width="100%" height="100%"></div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="inBg"></div>
+    <div class="header">
+        <div class="container content">
+            <span>当季报名</span>
+        </div>
+    </div>
+    <div class="quarterly clearfix">
+        <div class="float-L">
+            <a readonly href="information.html">
+                <img src="img/3.png" alt="" width="100%" height="100%">
+                <span>钢琴报名</span>
+            </a>
+        </div>
+        <div class="float-R">
+            <a readonly href="information.html">
+                <img src="img/4.png" alt="" width="100%" height="100%">
+                <span>古筝报名</span>
+            </a>
+        </div>
+    </div>
+
+
+    <script type="text/javascript"  src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/swiper-3.4.2.jquery.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+
+        });
+        (function () {
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                paginationType : "bullets",
+                pagination : '.swiper-pagination',
+                paginationHide:false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+
+            });
+        })();
+    </script>
+
+
+</body>
+</html>

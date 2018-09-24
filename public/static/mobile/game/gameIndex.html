@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../date/css/weui.min.css">
+    <link rel="stylesheet" href="../date/css/jquery-weui.css">
+    <link rel="stylesheet" href="../date/css/demos.css">
+    <link rel="stylesheet" href="../css/information.css">
+    <title>小星球音悦会</title>
+    <style type="text/css">
+    	.inBg{
+    		height:60px;
+    		line-height: 50px;
+    		text-align: center;
+    		font-size:26px;
+    	}
+    </style>
+</head>
+<body>
+    <nav class="HomeNav">
+        <div class="container">
+            <h1 class="clearfix">
+                <a class="float-L" href="#">
+                    <span class="icon iconfont icon-fanhui"></span>
+                </a>
+                <span class="title">比赛信息</span>
+            </h1>
+
+        </div>
+    </nav>
+    <div class="menu">
+        <div class="container content">
+            <div ><a href="gameAddress.html"><span>在线考级报名平台</span></a></div>
+            <div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+        </div>
+    </div>
+    <div class="show">
+			<div>我的订单</div>
+			<div>审核进度</div>
+			<div>退出</div>
+		</div>
+    <div class="inBg">
+		小星球音悦会比赛报名系统
+    </div>
+    <div class="container">
+        <form action="">
+            <div class="content clearfix">
+                <label class="formLabel float-L ">姓名</label>
+                <div class="formInput float-L">
+                    <input class="bor" type="text" id="name" name="name" data-foolish-msg="请填写正确的姓名"  placeholder="姓名" >
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">性别</label>
+                <div class="formInput float-L sex">
+                    <div class="sex-radio">
+                        <input type="radio" name="sex" value="0" title="男">
+                        <label>男</label>
+                    </div>
+                    <div class="sex-radio">
+                        <input type="radio" name="sex" value="1" title="女" checked>
+                        <label >女</label>
+                    </div>
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">生日</label>
+                <div class="formInput float-L">
+                    <input readonly type="text" id="dateTime" name="date" data-foolish-msg="请填写出生日期" value="" placeholder="日期" >
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">国籍</label>
+                <div class="formInput float-L">
+                    <select id="country" name="country" data-foolish-msg="请选择国籍">
+                        <option value="0">请选择国籍</option>
+                        <option value="1">中国</option>
+                        <option value="2">中国香港</option>
+                    </select>
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">民族</label>
+                <div class="formInput float-L">
+                    <select name="ethnic" id="ethnic" data-foolish-msg="请选择民族">
+                        <option value="0">请选择民族</option>
+                        <option value="1">汉族</option>
+                        <option value="2">满族</option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="content clearfix">
+                <label class="formLabel float-L">手机</label>
+                <div class="formInput float-L">
+                    <input id="tel" class="bor" type="tel" name="tel" data-foolish-msg="请填写正确手机号" placeholder="请填写手机号" >
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="height:250px;"></div>
+    <div class="bottom">
+        <span type="submit">下一步</span>
+    </div>
+
+     <script>
+        (function () {
+            var timer;
+            changeFixedW();
+            function changeFixedW() {
+                var width = window.screen.width;
+                var fixedW = 750;
+                var scale = width / fixedW;
+                var meta = document.createElement('meta');
+                meta.setAttribute('name','viewport');
+                meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+                document.head.appendChild(meta);
+            }
+            window.addEventListener('resize', function () {
+                clearTimeout(timer);
+                timer = setTimeout(changeFixedW, 300);
+            }, false);
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) {
+                    clearTimeout(timer);
+                    timer = setTimeout(changeFixedW, 300);
+                }
+            }, false);
+        })();
+    </script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../mobile/layer.js"></script>
+    <script src="../date/js/jquery-2.1.4.js"></script>
+    <script src="../date/js/fastclick.js"></script>
+    <script src="../date/js/jquery-weui.js"></script>
+    <script>
+        $("#dateTime").datetimePicker({
+            //  title: '自定义格式',
+            yearSplit: '年',
+            monthSplit: '月',
+            dateSplit: '日',
+
+            times: function () {
+
+            },
+            onChange: function (picker, values, displayValues) {
+                console.log(values);
+            }
+        });
+
+         var requestData ={};
+        $(".bottom").click(function() {
+            var valid = true;
+            var requestData = {
+                name : $("#name").val(),
+                dateTime : $("#dateTime").val(),
+                country : $("#country").val(),
+                ethnic :$("#ethnic").val(),
+                tel : $("#tel").val()
+            };
+            console.log(requestData);
+            if(valid && !name(requestData.name)){
+                var valid = false;
+                var tips = $("#name").attr("data-foolish-msg");
+                $("#name").focus();
+
+
+            }
+            if(valid && requestData.dateTime == ""){
+                var valid = false;
+                var tips = $("#dateTime").attr("data-foolish-msg");
+                $("#dateTime").focus();
+
+
+            }
+            if(valid && requestData.country <= 0){
+                var valid = false;
+                $("#country").focus();
+                var tips = $("#country").attr("data-foolish-msg");
+
+
+            }
+            if(valid && requestData.ethnic <= 0){
+                var valid = false;
+                var tips = $("#ethnic").attr("data-foolish-msg");
+                $("#ethnic").focus();
+
+
+            }
+
+            if(valid && !checkMobile(requestData.tel)){
+                valid = false;
+                var tips = $("#tel").attr("data-foolish-msg");
+                $("#tel").focus();
+
+
+            }
+
+            function name(mobile) {
+                if((/^[a-zA-Z\u4e00-\u9fa5]+$/).test(mobile)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            function checkMobile(mobile){
+                if((/^1[3|4|5|6|7|8]\d{9}$/.test(mobile))){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+
+            if(valid){
+
+                window.location.href='gameAddress.html';
+            }else{
+                layer.open({
+                    content: tips
+                    ,skin: 'msg'
+                    ,time: 1
+                })
+            }
+
+        });
+        $('.menuRight').click(function(){
+            $('.show').toggle(500);
+        });
+    </script>
+</body>
+</html>

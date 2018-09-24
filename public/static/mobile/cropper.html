@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A simple jQuery image cropping plugin.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, jQuery plugin, image cropping, image crop, image move, image zoom, image rotate, image scale, front-end, frontend, web development">
+    <meta name="author" content="Chen Fengyuan">
+    <title>Cropper</title>
+
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cropper.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <script>
+        (function () {
+            var timer;
+            changeFixedW();
+            function changeFixedW() {
+                var width = window.screen.width;
+                var fixedW = 750;
+                var scale = width / fixedW;
+                var meta = document.createElement('meta');
+                meta.setAttribute('name','viewport');
+                meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+                document.head.appendChild(meta);
+            }
+            window.addEventListener('resize', function () {
+                clearTimeout(timer);
+                timer = setTimeout(changeFixedW, 300);
+            }, false);
+            window.addEventListener('pageshow', function (e) {
+                if (e.persisted) {
+                    clearTimeout(timer);
+                    timer = setTimeout(changeFixedW, 300);
+                }
+            }, false);
+        })();
+    </script>
+    <style>
+        .menu .content{
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+        .bottom{
+            position: fixed;
+            bottom:0;
+            width:100%;
+            text-align: center;
+            cursor:pointer;
+        }
+        .bottom div span{
+            display:inline-block;
+            width:50%;
+            float:left;
+            height:100%;
+            color:#333;
+            background-color:#ddd;
+        }
+        .bottom div span.active{
+            color:#fff;
+            background-color:rgb(58,54,51);
+        }
+        .bottom span{
+            display:inline-block;
+            font-size:36px;
+            padding:15px 0;
+        }
+        .header{
+            height:260px;
+            width:260px;
+            border-radius: 50%;
+            margin:50px auto;
+        }
+        img{
+            max-width:180%;
+        }
+        .btn-group button{margin:0 15px;}
+        .row div span{
+            font-size:32px;
+        }
+        .btn-group label{padding:0;}
+        button .docs-tooltip{padding:8px 12px;}
+        .modal-header{font-size:32px;}
+        .cropper-wrap-box{background:url("img/bg.png")no-repeat 100% 0/100% 100%;}
+        .docs-tooltip{width:140px;height:60px;}
+        .btn-group{margin:0 20px;}
+        .btn.btn-success{display:inline-block;width:140px;height:60px;border:none;color:#000;background-color:#ddd;}
+        .modal-footer .btn-default{background:#ddd;color:#000;font-size:34px;}
+        .close{font-size:30px;}
+        @media (min-width: 576px){
+            .modal-dialog {
+                max-width: 684px;
+                height: 552px;
+                margin: 30px auto;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<!--[if lt IE 9]>
+<div class="alert alert-warning alert-dismissible fade show m-0 rounded-0" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+</div>
+<![endif]-->
+
+
+
+<nav class="HomeNav" >
+    <div class="content" style="width:95%;margin:auto;">
+        <h1 class="clearfix">
+            <a class="float-L" href="#">
+                <span class="icon iconfont icon-fanhui"></span>
+            </a>
+            <span class="title">上传头像</span>
+        </h1>
+    </div>
+</nav>
+<div class="menu">
+    <div class="content clearfix" style="width:95%; margin: auto;">
+        <div ><span>在线考级报名</span></div>
+        <div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+    </div>
+</div>
+<!-- Content -->
+<div class="container" style="margin: auto;" >
+    <div class="row" style="margin:100px auto;">
+        <div class="col-xs-12">
+            <!-- <h3>Demo:</h3> -->
+            <div class="img-container" style="height:600px;width:100%;margin:auto;">
+                <img id="image" src="img/bg.png" alt="Picture">
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-9 docs-buttons text-center" style="margin-top:-50px;">
+            <div class="btn-group">
+
+                <label class="btn btn-default btn-upload" for="inputImage" title="Upload image file">
+                    <input type="file" class="sr-only btn" id="inputImage" name="file" accept="image/*;capture=camera">
+                    <span class="btn btn-success docs-tooltip " data-toggle="tooltip" data-animation="false" >
+                        选择
+                     </span>
+                </label>
+
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 295, &quot;height&quot;: 413 }">
+                    <span class="docs-tooltip btn" data-toggle="tooltip" data-animation="false" title="">
+                      上传
+                    </span>
+                </button>
+            </div>
+
+            <!--截取-->
+
+            <!--截取-->
+
+            <!-- Show the cropped image in modal -->
+            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+                <div class="modal-dialog" style="margin-top:250px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="getCroppedCanvasTitle">截取</h5>
+                            <button type="button" class="close btn btn-default" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-lg btn-default " data-dismiss="modal">关闭</button>
+                            <!--<a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">确定</a>-->
+                            <a class="btn btn-lg btn-default" id="download">确定</a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.modal -->
+
+
+           </div><!-- /.docs-buttons -->
+
+    </div>
+</div>
+<!--页面底部-->
+<div id="footer" class="bottom clearfix">
+    <div><a href="address.html"><span class="on">上一步</span></a></div>
+    <div><a href="PianoInformation.html"><span class="active">下一步</span></a></div>
+</div>
+
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script src="https://fengyuanchen.github.io/js/common.js"></script>
+<script src="js/cropper.js"></script>
+<script src="js/main.js?v=1.0"></script>
+</body>
+</html>

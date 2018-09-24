@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<title>古筝考级信息</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<style type="text/css">
+
+		.layui-m-layerchild.layui-m-layer-msg.layui-m-anim-up{
+			font-size: 30px;
+			padding: 10px;
+		}
+	</style>
+	
+</head>
+<body>
+	<nav class="HomeNav">
+		<div class="container">
+			<h1 class="clearfix">
+				<a class="float-L" href="PianoInformation.html">
+					<span class="icon iconfont icon-fanhui"></span>
+				</a>
+				<span class="title">古筝考级信息</span>
+			</h1>
+
+		</div>
+	</nav>
+	<div class="menu">
+		<div class="container content">
+			<div ><a href="index.html"><span>在线考级报名</span></a></div>
+			<div class="menuRight"><a href="#"><span class="icon iconfont icon-xuanxiang"></span></a></div>
+		</div>
+	</div>
+	<!-- 考生信息 -->
+	<div class="gap-gap"></div>
+	<div class="information">
+		<div class="examinee examinee-title border-bottom-solid">考生信息</div>
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">姓名</div>
+			<div class="examinee-val g-width-common-val">Frank</div>
+		</div>
+		<div class="examinee examinee-sex">
+			<div class="examinee-info g-width-common-info">性别</div>
+			<div class="examinee-val g-width-common-val">男</div>
+		</div>
+	</div>
+	<!-- 考级信息 -->
+	<div class="gap-gap"></div>
+	<div class="information">
+		<div class="examinee examinee-title border-bottom-solid">考级信息</div>
+
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">科目</div>
+			<div class="examinee-val g-width-common-val">古筝</div>
+		</div>
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">级别</div>
+			<div class="examinee-val g-width-common-val">
+					<select name="" class="level-select" id="test-level" data-foolish-msg="请选择级别">
+					  <option value="">请选择级别</option>
+					  <option value="1">一级</option>
+					  <option value="2">二级</option>
+					</select>
+				</div>
+		</div>
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">考点</div>
+			<div class="examinee-val g-width-common-val">
+					<select name="" class="level-select" id="test-center"
+					data-foolish-msg="请选择考点">
+					  <option value="">请选择考点</option>
+					  <option value="一级">杨浦分校</option>
+					  <option value="二级">嘉定分校</option>
+					</select>
+				</div>
+		</div>
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">指导老师</div>
+			<div  class="examinee-val g-width-common-val" >
+				<input type="text" name="" class="certificate input-text-font" id="teacher-name" value="" placeholder="请输入指导老师" data-foolish-msg="请输入指导老师">
+			</div>
+		</div>
+		<div class="examinee border-bottom-solid">
+			<div class="examinee-info g-width-common-info">老师手机</div>
+			<div  class="examinee-val g-width-common-val" >
+				<input type="tel" name="teacher-phone" id="teacher-phone" class="certificate input-text-font" value="" placeholder="请输入老师手机" data-foolish-msg="请输入正确的手机号码">
+			</div>
+		</div>
+	</div>
+	
+	<div class="order-footer">
+		<a href="PianoInformation.html"><button class="order-btn-up">上一步</button></a>
+		<button class="order-btn-low">下一步</button>
+	</div>
+	<script>
+	    (function () {
+	        var timer;
+	        changeFixedW();
+	        function changeFixedW() {
+	            var width = window.screen.width;
+	            var fixedW = 750;
+	            var scale = width / fixedW;
+	            var meta = document.createElement('meta');
+	            meta.setAttribute('name','viewport');
+	            meta.setAttribute('content','width='+fixedW+',initial-scale='+scale+',maximum-scale='+scale+',user-scalable=no');
+	            document.head.appendChild(meta);
+	        }
+	        window.addEventListener('resize', function () {
+	            clearTimeout(timer);
+	            timer = setTimeout(changeFixedW, 300);
+	        }, false);
+	        window.addEventListener('pageshow', function (e) {
+	            if (e.persisted) {
+	                clearTimeout(timer);
+	                timer = setTimeout(changeFixedW, 300);
+	            }
+	        }, false);
+	    })();
+	</script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="mobile/layer.js"></script>
+		<script >
+			var requestData = {};
+			$(function() {
+	        	$('.order-btn-low').on('click', function() {
+	            
+	            	var requestData = {
+	            		zither_level:$('#test-level').val(),
+	            		test_center:$('#test-center').val(),
+	            		teacher_name:$('#teacher-name').val(),
+	            		teacher_phone:$('#teacher-phone').val()
+	        		}
+	        		console.log(requestData)
+	            	var valid = true;
+		            if(valid && requestData.zither_level == ''){
+		                valid = false;
+		                var tips = $("#test-level").attr("data-foolish-msg");
+		                $("#test-level").focus();
+		            }
+		            if(valid && requestData.test_center == ''){
+		                valid = false;
+		                var tips = $("#test-center").attr("data-foolish-msg");
+		                $("#test-center").focus();
+		            }
+		            if(valid && requestData.teacher_name.length <= 0){
+		                valid = false;
+		                var tips = $("#teacher-name").attr("data-foolish-msg");
+		                $("#teacher-name").focus();
+		            }
+		            if(valid && !checkMobile(requestData.teacher_phone)){
+                    var tips = $("#teacher-phone").attr("data-foolish-msg");
+                    $("#teacher-phone").focus();
+                    valid = false;
+                }
+
+		            if(valid){
+                        window.location.href='gradOrder.html';
+		            }else{
+		               layer.open({
+		                  content: tips
+		                  ,skin: 'msg'
+		                  ,time: 2 //2秒后自动关闭
+		                });
+		            }
+
+	        });
+
+	    	})
+	    	function checkMobile(mobile){
+	    	    if((/^1[3|4|5|6|7|8]\d{9}$/.test(mobile))){
+	    	        return true;
+	    	    }else{
+	    	        return false;
+	    	    }
+	    	}
+
+
+		</script>
+</body>
+</html>
