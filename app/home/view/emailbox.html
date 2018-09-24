@@ -1,0 +1,74 @@
+<div>
+          <div class="bread-current">
+            <i class="icon icon-home bread-icon"></i>
+            <span>当前位置：</span>
+          </div>
+          <!-- 面包屑导航 -->
+          <ol class="breadcrumb">
+            <li><a href="index.html">首页</a></li>
+            <li class="active">兵情直通车</li>
+          </ol>
+        </div>
+        <!-- 二级导航 -->
+        <div class="panel border-none">
+          <div class="panel-body custom-panel-body">
+            <a href="./st-writer.html" class="panel-heading custom-panel-heading">
+              <img src="__STATIC__/index/images/st-xx.png" class="st-xx">
+              写信
+            </a>
+          </div>
+          <div class="panel-footer custom-panel-footer">
+            <nav class="navbar" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <ul class="nav nav-secondary">
+                      {foreach name="bmlist" item="bm"}
+                      <li {if condition="$bm.group_id eq $selectid"}class="active"{/if} ><a href="{:url('home/index/index',array('id'=>$bm.group_id))}">{$bm.title}信箱</a></li>
+                    
+                    {/foreach}
+                  </ul>
+                </div>
+                <div class="collapse navbar-collapse navbar-collapse-example">
+
+                  <!-- 导航中的表单 -->
+                  <form class="navbar-form custom-navbar-form" role="search" action="{:url('home/index/index')}" method="get" id="searchform">
+                    <div class="input-control search-box has-icon-left has-icon-right search-example" id="searchboxExample">
+                        
+                        <input id="inputSearchExample9" type="search" class="form-control search-input" placeholder="输入信件号" name="keyword" value="{$Request.get.keyword}">
+                      <label for="inputSearchExample9" class="input-control-icon-right search-icon" id="searchsubmit"><i class="icon icon-search" data-toggle="modal"  ></i></label>
+                    </div>
+                  </form>
+                  <!-- 模态框 -->
+                  {foreach name="emaillist.data" item="el"}
+                  {if condition="$el.is_public neq 1"}
+                         
+                         
+                  <div class="modal fade" id="letter-query-button{$el.id}" >
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header open-common-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                          <div class="">
+                            输入密码
+                          </div>
+                        </div>
+                        <div class="modal-body return-modal">
+                          <p>您的不公开信件号为：<span class="letter-number">{$el.id}</span></p>
+                          <p>请输入您设置的私密密码：</p>
+                          <input id="inputpassword{$el.id}" type="text" class="form-control" placeholder="" name="pwd">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="letter-query-button-submit{$el.id}" class="btn btn-return btn-return-qd">确定</button>
+                          <button type="button" class="btn btn-default btn-return" data-dismiss="modal">取消</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/if}
+                  {/foreach}
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>

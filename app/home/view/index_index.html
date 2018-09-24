@@ -18,74 +18,7 @@
   {include file="stcommonhead" /}
     <div class="mailbox-wraper">
       <div class="container">
-        <div>
-          <div class="bread-current">
-            <i class="icon icon-home bread-icon"></i>
-            <span>当前位置：</span>
-          </div>
-          <!-- 面包屑导航 -->
-          <ol class="breadcrumb">
-            <li><a href="index.html">首页</a></li>
-            <li class="active">兵情直通车</li>
-          </ol>
-        </div>
-        <!-- 二级导航 -->
-        <div class="panel border-none">
-          <div class="panel-body custom-panel-body">
-            <a href="./st-writer.html" class="panel-heading custom-panel-heading">
-              <img src="__STATIC__/index/images/st-xx.png" class="st-xx">
-              写信
-            </a>
-          </div>
-          <div class="panel-footer custom-panel-footer">
-            <nav class="navbar" role="navigation">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <ul class="nav nav-secondary">
-                    <li class=""><a href="your/nice/url">首长信箱</a></li>
-                    <li><a href="your/nice/url">后勤部长信箱</a></li>
-                    <li><a href="your/nice/url">党委信箱</a></li>
-                    <li class="active"><a href="your/nice/url">首长信箱</a></li>
-                    <li><a href="your/nice/url">后勤部长信箱</a></li>
-                    <li><a href="your/nice/url">组织部信箱</a></li>
-                  </ul>
-                </div>
-                <div class="collapse navbar-collapse navbar-collapse-example">
-
-                  <!-- 导航中的表单 -->
-                  <form class="navbar-form custom-navbar-form" role="search">
-                    <div class="input-control search-box has-icon-left has-icon-right search-example" id="searchboxExample">
-                      <input id="inputSearchExample9" type="search" class="form-control search-input" placeholder="输入信件号">
-                      <label for="inputSearchExample9" class="input-control-icon-right search-icon"><i class="icon icon-search" data-toggle="modal" data-target="#letter-query-button"></i></label>
-                    </div>
-                  </form>
-                  <!-- 模态框 -->
-                  <div class="modal fade" id="letter-query-button">
-                    <div class="modal-dialog modal-sm">
-                      <div class="modal-content">
-                        <div class="modal-header open-common-header">
-                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                          <div class="">
-                            输入密码
-                          </div>
-                        </div>
-                        <div class="modal-body return-modal">
-                          <p>您的不公开信件号为：<span class="letter-number">123456789</span></p>
-                          <p>请输入您设置的私密密码：</p>
-                          <input id="inputpassword" type="text" class="form-control" placeholder="">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" id="letter-query-button-submit" class="btn btn-return btn-return-qd">确定</button>
-                          <button type="button" class="btn btn-default btn-return" data-dismiss="modal">取消</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </div>
+        {include file="emailbox" /}
         <!-- 党委信箱 -->
         <div class="mailbox-right">
           <div class="panel left-panel">
@@ -93,160 +26,42 @@
               <div class="items">
                 <div class="item frist-item">
                   <div class="item-content">
-                    <div class="text-title">党委信箱<span class="title-span">（共 120 封）</span></div>
+                    <div class="text-title">{$selectname}信箱<span class="title-span">（共 {$emaillist.total} 封）</span></div>
                   </div>
                 </div>
               </div>
               <div class="lists-mailbox">
+                  {foreach name="emaillist.data" item="el"}
                 <div class="items items-hover">
                   <div class="item">
                     <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="st-details.html">
-                          首长好！我想问一下关于福利分发的问题
+                      <div class="text-content-title" >
+                         {if condition="$el.is_public neq 1"}
+                          <a  data-toggle="modal" data-target="#letter-query-button{$el.id}" >
+                          {$el.name}
                           
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">关于党费的相关事宜
+                          </a>
+                         {else/}
+                         <a  href="{:url('Stdetails/index',array('id'=>$el.id))}" >
+                          {$el.name}
                           
-                        </a>
+                          </a>
+                         {/if}
                         <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
+                            <span class="text-muted">{$el.createtime}</span>
+                          <span class="text-state">{$el.replyname}</span>
                           </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！
-                          
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！
-                          
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！
-                          
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！123123
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="items items-hover">
-                  <div class="item">
-                    <div class="item-content">
-                      <div class="text-content-title">
-                        <a href="">首长好！
-                        </a>
-                        <div class="text-content-title-right">
-                            <span class="text-muted">2013-11-11</span>
-                          <span class="text-state">已回复</span>
-                          </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  {/foreach}
+               
               </div>
+                
               <div class="page-wraper">
-                <ul class="pager pager-loose">
+                  {$page}
+<!--                <ul class="pager pager-loose">
                   <li class="previous"><a href="your/nice/url">首页</a></li>
                   <li class="previous"><a href="your/nice/url">上一页</a></li>
                   <li class="active"><a href="your/nice/url">1</a></li>
@@ -255,7 +70,7 @@
                   <li class="next"><a href="your/nice/url">下一页</a></li>
                   <li class="next"><a href="your/nice/url">末页</a></li>
                 </ul>
-                <div class="page-notes">共&nbsp;&nbsp;<input type="text" class="pageinput" name="" value="2">&nbsp;&nbsp;/253页&nbsp;&nbsp;<input type="button" name="" value="跳转" class="btn btn-default custom-tz"></div>
+                <div class="page-notes">共&nbsp;&nbsp;<input type="text" class="pageinput" name="" value="2">&nbsp;&nbsp;/253页&nbsp;&nbsp;<input type="button" name="" value="跳转" class="btn btn-default custom-tz"></div>-->
               </div>
             </div>
           </div>
@@ -279,8 +94,38 @@
       },
       };
   $('#myuploader').uploader(options);
-  $('#letter-query-button-submit').on('click',function(){
-        $(location).attr('href', 'http://localhost/army/st-mailbox.html');
+  {foreach name="emaillist.data" item="el"}
+    {if condition="$el.is_public neq 1"}
+   $('#letter-query-button-submit{$el.id}').on('click',function(){
+       //获取信件id
+       var id={$el.id};
+       //获取信件密码
+       var pwd=$("#inputpassword{$el.id}").val();
+       //验证密码是否正确
+       $.ajax({
+        type:"post",
+        url:'{:url(\'Stdetails/validpwd\')}',
+        dataType: "json",
+        data:{"id":id,"pwd":pwd},
+        success: function(data){
+            
+            if(data.code==1){
+                window.location.href='{:url(\'Stdetails/index\')}'+'?id='+id+'&pwd='+pwd;
+            }else{
+                alert(data.msg);
+                return;
+            }
+        }
+       });
+       
+        
+        //href="{:url('stdetails/index',array('id'=>$el.id))}"
+      })
+      {/if}
+   {/foreach} 
+      
+      $('#searchsubmit').on('click',function(){
+          $("#searchform").submit();
       })
 
     </script>

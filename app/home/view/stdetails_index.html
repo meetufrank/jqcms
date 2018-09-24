@@ -14,53 +14,7 @@
   {include file="stcommonhead" /}
     <div class="mailbox-wraper">
       <div class="container">
-        <div>
-          <div class="bread-current">
-            <i class="icon icon-home bread-icon"></i>
-            <span>当前位置：</span>
-          </div>
-          <!-- 面包屑导航 -->
-          <ol class="breadcrumb">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="st-mailbox.html">兵情直通车</a></li>
-            <li class="active">信件详情</li>
-          </ol>
-        </div>
-        <!-- 二级导航 -->
-        <div class="panel border-none">
-          <div class="panel-body custom-panel-body">
-            <a href="./st-writer.html" class="panel-heading custom-panel-heading">
-              <img src="images/st-xx.png" class="st-xx">
-              写信
-            </a>
-          </div>
-          <div class="panel-footer custom-panel-footer">
-            <nav class="navbar" role="navigation">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <ul class="nav nav-secondary">
-                    <li class=""><a href="your/nice/url">首长信箱</a></li>
-                    <li><a href="your/nice/url">后勤部长信箱</a></li>
-                    <li><a href="your/nice/url">党委信箱</a></li>
-                    <li class="active"><a href="your/nice/url">首长信箱</a></li>
-                    <li><a href="your/nice/url">后勤部长信箱</a></li>
-                    <li><a href="your/nice/url">组织部信箱</a></li>
-                  </ul>
-                </div>
-                <div class="collapse navbar-collapse navbar-collapse-example">
-
-                  <!-- 导航中的表单 -->
-                  <form class="navbar-form custom-navbar-form" role="search">
-                    <div class="input-control search-box has-icon-left has-icon-right search-example" id="searchboxExample">
-                      <input id="inputSearchExample9" type="search" class="form-control search-input" placeholder="输入信件号">
-                      <label for="inputSearchExample9" class="input-control-icon-right search-icon"><i class="icon icon-search"></i></label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </div>
+         {include file="emailbox" /}  
         <!-- 信件详情 -->
         <div class="mailbox-right">
           <div class="panel left-panel letter-panel">
@@ -76,31 +30,43 @@
               <div id="foldzone" class="foldzone">
                 <div class="custom-detail-header">
                   <header>
-                    <p class="details-title">您好，我想请教一下军人转业的问题？</p>
+                    <p class="details-title">{$content.mess.name}</p>
                     <div class="common-sub-title">
-                      <div class="letter-type">咨询</div>
+                      <div class="letter-type">{$content.mess.typename}</div>
                       <dl class="dl-inline">
                       <dt></dt>
-                      <dd class="letter-date">2016.8.12</dd>
+                      <dd class="letter-date">{$content.mess.createtime}</dd>
                       <dt class="letter-questioner">被提问人：</dt>
-                      <dd class="letter-questioner-name">后勤部长</dd>
+                      <dd class="letter-questioner-name">{$content.mess.departmentname}</dd>
                     </dl>
                     </div>
                   </header>
                   <section class="content">
-                    <p class="question-content">HTML5是HTML最新的修订版本，2014年10月由（W3C）完成标准制定。目标是替换1999年所制定的HTML 4.01和XHTML 1.0标准。目标是替换1999年所制定的HTML 4.01和XHTML 1.0标准。</p>
+                    <p class="question-content">{$content.mess.content}</p>
                   </section>
                 </div>
+                  {if condition="!empty($content.reply)"}
                 <section>
+                    {if condition="$content.reply.type eq 1"}
                   <div class="answer-content-wrap answer-content-wrap-bg">
-                      <p class="answer-title"><i class="icon icon-reply reply-button"></i>信件回复<span>2018.07.02</span></p>
-                      <p class="answer-content" style="padding-bottom: 5px;">HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。</p>
+                      <p class="answer-title"><i class="icon icon-reply reply-button"></i>信件回复<span>{$content.reply.createtime}</span></p>
+                      <p class="answer-content" style="padding-bottom: 5px;">{$content.reply.content}</p>
                     </div>
+                   {else/}
+                     <div class="">
+                      <p class="answer-title"><i class="icon icon-question-sign"></i>追问<span>{$content.reply.createtime}</span></p>
+                      <p class="question-content-zw" style="padding-bottom: 5px;">{$content.reply.content}</p>
+                    </div>
+                   {/if}
                 </section>
+                  {/if}
                 <section class="content">
                   <div class="hiddens-fold" id="hidden-fold">
                     <div class="">
+                        {foreach name="$content.other" item="co"}
+                        {if condition="$co.type eq 1"}
                       <div class="">
+                          {else/}
                         <p class="answer-title"><i class="icon icon-question-sign"></i>追问<span>2018.07.02</span></p>
                         <p class="question-content-zw">HTML5是HTML最新的修订版本，2014年10月由（W3C）完成标准制定。目标是替换1999年所制定的HTML 4.01和XHTML 1.0标准，使网络标准达到匹配当代的网络需求。
                         </p>
@@ -110,6 +76,9 @@
                         <p class="answer-content custom-backcolor">HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。2008年1月22日，第一份正式草案发布。HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。
                       HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。</p>
                       </div>
+                        {/if}
+                      
+                        {/foreach}
                     </div>
                   </div>
                 </section>
