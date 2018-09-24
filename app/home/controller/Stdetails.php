@@ -35,6 +35,7 @@ class Stdetails extends Controller
                }
                
             //print_r($data);exit;
+            $this->assign('selectid',$data['mess']['department']);
             $this->assign('content',$data);
              return $this -> fetch();
            
@@ -67,6 +68,29 @@ class Stdetails extends Controller
             ]);
         }
         exit;
+    }
+    
+    
+    //提交提问
+    public function submitQuestion() {
+        $data=input('post.');
+        
+        if(!empty($data['content'])){
+            
+            if($data['p_id']){
+            $data['type']=2;
+            $data['is_open']=0;
+            $data['createtime']=time();
+            //db("dreply")->insert($data);
+            $id= db("dreply")->insertGetId($data);
+           
+            
+           
+            $this->success('追问成功,审核通过后将会回复并显示您的追问消息', url('home/Index/index'));
+            
+            exit;
+            }
+        }
     }
     
     
