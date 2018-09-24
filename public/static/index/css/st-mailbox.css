@@ -1,0 +1,113 @@
+/*党委信箱*/
+.mailbox-panel-body {
+    padding: 15px 24px;
+}
+.text-title:after {
+    display: block;
+    content: '';
+    width: 94px;
+    height: 2px;
+    margin: 11px 0px -12px 0px;
+    background-color: #1e64a4;
+}
+.title-span{
+	font-size: 16px;
+	color: #333;
+}
+.custom-icon-play{
+	color: #1e64a4;
+	margin-right: 12px;
+}
+.text-content-title{
+	padding: 5px 10px;
+}
+.text-content-title a{
+	color: #333;
+	text-decoration:none;
+	font-size: 16px;
+}
+.text-content-title-right{
+	display: inline;
+    float: right;
+}
+.text-muted{
+	color: #666;
+	font-size: 12px;
+	margin-right: 30px;
+}
+.text-state{
+	color: #999;
+	font-size: 14px;
+	border:1px solid #999;
+	padding: 4px;
+	border-radius: 2px;
+}
+.page-wraper{
+	margin-left: 466px;
+}
+.pager li a{
+	color: #333;
+}
+.pager>li.active>a, .pager>li.active>a:hover, .pager>li.active>span, .pager>li.active>span:hover{
+	background-color: #1e64a4;
+    border-color: #d7d7d7;
+}
+.page-notes{
+	font-size: 14px;
+    color: #666;
+    float: right;
+    margin: 20px;
+}
+.pageinput{
+	width: 30px;
+    text-align: center;
+}
+.pager.pager-loose{
+	display: inline-block;
+}
+.left-panel{
+	border:none;
+}
+.left-panel-body{
+	padding: 0;
+}
+/*首长信箱头部*/
+@media(max-width: 1366px){
+	.input-group {
+    	position: absolute;
+    	right: 30px;
+    	bottom: 20px;
+	}
+}
+@media(max-width: 1280px){
+	.input-group {
+    	width: 260px;
+    	position: absolute;
+    	right: 120px;
+    	bottom: 38px;
+	}
+}
+.border-none{
+	border:none;
+}
+/*鼠标悬浮信件列表*/
+.items.items-hover .item .item-content .text-content-title a:hover,.items.items-hover .item .item-content .text-content-title .active{
+	color: #1e64a4;
+	cursor: pointer;
+	position: relative;
+    left: 20px;
+}
+.items.items-hover .item .item-content .text-content-title .active:before,.items.items-hover .item .item-content .text-content-title a:hover:before{
+	content: "";
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border: 10px solid transparent;
+    border-left-color: #1e64a4;
+    position: absolute;
+    left: -24px;
+}
+.custom-tz{
+	border: 1px solid #ddd;
+    background: #fff;
+}

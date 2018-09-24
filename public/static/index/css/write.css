@@ -1,0 +1,54 @@
+
+/*.write-content{
+	font-size: 18px;
+}*/
+.btn-writer{
+	background: #960d09;
+    color: #fff;
+    text-shadow: none;
+}
+.letter-start{
+	color: red;
+    margin-right: 10px;
+}
+.radio-inline{
+	padding-left: 30px;
+}
+/*返回弹出层*/
+.modal-header{
+	border-bottom: none;
+}
+.modal-footer{
+	border-top: none;
+	text-align: center;
+}
+.return-modal{
+	text-align: center
+}
+.return-modal p{
+	font-size: 18px;
+	color: #333;
+}
+.btn-reset{
+	background: #c30d23;
+    border: 1px solid #960d09;
+    width: 120px;
+    color: #fff;
+    text-shadow: none;
+}
+.open-common-header{
+	background: #f2f2f2;
+    border-radius: 4px 4px 0 0;
+}
+.open-common-header div{
+	text-align: center;
+	font-size: 22px;
+	color: #333;
+}
+.icon-open-color{
+	color: #c30d23;
+	margin-right: 10px;
+}
+.letter-number{
+	color: #c30d23;
+}

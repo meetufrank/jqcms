@@ -13,7 +13,7 @@
         <div class="layui-form-item">
                     <label class="layui-form-label">业务类型</label>
                     <div class="layui-input-4" id="box_type">
-                        <select id="type" name="type" onchange=""  class="type" validate=" required:true, defaul:true" ><option value="1">超管</option><option value="2">信件管理</option><option value="3">信件回复</option></select>                    </div>
+                        <select id="type" name="type" onchange=""  class="type" validate=" required:true, defaul:true" ><option value="1" {if condition='$type eq 1'}selected{/if}>超管</option><option value="2" {if condition='$type eq 2'}selected{/if}>信件管理</option><option value="3" {if condition='$type eq 3'}selected{/if}>信件回复</option></select>                    </div>
         </div>
 
         <div class="layui-form-item">

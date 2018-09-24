@@ -1,7 +1,7 @@
 {include file="common/head"/}
 <div class="admin-main layui-anim layui-anim-upbit">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>{:lang('Letter')}{:lang('list')}</legend>
+        <legend>{:lang('Department')}{:lang('Letter')}{:lang('list')}</legend>
     </fieldset>
     <div class="demoTable">
         <div class="layui-inline">
@@ -13,6 +13,7 @@
         <button type="button" class="layui-btn layui-btn-danger" id="delAll">{:lang('batch deletion')}</button>
         <a href="{:url('recindex',array('catid'=>input('catid')))}" class="layui-btn layui-btn-danger" style="float:right;margin-right: 15px;">{:lang('recycle bin')}</a>
         <a href="{:url('add',array('catid'=>input('catid')))}" class="layui-btn" style="float:right;margin-right: 15px;">{:lang('add')}</a>
+        
         <div style="clear: both;"></div>
     </div>
     <table class="layui-table" id="list" lay-filter="list"></table>

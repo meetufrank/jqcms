@@ -1,0 +1,188 @@
+header{
+	width: 100%;
+}
+.bgimg-wrapper{
+	position: relative;
+}
+.input-group{
+	width: 260px;
+    position: absolute;
+    right: 60px;
+    bottom: 46px; 
+}
+.input-control.has-icon-left > .form-control{
+	padding-left: 15px;
+}
+.form-control.search-input{
+	opacity: 0.8
+}
+header .mailbox-top-img{
+	width: 100%;
+	background-size: 100%;
+}
+.header-nav{
+	width: 100%;
+	background: #f52f34;
+	height: 40px;
+	border-top: 1px solid #960d09
+}
+.navbar {
+	border:none;
+}
+.mailcox-nav .navbar-nav>li>a {
+    color: #fff;
+    font-size: 16px;
+}
+.mailcox-nav .navbar-nav>.active>a:hover,.mailcox-nav .navbar-nav>.active,.mailcox-nav .navbar-nav li>a:hover{
+	background-color: #960d09!important;
+}
+.mailbox-wraper{
+	background: #fafafa;
+}
+/*面包屑导航*/
+.bread-current{
+	display: inline-block;
+}
+.bread-icon{
+	margin-right: 8px;
+}
+.breadcrumb{
+	margin-top:10px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+.breadcrumb li a{
+	color: grey;
+}
+.breadcrumb>.active{
+	color: #c30d23;
+}
+/*写信栏*/
+.mailbox-left{
+	width: 28%;
+	float: left;
+}
+.panel>.panel-heading.panel-left-top{
+	height: 60px;
+    text-align: center;
+    line-height: 37px;
+    border-top: 6px solid #f52f34;
+    background-color: #f2f2f2;
+    color: #c30d23;
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+}
+.panel>.panel-heading.panel-left-top a{
+	color: #c30d23;
+	text-decoration:none;
+}
+.panel>.panel-heading.panel-left-top img{
+	margin-right: 15px;
+}
+.mailbox-list .mailbox-item{
+	text-align: center;
+    line-height: 50px;
+    border-radius: 2px;
+    margin: 22px 0;
+    font-size: 18px;
+    color: #333;
+}
+.mailbox-list .mailbox-item:hover,.mailbox-list>.active{
+	background: #d31c20;
+	border-left: 5px solid #960d09;
+	cursor: pointer;
+}
+.mailbox-list .mailbox-item:hover a,.mailbox-list>.active a{
+	color: #fff;
+}
+.mailbox-item a{
+	color: #333;
+	text-decoration:none;
+}
+.mailbox-title{
+	margin: 21px 0 20px 26px;
+	font-size: 18px;
+	color: #333;
+}
+.mailbox-input{
+	margin-bottom: 20px;
+}
+.mailbox-button{
+	float: right;
+    margin-bottom: 20px;
+}
+/*党委信箱*/
+.mailbox-right{
+	width: 68%;
+	float: right;
+}
+.item.frist-item{
+	border-bottom: 2px solid #f5f5f5;
+}
+.text-title{
+	font-size: 24px;
+	color: #c30d23;
+	border-left: 4px solid #f52f34;
+	padding-left: 15px;
+}
+.text-content-title{
+	padding: 5px 10px;
+}
+.text-content-title a{
+	color: #333;
+	text-decoration:none;
+	font-size: 16px;
+}
+.text-content-title-right{
+	display: inline;
+    float: right;
+}
+.text-muted{
+	color: #999;
+	margin-right: 60px;
+}
+.text-state{
+	color: #666;
+}
+.page-wraper{
+	margin-left: 170px;
+}
+.pager>li.active>a, .pager>li.active>a:hover, .pager>li.active>span, .pager>li.active>span:hover{
+	background-color: #c30d23;
+    border-color: #c30d23;
+}
+.page-notes{
+	font-size: 14px;
+    color: #666;
+    float: left;
+    line-height: 32px;
+    margin-right: 16px;
+    margin: 20px;
+}
+.pager.pager-loose{
+	display: inline-block;
+}
+.left-panel{
+	border:none;
+}
+.left-panel-body{
+	padding: 0;
+}
+/*首长信箱头部*/
+@media(max-width: 1366px){
+	.input-group {
+    	width: 260px;
+    	position: absolute;
+    	right: 80px;
+    	bottom: 40px;
+	}
+}
+@media(max-width: 1280px){
+	.input-group {
+    	width: 260px;
+    	position: absolute;
+    	right: 120px;
+    	bottom: 38px;
+	}
+}

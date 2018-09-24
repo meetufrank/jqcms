@@ -1,0 +1,180 @@
+.text-title:after {
+    display: block;
+    content: '';
+    width: 94px;
+    height: 2px;
+    margin: 11px 0px -12px 0px;
+    background-color: #1e64a4;
+}
+/*信件问题*/
+.custom-detail-header{
+    /*background: #f7f7f7;*/
+    text-align: center;
+}
+.details-title{
+	font-size: 24px;
+	color: #333;
+    padding-top: 30px;
+}
+.common-sub-title{
+	font-size: 14px;
+}
+.letter-type{
+	display: inline-block;
+    width: 60px;
+    height: 26px;
+    margin-right: 20px;
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 26px;
+}
+.dl-inline{
+	display: inline-block;
+}
+.letter-date{
+    color: #999;
+    margin-right: 15px;
+}
+.letter-questioner{
+    color: #999;
+    font-weight: normal;
+}
+.letter-questioner-name{
+    color: #1e64a4;
+}
+.question-content{
+	font-size: 16px;
+	color: #666;
+    padding: 0 20px 40px;
+    text-align: left;
+}
+.answer-title{
+	font-size: 18px;
+    color: #666;
+    width: 220px;
+    padding: 2px 15px;
+}
+.reply-button{
+	color: #1e64a4;
+    margin-right: 10px;
+}
+.answer-title span{
+	margin-left: 16px;
+    font-size: 14px;
+    color: #999;
+}
+.answer-content{
+	font-size: 16px;
+	color: #333;
+   /* text-align: center;*/
+    padding: 20px;
+}
+.fold-title{
+	text-align: center;
+    margin-top: 22px;
+}
+.fold-title:after{
+	display: block;
+	content: "";
+	height: 1px;
+    background-color: #a19b9b;
+    padding: 0;
+    margin: 20px 0;
+}
+.icon-question-sign{
+	margin-right: 10px;
+	font-size: 24px;
+    color: #1e64a4;
+}
+.custom-footer-btn{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.inquiries,.inquiries:hover,.inquiries:link,.inquiries:focus{
+    color: #fff;
+    background: #1e64a4;
+    border-color: #1e64a4;
+    margin-top: 20px;
+    display: inline-block;
+    outline: none;
+    box-shadow:none;
+    margin-right: 30px;
+}
+.return-btn{
+	display: inline-block;
+	margin-top: 22px;
+    width: 78px;
+}
+.inquiries-button{
+	margin: 30px 30px 0 0;
+    width: 78px;
+    background: #1e64a4;
+    color: #fff;
+    text-shadow: none;
+}
+.inquiries-button-return{
+    margin: 30px 30px 0 0;
+    width: 78px;
+    text-shadow: none;
+}
+.letter-panel{
+    padding: 0 10px;
+}
+/*展开*/
+.foldzone{
+    margin-top: 30px;
+}
+.fold-p{
+    text-align: center;
+}
+#fold-open-close-button{
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+    cursor: pointer;
+    border: 1px solid #b5b5b5;
+    border-radius: 14px;
+    padding: 4px;
+}
+.hiddens-fold{
+    display: none;
+    margin-top: 20px;
+}
+/*追问*/
+.question-content-zw{
+    font-size: 16px;
+    color: #666;
+    padding: 20px 20px 20px;
+    text-align: left;
+}
+.answer-content-wrap-bg{
+    background: #f7f7f7;
+    padding-top: 10px;
+}
+.custom-btn-color{
+    text-align: center;
+}
+/*首长信箱头部*/
+@media(max-width: 1366px){
+	.input-group {
+    	position: absolute;
+    	right: 30px;
+    	bottom: 20px;
+	}
+}
+@media(max-width: 1280px){
+	.input-group {
+    	width: 260px;
+    	position: absolute;
+    	right: 120px;
+    	bottom: 38px;
+	}
+}
+.border-none{
+	border:none;
+}

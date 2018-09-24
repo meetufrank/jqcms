@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>信息列表</title>
+    <!-- zui -->
+    <link href="__STATIC__/index/css/zui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/st-common.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/st-mailbox.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/write.css"> -->
+    <link href="__STATIC__/index/lib/uploader/zui.uploader.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+
+  {include file="stcommonhead" /}
+    <div class="mailbox-wraper">
+      <div class="container">
+        {include file="emailbox" /}
+        <!-- 党委信箱 -->
+        <div class="mailbox-right">
+          <div class="panel left-panel">
+            <div class="panel-body mailbox-panel-body">
+              <div class="items">
+                <div class="item frist-item">
+                  <div class="item-content">
+                    <div class="text-title">{$selectname}信箱<span class="title-span">（共 {$emaillist.total} 封）</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="lists-mailbox">
+                  {foreach name="emaillist.data" item="el"}
+                <div class="items items-hover">
+                  <div class="item">
+                    <div class="item-content">
+                      <div class="text-content-title" >
+                         {if condition="$el.is_public neq 1"}
+                          <a  data-toggle="modal" data-target="#letter-query-button{$el.id}" >
+                          {$el.name}
+                          
+                          </a>
+                         {else/}
+                         <a  href="{:url('Stdetails/index',array('id'=>$el.id))}" >
+                          {$el.name}
+                          
+                          </a>
+                         {/if}
+                        <div class="text-content-title-right">
+                            <span class="text-muted">{$el.createtime}</span>
+                          <span class="text-state">{$el.replyname}</span>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  {/foreach}
+               
+              </div>
+                
+              <div class="page-wraper">
+                  {$page}
+<!--                <ul class="pager pager-loose">
+                  <li class="previous"><a href="your/nice/url">首页</a></li>
+                  <li class="previous"><a href="your/nice/url">上一页</a></li>
+                  <li class="active"><a href="your/nice/url">1</a></li>
+                  <li><a href="your/nice/url">2</a></li>
+                  <li><a href="your/nice/url">3</a></li>
+                  <li class="next"><a href="your/nice/url">下一页</a></li>
+                  <li class="next"><a href="your/nice/url">末页</a></li>
+                </ul>
+                <div class="page-notes">共&nbsp;&nbsp;<input type="text" class="pageinput" name="" value="2">&nbsp;&nbsp;/253页&nbsp;&nbsp;<input type="button" name="" value="跳转" class="btn btn-default custom-tz"></div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
+    <script src="__STATIC__/index/js/jquery-3.3.1.min.js"></script>
+    <!-- ZUI Javascript组件 -->
+    <script src="__STATIC__/index/js/zui.min.js"></script>
+    <script src="__STATIC__/index/lib/kindeditor/kindeditor.min.js"></script>
+    <script src="__STATIC__/index/js/writer.js"></script>
+    <script src="__STATIC__/index/lib/uploader/zui.uploader.min.js"></script>
+    <script>
+      var options = {
+      // 初始化选项
+      autoUpload: true,            // 当选择文件后立即自动进行上传操作
+      url: './test.php',
+      deleteActionOnDone: function(file, doRemoveFile) {
+          doRemoveFile();
+      },
+      };
+  $('#myuploader').uploader(options);
+  {foreach name="emaillist.data" item="el"}
+    {if condition="$el.is_public neq 1"}
+   $('#letter-query-button-submit{$el.id}').on('click',function(){
+       //获取信件id
+       var id={$el.id};
+       //获取信件密码
+       var pwd=$("#inputpassword{$el.id}").val();
+       //验证密码是否正确
+       $.ajax({
+        type:"post",
+        url:'{:url(\'Stdetails/validpwd\')}',
+        dataType: "json",
+        data:{"id":id,"pwd":pwd},
+        success: function(data){
+            
+            if(data.code==1){
+                window.location.href='{:url(\'Stdetails/index\')}'+'?id='+id+'&pwd='+pwd;
+            }else{
+                alert(data.msg);
+                return;
+            }
+        }
+       });
+       
+        
+        //href="{:url('stdetails/index',array('id'=>$el.id))}"
+      })
+      {/if}
+   {/foreach} 
+      
+      $('#searchsubmit').on('click',function(){
+          $("#searchform").submit();
+      })
+
+    </script>
+  </body>
+</html>

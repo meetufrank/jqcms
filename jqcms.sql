@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2018-09-21 11:20:23
+Date: 2018-09-24 16:00:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -59,13 +59,14 @@ CREATE TABLE `clt_admin` (
   `avatar` varchar(120) DEFAULT '' COMMENT '//头像',
   PRIMARY KEY (`admin_id`),
   KEY `admin_username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clt_admin
 -- ----------------------------
 INSERT INTO `clt_admin` VALUES ('1', 'admin', '0192023a7bbd73250516f069df18b500', '1', '1109305987@qq.com', '', '18792402229', '127.0.0.1', '1482132862', '0', '1', '/uploads/20180119/50fa71996b7a82f2d3e609e6564fdf43.jpg');
 INSERT INTO `clt_admin` VALUES ('9', 'shouzhang', 'e10adc3949ba59abbe56e057f20f883e', '4', '972270516@qq.com', null, '18721667531', '127.0.0.1', '1537167571', '0', '1', '');
+INSERT INTO `clt_admin` VALUES ('10', 'frank', 'e10adc3949ba59abbe56e057f20f883e', '2', 'j.wang@meetuuu.com', null, '18721667531', '127.0.0.1', '1537767060', '0', '1', '');
 
 -- ----------------------------
 -- Table structure for clt_ad_type
@@ -170,14 +171,15 @@ CREATE TABLE `clt_auth_group` (
   `addtime` int(11) NOT NULL COMMENT '添加时间',
   `type` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1:超管 2:信件编辑 3：信件回复',
   PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clt_auth_group
 -- ----------------------------
-INSERT INTO `clt_auth_group` VALUES ('1', '超级管理员', '1', '0,1,2,270,15,16,119,120,121,145,17,149,116,117,118,181,151,18,108,114,112,109,110,111,3,5,126,128,127,4,230,232,129,189,190,193,192,240,239,241,243,244,245,242,246,7,9,14,234,13,235,236,237,238,27,29,161,163,164,162,38,167,182,169,166,28,48,247,248,31,32,249,250,251,45,170,171,175,174,173,46,176,183,179,178,265,196,197,202,198,252,253,254,255,256,203,205,204,257,206,207,212,208,213,258,259,260,261,262,209,215,214,263,210,217,216,264,211,266,267,269,', '1465114224', '1');
-INSERT INTO `clt_auth_group` VALUES ('2', '后勤部', '1', '0,1,267,269,', '1465114224', '2');
-INSERT INTO `clt_auth_group` VALUES ('4', '首长', '0', null, '1537167454', '3');
+INSERT INTO `clt_auth_group` VALUES ('1', '超级管理员', '1', '0,1,2,15,16,119,120,121,145,17,149,116,117,118,151,181,18,108,114,112,109,110,111,3,5,126,127,128,4,230,232,129,7,9,14,234,13,235,236,237,238,189,190,193,192,240,239,241,243,244,245,242,246,330,335,338,344,345,346,347,348,349,339,340,341,342,343,350,351,352,353,337,354,360,361,362,363,364,365,355,356,357,358,359,366,367,368,369,331,332,', '1465114224', '1');
+INSERT INTO `clt_auth_group` VALUES ('2', '后勤部', '1', '0,330,335,338,344,345,346,347,348,349,339,340,341,342,343,350,351,352,353,', '1465114224', '2');
+INSERT INTO `clt_auth_group` VALUES ('4', '首长1', '0', '0,330,337,367,368,', '1537167454', '3');
+INSERT INTO `clt_auth_group` VALUES ('5', 'xx部', '0', '0,330,335,338,344,345,346,347,348,349,339,340,341,342,343,350,351,352,353,', '1537767900', '2');
 
 -- ----------------------------
 -- Table structure for clt_auth_rule
@@ -198,7 +200,7 @@ CREATE TABLE `clt_auth_rule` (
   `zt` int(1) DEFAULT NULL,
   `menustatus` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=337 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=370 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clt_auth_rule
@@ -208,17 +210,17 @@ INSERT INTO `clt_auth_rule` VALUES ('2', 'System/system', '系统设置', '1', '
 INSERT INTO `clt_auth_rule` VALUES ('3', 'Database/database', '数据库管理', '1', '1', '0', 'icon-database', '', '0', '2', '1446535805', '1', '1');
 INSERT INTO `clt_auth_rule` VALUES ('4', 'Database/restore', '还原数据库', '1', '1', '0', '', '', '3', '10', '1446535750', '1', '1');
 INSERT INTO `clt_auth_rule` VALUES ('5', 'Database/database', '数据库备份', '1', '1', '0', '', '', '3', '1', '1446535834', '1', '1');
-INSERT INTO `clt_auth_rule` VALUES ('7', 'Category', '栏目管理', '1', '1', '0', 'icon-list', '', '0', '3', '1446535875', '1', '1');
-INSERT INTO `clt_auth_rule` VALUES ('9', 'Category/index', '栏目列表', '1', '1', '0', '', '', '7', '0', '1446535750', '1', '1');
-INSERT INTO `clt_auth_rule` VALUES ('13', 'Category/edit', '操作-修改', '1', '1', '0', '', '', '9', '3', '1446535750', '1', '0');
-INSERT INTO `clt_auth_rule` VALUES ('14', 'Category/add', '操作-添加', '1', '1', '0', '', '', '9', '0', '1446535750', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('15', 'Auth/adminList', '权限管理', '1', '1', '0', 'icon-lifebuoy', '', '0', '1', '1446535750', '1', '1');
 INSERT INTO `clt_auth_rule` VALUES ('16', 'Auth/adminList', '管理员列表', '1', '1', '0', '', '', '15', '0', '1446535750', '1', '1');
 INSERT INTO `clt_auth_rule` VALUES ('17', 'Auth/adminGroup', '用户组列表', '1', '1', '0', '', '', '15', '1', '1446535750', '1', '1');
-INSERT INTO `clt_auth_rule` VALUES ('18', 'Auth/adminRule', '权限管理', '1', '1', '0', '', '', '15', '2', '1446535750', '1', '1');
+INSERT INTO `clt_auth_rule` VALUES ('18', 'Auth/adminRule', '权限管理', '1', '1', '0', '', '', '15', '2', '1446535750', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('23', 'Help/soft', '软件下载', '1', '1', '0', '', '', '22', '50', '1446711421', '0', '1');
+INSERT INTO `clt_auth_rule` VALUES ('366', 'Heademail/listorder', '首长信件排序', '1', '1', '0', '', '', '337', '8', '1537518962', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('367', 'Heademail/replymess', '首长信件消息查看', '1', '1', '0', '', '', '337', '9', '1537519117', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('368', 'Heademail/reply', '首长信件消息回复', '1', '1', '0', '', '', '337', '10', '1537519166', null, '1');
 INSERT INTO `clt_auth_rule` VALUES ('36', 'We/we_menu', '自定义菜单', '1', '1', '0', '', '', '35', '50', '1447842477', '0', '1');
 INSERT INTO `clt_auth_rule` VALUES ('39', 'We/we_menu', '自定义菜单', '1', '1', '0', '', '', '36', '50', '1448501584', '0', '1');
+INSERT INTO `clt_auth_rule` VALUES ('369', 'Reply/index', '首长信件回复管理', '1', '1', '0', '', '', '337', '10', '1537519368', null, '1');
 INSERT INTO `clt_auth_rule` VALUES ('105', 'System/runsys', '操作-保存', '1', '1', '0', '', '', '6', '50', '1461036331', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('106', 'System/runwesys', '操作-保存', '1', '1', '0', '', '', '10', '50', '1461037680', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('107', 'System/runemail', '操作-保存', '1', '1', '0', '', '', '19', '50', '1461039346', '1', '0');
@@ -246,38 +248,61 @@ INSERT INTO `clt_auth_rule` VALUES ('130', 'System/bxgs_state', '操作-状态',
 INSERT INTO `clt_auth_rule` VALUES ('131', 'System/bxgs_edit', '操作-修改', '1', '1', '0', '', '', '67', '1', '1461550835', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('132', 'System/bxgs_runedit', '操作-改存', '1', '1', '0', '', '', '67', '2', '1461550835', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('134', 'System/myinfo_runedit', '个人资料修改', '1', '1', '0', '', '', '68', '1', '1461550835', '1', '0');
-INSERT INTO `clt_auth_rule` VALUES ('236', 'Category/del', '操作-删除', '1', '1', '0', '', '', '9', '5', '1497424900', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('230', 'Database/restoreData', '操作-还原', '1', '1', '0', '', '', '4', '1', '1497423595', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('145', 'Auth/adminState', '操作-状态', '1', '1', '0', '', '', '16', '5', '1461550835', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('149', 'Auth/groupAdd', '操作-添加', '1', '1', '0', '', '', '17', '1', '1461550835', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('151', 'Auth/groupRunaccess', '操作-权存', '1', '1', '0', '', '', '17', '50', '1461550835', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('153', 'System/bxgs_runadd', '操作-添存', '1', '1', '0', '', '', '66', '1', '1461550835', '1', '0');
-INSERT INTO `clt_auth_rule` VALUES ('234', 'Category/insert', '操作-添存', '1', '1', '0', '', '', '9', '2', '1497424143', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('240', 'Module/del', '操作-删除', '1', '1', '0', '', '', '190', '4', '1497425850', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('239', 'Module/moduleState', '操作-状态', '1', '1', '0', '', '', '190', '5', '1497425764', '0', '0');
-INSERT INTO `clt_auth_rule` VALUES ('238', 'page/edit', '单页编辑', '1', '1', '0', '', '', '7', '2', '1497425142', '0', '0');
-INSERT INTO `clt_auth_rule` VALUES ('237', 'Category/cOrder', '操作-排序', '1', '1', '0', '', '', '9', '6', '1497424979', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('252', 'Template/edit', '操作-编辑', '1', '1', '0', '', '', '197', '3', '1497428906', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('180', 'System/source_edit', '操作-修改', '1', '1', '0', '', '', '43', '20', '1461832933', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('181', 'Auth/groupState', '操作-状态', '1', '1', '0', '', '', '17', '50', '1461834340', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('188', 'Plug/donation', '捐赠列表', '1', '1', '0', '', '', '187', '50', '1466563673', '0', '1');
-INSERT INTO `clt_auth_rule` VALUES ('189', 'Module', '模型管理', '1', '1', '0', 'icon-ungroup', '', '0', '3', '1466825363', '0', '1');
+INSERT INTO `clt_auth_rule` VALUES ('189', 'Module', '模型管理', '1', '1', '0', 'icon-ungroup', '', '0', '3', '1466825363', '1', '0');
 INSERT INTO `clt_auth_rule` VALUES ('190', 'Module/index', '模型列表', '1', '1', '0', '', '', '189', '1', '1466826681', '0', '1');
 INSERT INTO `clt_auth_rule` VALUES ('192', 'Module/edit', '操作-修改', '1', '1', '0', '', '', '190', '2', '1467007920', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('193', 'Module/add', '操作-添加', '1', '1', '0', '', '', '190', '1', '1467007955', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('330', 'Emailbox', '信件管理', '1', '1', '0', 'icon-mail', '', '0', '5', '1537168800', null, '1');
 INSERT INTO `clt_auth_rule` VALUES ('331', 'Opratelog', '日志管理', '1', '1', '0', 'icon-clipboard', '', '0', '6', '1537169050', null, '1');
-INSERT INTO `clt_auth_rule` VALUES ('332', 'Opratelog/index', '日志列表', '1', '1', '1', '', '', '331', '1', '1537169494', null, '1');
-INSERT INTO `clt_auth_rule` VALUES ('335', 'Emailbox/index', '信件列表', '1', '1', '1', '', '', '330', '2', '1537169660', null, '1');
-INSERT INTO `clt_auth_rule` VALUES ('336', 'Department/index', '部门管理', '1', '1', '0', '', '', '15', '5', '1537240194', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('332', 'Opratelog/index', '日志列表', '1', '1', '0', '', '', '331', '1', '1537169494', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('335', 'Emailbox/index', '部门信箱', '1', '1', '0', '', '', '330', '2', '1537169660', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('337', 'Heademail/index', '首长信箱', '1', '1', '0', '', '', '330', '3', '1537511770', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('338', 'Emailbox/recindex', '回收站列表', '1', '1', '0', '', '', '335', '1', '1537517810', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('339', 'Emailbox/usersState', '设置部门信件状态', '1', '1', '0', '', '', '335', '3', '1537517975', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('340', 'Emailbox/edit', '查看部门信件编辑页面', '1', '1', '0', '', '', '335', '4', '1537518042', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('341', 'Emailbox/update', '部门信件修改', '1', '1', '0', '', '', '335', '5', '1537518110', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('342', 'EmailBox/add', '部门信件添加界面', '1', '1', '0', '', '', '335', '6', '1537518195', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('343', 'Emailbox/insert', '部门信件添加', '1', '1', '0', '', '', '335', '7', '1537518252', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('344', 'Emailbox/listDel', '单个信件转入回收站', '1', '1', '0', '', '', '338', '1', '1537518438', null, '1');
 INSERT INTO `clt_auth_rule` VALUES ('232', 'Database/downFile', '操作-下载', '1', '1', '0', '', '', '4', '2', '1497423744', '0', '0');
-INSERT INTO `clt_auth_rule` VALUES ('235', 'Category/catUpdate', '操作-该存', '1', '1', '0', '', '', '9', '4', '1497424301', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('241', 'Module/field', '模型字段', '1', '1', '0', '', '', '190', '6', '1497425972', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('242', 'Module/fieldStatus', '操作-状态', '1', '1', '0', '', '', '241', '4', '1497426044', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('243', 'Module/fieldAdd', '操作-添加', '1', '1', '0', '', '', '241', '1', '1497426089', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('244', 'Module/fieldEdit', '操作-修改', '1', '1', '0', '', '', '241', '2', '1497426134', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('245', 'Module/listOrder', '操作-排序', '1', '1', '0', '', '', '241', '3', '1497426179', '0', '0');
 INSERT INTO `clt_auth_rule` VALUES ('246', 'Module/fieldDel', '操作-删除', '1', '1', '0', '', '', '241', '5', '1497426241', '0', '0');
+INSERT INTO `clt_auth_rule` VALUES ('363', 'Heademail/removeAll', '批量信件彻底删除', '1', '1', '0', '', '', '354', '4', '1537518585', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('364', 'Heademail/reduction', '单个信件还原', '1', '1', '0', '', '', '354', '5', '1537518805', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('365', 'Heademail/reductionAll', '批量信件还原', '1', '1', '0', '', '', '354', '6', '1537518870', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('345', 'Emailbox/delAll', '批量转入回收站', '1', '1', '0', '', '', '338', '2', '1537518477', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('346', 'Emailbox/listRemove', '单个信件彻底删除', '1', '1', '0', '', '', '338', '3', '1537518522', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('347', 'Emailbox/removeAll', '批量信件彻底删除', '1', '1', '0', '', '', '338', '4', '1537518585', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('348', 'Emailbox/reduction', '单个信件还原', '1', '1', '0', '', '', '338', '5', '1537518805', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('349', 'Emailbox/reductionAll', '批量信件还原', '1', '1', '0', '', '', '338', '6', '1537518870', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('350', 'Emailbox/listorder', '部门信件排序', '1', '1', '0', '', '', '335', '8', '1537518962', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('351', 'Emailbox/replymess', '部门信件消息查看', '1', '1', '0', '', '', '335', '9', '1537519117', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('352', 'Emailbox/reply', '部门信件消息回复', '1', '1', '0', '', '', '335', '10', '1537519166', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('353', 'Dreply/index', '部门信件回复管理', '1', '1', '0', '', '', '335', '10', '1537519368', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('354', 'Heademail/recindex', '回收站列表', '1', '1', '0', '', '', '337', '1', '1537517810', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('355', 'Heademail/usersState', '设置首长信件状态', '1', '1', '0', '', '', '337', '3', '1537517975', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('356', 'Heademail/edit', '查看首长信件编辑页面', '1', '1', '0', '', '', '337', '4', '1537518042', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('357', 'Heademail/update', '首长信件修改', '1', '1', '0', '', '', '337', '5', '1537518110', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('358', 'Heademail/add', '首长信件添加界面', '1', '1', '0', '', '', '337', '6', '1537518195', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('359', 'Heademail/insert', '首长信件添加', '1', '1', '0', '', '', '337', '7', '1537518252', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('360', 'Heademail/listDel', '单个信件转入回收站', '1', '1', '0', '', '', '354', '1', '1537518438', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('361', 'Heademail/delAll', '批量转入回收站', '1', '1', '0', '', '', '354', '2', '1537518477', null, '1');
+INSERT INTO `clt_auth_rule` VALUES ('362', 'Heademail/listRemove', '单个信件彻底删除', '1', '1', '0', '', '', '354', '3', '1537518522', null, '1');
 
 -- ----------------------------
 -- Table structure for clt_category
@@ -318,13 +343,6 @@ CREATE TABLE `clt_category` (
 -- ----------------------------
 -- Records of clt_category
 -- ----------------------------
-INSERT INTO `clt_category` VALUES ('1', '最新动态', 'news', '', '0', '2', 'article', '0', '1,5,6', '0', '最新动态', '最新动态', '最新动态', '4', '0', '1', '0', '', '1', '', 'article-list', 'article-show', '0', '1,2,3', '0', '0');
-INSERT INTO `clt_category` VALUES ('4', '系统操作', 'system', '', '0', '3', 'picture', '0', '4', '0', 'CLTPHP系统操作', 'CLTPHP系统操作,CLTPHP,CLTPHP内容管理系统', 'CLTPHP系统操作,CLTPHP,CLTPHP内容管理系统', '2', '0', '1', '0', '', '0', '', '', '', '0', '1,2,3', '0', '0');
-INSERT INTO `clt_category` VALUES ('3', '产品服务', 'services', '', '0', '2', 'article', '0', '3', '0', '产品服务-CLTPHP', '产品服务,CLTPHP,CLTPHP内容管理系统', '产品服务', '1', '0', '1', '0', '', '0', '', '', '', '15', '1,2,3', '0', '0');
-INSERT INTO `clt_category` VALUES ('8', '联系我们', 'contact', '', '0', '1', 'page', '0', '8', '0', '联系我们', '联系我们', '联系我们', '7', '0', '1', '0', '', '0', '', 'page_show_contace', 'page_show_contace', '0', '', '0', '0');
-INSERT INTO `clt_category` VALUES ('7', '精英团队', 'team', '', '0', '6', 'team', '0', '7', '0', '精英团队', '精英团队', '精英团队', '5', '0', '1', '0', '', '0', '', '', '', '0', '', '0', '0');
-INSERT INTO `clt_category` VALUES ('5', 'CLTPHP动态', 'news', 'news/', '1', '2', 'article', '0,1', '5', '0', 'CLTPHP动态', 'CLTPHP动态', 'CLTPHP动态', '0', '0', '1', '0', '', '0', '', '', '', '5', '1,2,3', '0', '0');
-INSERT INTO `clt_category` VALUES ('6', '相关知识 ', 'news', 'news/', '1', '2', 'article', '0,1', '6', '0', 'CLTPHP相关知识', 'CLTPHP相关知识', 'CLTPHP相关知识', '0', '0', '1', '0', '', '0', '', '', '', '0', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for clt_config
@@ -374,30 +392,6 @@ INSERT INTO `clt_config` VALUES ('73', 'order_pay_sms_enable', '1', 'sms', '0');
 INSERT INTO `clt_config` VALUES ('74', 'order_shipping_sms_enable', '1', 'sms', '0');
 INSERT INTO `clt_config` VALUES ('88', 'email_id', 'CLTPHP', 'smtp', '0');
 INSERT INTO `clt_config` VALUES ('89', 'test_eamil_info', ' 您好！这是一封来自CLTPHP的测试邮件！', 'smtp', '0');
-
--- ----------------------------
--- Table structure for clt_department
--- ----------------------------
-DROP TABLE IF EXISTS `clt_department`;
-CREATE TABLE `clt_department` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(80) NOT NULL DEFAULT '',
-  `userid` int(8) unsigned NOT NULL DEFAULT '0',
-  `username` varchar(40) NOT NULL DEFAULT '',
-  `listorder` int(10) unsigned NOT NULL DEFAULT '0',
-  `createtime` int(11) unsigned NOT NULL DEFAULT '0',
-  `updatetime` int(11) unsigned NOT NULL DEFAULT '0',
-  `deletetime` int(11) unsigned NOT NULL DEFAULT '0',
-  `lang` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `is_open` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of clt_department
--- ----------------------------
-INSERT INTO `clt_department` VALUES ('3', '党委', '0', '', '0', '1537243058', '1537243309', '0', '0', '1');
-INSERT INTO `clt_department` VALUES ('2', '后勤部', '0', '', '0', '1537240944', '0', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for clt_download
@@ -489,7 +483,7 @@ CREATE TABLE `clt_emailbox` (
   `authorname` varchar(255) NOT NULL DEFAULT '',
   `tel` varchar(255) NOT NULL DEFAULT '',
   `content` text NOT NULL,
-  `is_public` tinyint(3) NOT NULL DEFAULT '0',
+  `is_public` tinyint(3) NOT NULL DEFAULT '1',
   `pwd` varchar(16) NOT NULL DEFAULT '',
   `is_reply` tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -499,7 +493,7 @@ CREATE TABLE `clt_emailbox` (
 -- Records of clt_emailbox
 -- ----------------------------
 INSERT INTO `clt_emailbox` VALUES ('1', '测试标题测试标题测试标题', '0', '', '1', '1537257672', '1537340054', '0', '0', '1', '1', '2', '/uploads/20180919/e1910925f6c35f7e3c412f136df3c95f.rar', '', '', '测试信件内容\n测试信件内容\n测试信件内容\n测试信件内容', '1', '', '1');
-INSERT INTO `clt_emailbox` VALUES ('2', '测试2', '0', '', '0', '1537264343', '0', '0', '0', '1', '1', '2', '', '', '', '测测测测测测测测', '0', '123', '1');
+INSERT INTO `clt_emailbox` VALUES ('2', '测试2', '0', '', '0', '1537264343', '1537775932', '0', '0', '1', '1', '2', '', '', '', '测测测测测测测测', '0', '202cb962ac59075b', '1');
 
 -- ----------------------------
 -- Table structure for clt_field
@@ -525,7 +519,7 @@ CREATE TABLE `clt_field` (
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `issystem` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=440 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=462 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clt_field
@@ -597,27 +591,12 @@ INSERT INTO `clt_field` VALUES ('64', '5', 'file', '上传文件', '', '0', '0',
 INSERT INTO `clt_field` VALUES ('65', '5', 'ext', '文档类型', '', '0', '0', '0', 'defaul', '', 'ext', 'text', 'array (\n  \'default\' => \'zip\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '6', '1', '0');
 INSERT INTO `clt_field` VALUES ('66', '5', 'size', '文档大小', '', '0', '0', '0', 'defaul', '', 'size', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '7', '1', '0');
 INSERT INTO `clt_field` VALUES ('67', '5', 'downs', '下载次数', '', '0', '0', '0', 'defaul', '', '', 'number', 'array (\n  \'size\' => \'\',\n  \'numbertype\' => \'1\',\n  \'decimaldigits\' => \'0\',\n  \'default\' => \'\',\n)', '0', '', '8', '1', '0');
-INSERT INTO `clt_field` VALUES ('68', '6', 'title', '标题', '', '1', '1', '80', '', '标题必须为1-80个字符', '', 'title', 'array (\n  \'thumb\' => \'1\',\n  \'style\' => \'1\',\n  \'size\' => \'55\',\n)', '1', '', '2', '1', '1');
-INSERT INTO `clt_field` VALUES ('69', '6', 'hits', '点击次数', '', '0', '0', '8', '', '', '', 'number', 'array (\n  \'size\' => \'10\',\n  \'numbertype\' => \'1\',\n  \'decimaldigits\' => \'0\',\n  \'default\' => \'0\',\n)', '1', '', '6', '0', '0');
-INSERT INTO `clt_field` VALUES ('70', '6', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '4', '1', '1');
-INSERT INTO `clt_field` VALUES ('71', '6', 'template', '模板', '', '0', '0', '0', '', '', '', 'template', '', '1', '', '7', '1', '1');
-INSERT INTO `clt_field` VALUES ('72', '6', 'status', '状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'发布|1\r\n定时发布|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '5', '1', '1');
-INSERT INTO `clt_field` VALUES ('73', '6', 'catid', '分类', '', '1', '0', '0', 'defaul', '', 'catid', 'catid', '', '0', '', '1', '1', '0');
-INSERT INTO `clt_field` VALUES ('74', '6', 'info', '简介', '', '1', '0', '0', 'defaul', '', 'info', 'editor', 'array (\n  \'edittype\' => \'layedit\',\n)', '0', '', '3', '1', '0');
 INSERT INTO `clt_field` VALUES ('75', '2', 'copyfrom', '来源', '', '0', '0', '0', 'defaul', '', 'copyfrom', 'text', 'array (\n  \'default\' => \'CLTPHP\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '8', '1', '0');
 INSERT INTO `clt_field` VALUES ('76', '2', 'fromlink', '来源网址', '', '0', '0', '0', 'defaul', '', 'fromlink', 'text', 'array (\n  \'default\' => \'http://www.cltphp.com/\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '9', '1', '0');
 INSERT INTO `clt_field` VALUES ('83', '3', 'vido', '视频', '', '0', '0', '0', 'defaul', '', 'vido', 'file', 'array (\n  \'upload_allowext\' => \'zip|rar|doc|ppt|mp4\',\n)', '0', '', '0', '1', '0');
-INSERT INTO `clt_field` VALUES ('363', '43', 'type', '公司类型', '', '0', '0', '0', 'defaul', '', 'type', 'radio', 'array (\n  \'options\' => \'保险公司|1\n非保险公司|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'default\' => \'0\',\n)', '0', '', '4', '1', '0');
-INSERT INTO `clt_field` VALUES ('360', '43', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
-INSERT INTO `clt_field` VALUES ('361', '43', 'is_open', '开启状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'开启|1\r\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '97', '1', '1');
-INSERT INTO `clt_field` VALUES ('358', '43', 'name', '公司名称', '', '1', '1', '80', 'defaul', '标题必须为1-80个字符', 'name', 'title', 'array (\n  \'thumb\' => \'0\',\n  \'style\' => \'0\',\n)', '1', '', '2', '1', '1');
-INSERT INTO `clt_field` VALUES ('362', '43', 'status', '状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'发布|1\r\n定时发布|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '98', '1', '1');
-INSERT INTO `clt_field` VALUES ('364', '43', 'abbreviation', '公司英文简称', '', '1', '0', '6', 'english', '简称格式错误', 'abbreviation', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '3', '1', '0');
-INSERT INTO `clt_field` VALUES ('366', '43', 'apiid', '接口ID', '', '0', '0', '0', 'defaul', '', 'apiid', 'customize', 'array (\n  \'content\' => \'e2lmIGNvbmRpdGlvbj0iQUNUSU9OX05BTUU9PSdlZGl0JyJ9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGFiZWwgY2xhc3M9ImxheXVpLWZvcm0tbGFiZWwiPnskaW5mby5hcGlpZH08L2xhYmVsPgogICAgICAgICAgICAgICAgICAgICAgIHsvaWZ9\',\n  \'fieldtype\' => \'text\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '5', '1', '0');
-INSERT INTO `clt_field` VALUES ('367', '43', 'apipwd', '接口pwd', '', '0', '0', '0', 'defaul', '', 'apipwd', 'customize', 'array (\n  \'content\' => \'e2lmIGNvbmRpdGlvbj0iQUNUSU9OX05BTUU9PSdlZGl0JyJ9CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGFiZWwgY2xhc3M9ImxheXVpLWZvcm0tbGFiZWwiPnskaW5mby5hcGlwd2R9PC9sYWJlbD4KICAgICAgICAgICAgICAgICAgICAgICB7L2lmfQ==\',\n  \'fieldtype\' => \'text\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '6', '1', '0');
 INSERT INTO `clt_field` VALUES ('431', '51', 'pwd', '信件密码', '', '0', '1', '16', 'defaul', '', 'pwd', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9wd2QiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT0icGFzc3dvcmQiIG5hbWU9InB3ZCIgcGxhY2Vob2xkZXI9Iuivt+i+k+WFpeS/oeS7tuWvhueggSIgIGNsYXNzPSJsYXl1aS1pbnB1dCI+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+\',\n  \'fieldtype\' => \'varchar\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '10', '1', '0');
 INSERT INTO `clt_field` VALUES ('432', '51', 'is_reply', '回复状态', '', '0', '0', '0', 'defaul', '', 'is_reply', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19yZXBseSI+CiAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcmVwbHkiIG5hbWU9ImlzX3JlcGx5IiBpZD0iaXNfcmVwbHlfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlt7Llm57lpI0iIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3JlcGx5IGVxIDEifWNoZWNrZWR7L2lmfSAvPjxpbnB1dCBsYXktZmlsdGVyPSJpc19yZXBseSIgbmFtZT0iaXNfcmVwbHkiIGlkPSJpc19yZXBseV8yIiAgdmFsdWU9IjAiICB0eXBlPSJyYWRpbyIgY2xhc3M9ImFjZSIgdGl0bGU9IuacquWbnuWkjSIge2lmIGNvbmRpdGlvbj0iJGluZm8uaXNfcmVwbHkgZXEgMCJ9Y2hlY2tlZHsvaWZ9Lz4gICAgICAgICAgICAgICAgICAgCiAgICAgICAgPC9kaXY+IA==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'0\',\n)', '0', '', '11', '1', '0');
-INSERT INTO `clt_field` VALUES ('430', '51', 'is_public', '是否公开', '', '0', '0', '0', 'defaul', '', 'expansion', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19wdWJsaWMiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlhazlvIAiIGNoZWNrZWQgLz48aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMiIgIHZhbHVlPSIwIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLkuI3lhazlvIAiIC8+ICAgICAgICAgICAgICAgICAgICA8L2Rpdj4=\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '9', '1', '0');
+INSERT INTO `clt_field` VALUES ('430', '51', 'is_public', '是否公开', '', '0', '0', '0', 'defaul', '', 'expansion', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19wdWJsaWMiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAxIn1jaGVja2Vkey9pZn0gLz48aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMiIgIHZhbHVlPSIwIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLkuI3lhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAwIn1jaGVja2Vkey9pZn0gLz4gICAgICAgICAgICAgICAgICAgIDwvZGl2Pg==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'1\',\n)', '0', '', '9', '1', '0');
 INSERT INTO `clt_field` VALUES ('381', '46', 'name', '语言名称', '', '1', '1', '80', 'defaul', '标题必须为1-80个字符', 'name', 'title', 'array (\n  \'thumb\' => \'0\',\n  \'style\' => \'0\',\n)', '1', '', '2', '1', '1');
 INSERT INTO `clt_field` VALUES ('436', '53', 'is_open', '开启状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'开启|1\r\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '97', '1', '1');
 INSERT INTO `clt_field` VALUES ('435', '53', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
@@ -625,19 +604,64 @@ INSERT INTO `clt_field` VALUES ('438', '53', 'type', '消息类型', '', '1', '0
 INSERT INTO `clt_field` VALUES ('383', '46', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
 INSERT INTO `clt_field` VALUES ('384', '46', 'is_open', '开启状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'开启|1\r\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '97', '1', '1');
 INSERT INTO `clt_field` VALUES ('385', '46', 'status', '状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'发布|1\r\n定时发布|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '98', '1', '1');
+INSERT INTO `clt_field` VALUES ('446', '54', 'header', '首长选择', '', '1', '0', '0', 'defaul', '', 'header', 'select_db', 'array (\n  \'multiple\' => \'0\',\n  \'db\' => \'auth_group\',\n  \'name\' => \'dGl0bGU=\',\n  \'value\' => \'group_id\',\n  \'where\' => \'ewoJInR5cGUiOiAzCn0=\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'size\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '4', '1', '0');
 INSERT INTO `clt_field` VALUES ('426', '51', 'files', '上传附件', '', '0', '0', '0', 'defaul', '', 'files', 'file', 'array (\n  \'upload_allowext\' => \'zip|rar|7z\',\n)', '0', '', '5', '1', '0');
 INSERT INTO `clt_field` VALUES ('427', '51', 'authorname', '姓名', '', '0', '0', '0', 'defaul', '', 'authorname', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '6', '1', '0');
 INSERT INTO `clt_field` VALUES ('429', '51', 'content', '信件内容', '', '1', '0', '0', 'defaul', '', 'content', 'textarea', 'array (\n  \'fieldtype\' => \'text\',\n  \'default\' => \'\',\n)', '0', '', '8', '1', '0');
-INSERT INTO `clt_field` VALUES ('423', '52', 'is_open', '开启状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'开启|1\r\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '97', '1', '1');
+INSERT INTO `clt_field` VALUES ('442', '54', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
+INSERT INTO `clt_field` VALUES ('443', '54', 'is_open', '开启状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'开启|1\r\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '97', '1', '1');
 INSERT INTO `clt_field` VALUES ('425', '51', 'department', '所属部门', '', '1', '0', '0', 'defaul', '', 'department', 'select_db', 'array (\n  \'multiple\' => \'0\',\n  \'db\' => \'auth_group\',\n  \'name\' => \'dGl0bGU=\',\n  \'value\' => \'group_id\',\n  \'where\' => \'ewoJInR5cGUiOiAyCn0=\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'size\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '4', '1', '0');
-INSERT INTO `clt_field` VALUES ('422', '52', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
-INSERT INTO `clt_field` VALUES ('420', '52', 'name', '部门名称', '', '1', '1', '80', 'defaul', '标题必须为1-80个字符', 'name', 'title', 'array (\n  \'thumb\' => \'0\',\n  \'style\' => \'0\',\n)', '1', '', '2', '1', '1');
+INSERT INTO `clt_field` VALUES ('440', '54', 'name', '标题', '', '0', '1', '200', 'defaul', '标题必须为1-200个字符', 'title', 'title', 'array (\n  \'thumb\' => \'0\',\n  \'style\' => \'0\',\n)', '1', '', '2', '1', '1');
 INSERT INTO `clt_field` VALUES ('428', '51', 'tel', '手机号', '', '0', '0', '0', 'mobile', '', 'tel', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '7', '1', '0');
 INSERT INTO `clt_field` VALUES ('417', '51', 'is_open', '开启状态', '', '0', '0', '0', 'defaul', '', 'is_open', 'radio', 'array (\n  \'options\' => \'开启|1\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'default\' => \'0\',\n)', '1', '', '97', '1', '1');
 INSERT INTO `clt_field` VALUES ('419', '51', 'type', '信件类型', '', '1', '0', '0', 'defaul', '', 'type', 'select', 'array (\n  \'options\' => \'咨询|1\n求助|2\n举报|3\',\n  \'multiple\' => \'0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'size\' => \'\',\n  \'default\' => \'0\',\n)', '0', '', '3', '1', '0');
 INSERT INTO `clt_field` VALUES ('416', '51', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
-INSERT INTO `clt_field` VALUES ('414', '51', 'name', '信件标题', '', '1', '1', '200', 'defaul', '标题必须为1-80个字符', 'name', 'title', 'array (\n  \'thumb\' => \'0\',\n  \'style\' => \'0\',\n)', '1', '', '2', '1', '1');
+INSERT INTO `clt_field` VALUES ('414', '51', 'name', '信件标题', '', '1', '1', '200', 'defaul', '标题必须为1-200个字符', 'name', 'title', 'array (\n  \'thumb\' => \'0\',\n  \'style\' => \'0\',\n)', '1', '', '2', '1', '1');
 INSERT INTO `clt_field` VALUES ('439', '53', 'content', '消息内容', '', '1', '0', '0', 'defaul', '', 'content', 'textarea', 'array (\n  \'fieldtype\' => \'mediumtext\',\n  \'default\' => \'\',\n)', '0', '', '3', '1', '0');
+INSERT INTO `clt_field` VALUES ('445', '54', 'type', '信件类型', '', '1', '0', '0', 'defaul', '', 'type', 'select', 'array (\n  \'options\' => \'咨询|1\n求助|2\n举报|3\',\n  \'multiple\' => \'0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'size\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '3', '1', '0');
+INSERT INTO `clt_field` VALUES ('447', '54', 'files', '上传附件', '', '0', '0', '0', 'defaul', '', 'files', 'file', 'array (\n  \'upload_allowext\' => \'zip|rar|7z\',\n)', '0', '', '5', '1', '0');
+INSERT INTO `clt_field` VALUES ('448', '54', 'authorname', '姓名', '', '0', '0', '0', 'defaul', '', 'authorname', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '6', '1', '0');
+INSERT INTO `clt_field` VALUES ('449', '54', 'tel', '手机号', '', '0', '0', '0', 'mobile', '', 'tel', 'text', 'array (\n  \'default\' => \'\',\n  \'ispassword\' => \'0\',\n  \'fieldtype\' => \'varchar\',\n)', '0', '', '7', '1', '0');
+INSERT INTO `clt_field` VALUES ('450', '54', 'content', '信件内容', '', '1', '0', '0', 'defaul', '', 'content', 'textarea', 'array (\n  \'fieldtype\' => \'text\',\n  \'default\' => \'\',\n)', '0', '', '8', '1', '0');
+INSERT INTO `clt_field` VALUES ('451', '54', 'is_public', '是否公开', '', '0', '0', '0', 'defaul', '', 'expansion', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19wdWJsaWMiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAxIn1jaGVja2Vkey9pZn0gLz48aW5wdXQgbGF5LWZpbHRlcj0iaXNfcHVibGljIiBuYW1lPSJpc19wdWJsaWMiIGlkPSJpc19wdWJsaWNfMiIgIHZhbHVlPSIwIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLkuI3lhazlvIAiIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3B1YmxpYyBlcSAwIn1jaGVja2Vkey9pZn0gLz4gICAgICAgICAgICAgICAgICAgIDwvZGl2Pg==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'1\',\n)', '0', '', '9', '1', '0');
+INSERT INTO `clt_field` VALUES ('452', '54', 'pwd', '信件密码', '', '0', '1', '16', 'defaul', '', 'pwd', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9wd2QiPgogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgdHlwZT0icGFzc3dvcmQiIG5hbWU9InB3ZCIgcGxhY2Vob2xkZXI9Iuivt+i+k+WFpeS/oeS7tuWvhueggSIgIGNsYXNzPSJsYXl1aS1pbnB1dCI+CiAgICAgICAgICAgICAgICAgICAgPC9kaXY+\',\n  \'fieldtype\' => \'varchar\',\n  \'numbertype\' => \'\',\n  \'default\' => \'\',\n)', '0', '', '10', '1', '0');
+INSERT INTO `clt_field` VALUES ('453', '54', 'is_reply', '回复状态', '', '0', '0', '0', 'defaul', '', 'is_reply', 'customize', 'array (\n  \'content\' => \'PGRpdiBjbGFzcz0ibGF5dWktaW5wdXQtNCIgaWQ9ImJveF9pc19yZXBseSI+CiAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICA8aW5wdXQgbGF5LWZpbHRlcj0iaXNfcmVwbHkiIG5hbWU9ImlzX3JlcGx5IiBpZD0iaXNfcmVwbHlfMSIgIHZhbHVlPSIxIiB2YWxpZGF0ZT0iIiAgdHlwZT0icmFkaW8iIGNsYXNzPSJhY2UiIHRpdGxlPSLlt7Llm57lpI0iIHtpZiBjb25kaXRpb249IiRpbmZvLmlzX3JlcGx5IGVxIDEifWNoZWNrZWR7L2lmfSAvPjxpbnB1dCBsYXktZmlsdGVyPSJpc19yZXBseSIgbmFtZT0iaXNfcmVwbHkiIGlkPSJpc19yZXBseV8yIiAgdmFsdWU9IjAiICB0eXBlPSJyYWRpbyIgY2xhc3M9ImFjZSIgdGl0bGU9IuacquWbnuWkjSIge2lmIGNvbmRpdGlvbj0iJGluZm8uaXNfcmVwbHkgZXEgMCJ9Y2hlY2tlZHsvaWZ9Lz4gICAgICAgICAgICAgICAgICAgCiAgICAgICAgPC9kaXY+IA==\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'\',\n  \'default\' => \'0\',\n)', '0', '', '11', '1', '0');
+INSERT INTO `clt_field` VALUES ('461', '55', 'type', '消息类型', '', '1', '0', '0', 'defaul', '', 'type', 'radio', 'array (\n  \'options\' => \'回复|1\n追问|2\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'default\' => \'1\',\n)', '0', '', '1', '1', '0');
+INSERT INTO `clt_field` VALUES ('460', '55', 'content', '消息内容', '', '1', '0', '0', 'defaul', '', 'content', 'textarea', 'array (\n  \'fieldtype\' => \'mediumtext\',\n  \'default\' => \'\',\n)', '0', '', '3', '1', '0');
+INSERT INTO `clt_field` VALUES ('456', '55', 'createtime', '发布时间', '', '1', '0', '0', 'date', '', '', 'datetime', '', '1', '', '97', '1', '1');
+INSERT INTO `clt_field` VALUES ('457', '55', 'is_open', '开启状态', '', '0', '0', '0', '', '', '', 'radio', 'array (\n  \'options\' => \'开启|1\r\n禁用|0\',\n  \'fieldtype\' => \'tinyint\',\n  \'numbertype\' => \'1\',\n  \'labelwidth\' => \'75\',\n  \'default\' => \'1\',\n)', '1', '', '97', '1', '1');
+
+-- ----------------------------
+-- Table structure for clt_heademail
+-- ----------------------------
+DROP TABLE IF EXISTS `clt_heademail`;
+CREATE TABLE `clt_heademail` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) NOT NULL DEFAULT '',
+  `userid` int(8) unsigned NOT NULL DEFAULT '0',
+  `username` varchar(40) NOT NULL DEFAULT '',
+  `listorder` int(10) unsigned NOT NULL DEFAULT '0',
+  `createtime` int(11) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(11) unsigned NOT NULL DEFAULT '0',
+  `deletetime` int(11) unsigned NOT NULL DEFAULT '0',
+  `lang` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `is_open` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `header` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `files` varchar(80) NOT NULL DEFAULT '',
+  `authorname` varchar(255) NOT NULL DEFAULT '',
+  `tel` varchar(255) NOT NULL DEFAULT '',
+  `content` text NOT NULL,
+  `is_public` tinyint(3) NOT NULL DEFAULT '1',
+  `pwd` varchar(16) NOT NULL DEFAULT '',
+  `is_reply` tinyint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of clt_heademail
+-- ----------------------------
+INSERT INTO `clt_heademail` VALUES ('1', '首长信件1首长信件1', '0', '', '0', '1537514757', '0', '0', '0', '1', '1', '4', '', '王晋', '18721667531', 'testtest', '1', '', '1');
 
 -- ----------------------------
 -- Table structure for clt_language
@@ -704,7 +728,7 @@ CREATE TABLE `clt_module` (
   `listorder` smallint(3) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clt_module
@@ -714,11 +738,10 @@ INSERT INTO `clt_module` VALUES ('2', '文章模型', 'article', '新闻文章',
 INSERT INTO `clt_module` VALUES ('3', '图片模型', 'picture', '图片展示', '1', '0', '*', '', '0', '1');
 INSERT INTO `clt_module` VALUES ('4', '产品模型', 'product', '产品展示', '1', '0', '*', '', '0', '1');
 INSERT INTO `clt_module` VALUES ('5', '下载模型', 'download', '文件下载', '1', '0', '*', '', '0', '1');
-INSERT INTO `clt_module` VALUES ('6', '团队模型', 'team', '员工展示', '1', '0', '*', '', '0', '1');
-INSERT INTO `clt_module` VALUES ('43', '公司模型', 'company', '用户所属公司', '1', '0', '*', '', '0', '1');
-INSERT INTO `clt_module` VALUES ('53', '回复消息模型', 'dreply', '', '1', '0', '*', '', '0', '1');
+INSERT INTO `clt_module` VALUES ('53', '回复消息模型', 'dreply', '部门回复消息模型', '1', '0', '*', '', '0', '1');
+INSERT INTO `clt_module` VALUES ('54', '首长信箱模型', 'heademail', '首长信箱模型', '1', '0', '*', '', '0', '1');
 INSERT INTO `clt_module` VALUES ('46', '语言模型', 'language', '', '1', '0', '*', '', '0', '1');
-INSERT INTO `clt_module` VALUES ('52', '部门模型', 'department', '部门模型', '1', '0', '*', '', '0', '1');
+INSERT INTO `clt_module` VALUES ('55', '首长回复消息模型', 'reply', '首长回复消息模型', '1', '0', '*', '', '0', '1');
 INSERT INTO `clt_module` VALUES ('51', '部门信箱模型', 'emailbox', '', '1', '0', '*', '', '0', '1');
 
 -- ----------------------------
@@ -734,109 +757,12 @@ CREATE TABLE `clt_opratelog` (
   `adminid` int(11) NOT NULL,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of clt_opratelog
 -- ----------------------------
-INSERT INTO `clt_opratelog` VALUES ('36', 'Case类型：信息转入回收站', '1522745257', '7', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('37', 'Case类型：信息还原', '1522745263', '7', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('38', 'Case类型：信息批量转入回收站', '1522745271', '8,7', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('39', 'Case类型：信息批量还原', '1522745280', '7,8', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('40', 'Case类型：信息批量转入回收站', '1522745292', '8,7', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('41', 'Case类型：信息彻底删除', '1522745298', '8', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('42', 'Case类型：信息批量彻底删除', '1522745303', '7', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('43', 'Case类型：信息添加', '1522745697', '9', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('44', 'Case类型：信息转入回收站', '1522745703', '9', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('45', 'Case类型：信息还原', '1522745708', '9', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('46', '公司管理：信息添加', '1522836479', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('47', '公司管理：信息转入回收站', '1523248009', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('48', '公司管理：信息添加', '1523248165', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('49', '公司管理：信息添加', '1523248326', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('50', 'Case类型：信息更改', '1523333611', '9', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('51', 'Patient portal管理：信息添加', '1523334910', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('52', 'Case类型：信息添加', '1523334977', '10', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('53', 'Case类型：信息转入回收站', '1523338445', '10', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('54', 'Patient portal管理：信息转入回收站', '1523348165', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('55', 'Patient portal管理：信息还原', '1523348172', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('56', 'Patient portal管理：信息添加', '1523353074', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('57', 'Patient portal管理：信息添加', '1523353304', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('58', 'Patient portal管理：信息更改', '1523353329', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('59', 'Patient portal管理：信息添加', '1523353357', '4', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('60', '语言管理：信息添加', '1523426549', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('61', '语言管理：信息添加', '1523426757', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('62', '语言管理：信息转入回收站', '1523426771', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('63', '语言管理：信息还原', '1523426780', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('64', '类型别名配置：信息添加', '1523430503', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('65', '类型别名配置：信息添加', '1523430621', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('66', '类型别名配置：信息转入回收站', '1523430627', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('67', '类型别名配置：信息还原', '1523430658', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('68', '类型别名配置：信息更改', '1523430761', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('69', '类型别名配置：信息更改', '1523430773', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('70', '类型别名配置：信息转入回收站', '1523432633', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('71', '类型别名配置：信息还原', '1523432643', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('72', '动态标签：信息添加', '1523503763', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('73', '动态标签：信息转入回收站', '1523503774', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('74', '动态标签：信息还原', '1523503780', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('75', '动态标签：信息更改', '1523521359', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('76', '业务管理：信息添加', '1523931909', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('77', '业务管理：信息添加', '1523933565', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('78', '动态标签：信息添加', '1523945215', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('79', '动态标签：信息添加', '1523945498', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('80', '动态标签：信息更改', '1523945643', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('81', '动态标签：信息更改', '1523945652', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('82', '语言管理：信息添加', '1530088004', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('83', '语言管理：信息更改', '1530088104', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('84', '语言管理：信息添加', '1530089025', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('85', '语言管理：信息添加', '1530089802', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('86', '语言管理：信息更改', '1530090484', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('87', 'C9设备管理：信息添加', '1530091215', '4', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('88', 'C9设备管理：信息转入回收站', '1530091529', '4', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('89', 'C9设备管理：信息还原', '1530091537', '4', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('90', '部门管理：信息添加', '1537240768', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('91', '部门管理：信息转入回收站', '1537240794', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('92', '部门管理：信息彻底删除', '1537240799', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('93', '部门管理：信息添加', '1537240951', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('94', '部门管理：信息转入回收站', '1537243055', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('95', '部门管理：信息添加', '1537243063', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('96', '部门管理：信息更改', '1537243309', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('97', '部门管理：信息还原', '1537243319', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('98', '信件管理：信息添加', '1537257729', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('99', '信件管理：信息更改', '1537263353', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('100', '信件管理：信息添加', '1537264393', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('101', '信件管理：信息更改', '1537339190', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('102', '信件管理：信息更改', '1537339201', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('103', '信件管理：信息更改', '1537340054', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('104', '信件管理：信息转入回收站', '1537342093', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('105', '信件管理：信息还原', '1537342366', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('106', '语言管理：信息添加', '1537346506', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('107', '语言管理：信息转入回收站', '1537346519', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('108', '语言管理：信息彻底删除', '1537346524', '1', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('109', '回复消息管理：信息添加', '1537348127', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('110', '回复消息管理：信息转入回收站', '1537348201', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('111', '回复消息管理：信息还原', '1537348242', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('112', '回复消息管理：信息添加', '1537348480', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('113', '回复消息管理：信息转入回收站', '1537412761', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('114', '回复消息管理：信息还原', '1537412769', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('115', '回复消息管理：信息转入回收站', '1537412782', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('116', '回复消息管理：信息批量还原', '1537412790', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('117', '回复消息管理：信息转入回收站', '1537412801', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('118', '回复消息管理：信息彻底删除', '1537412808', '3', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('119', '回复消息管理：信息添加', '1537413365', '4', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('120', '回复消息管理：信息添加', '1537413942', '5', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('121', '回复消息管理：信息更改', '1537413995', '5', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('122', '回复消息管理：信息更改', '1537414477', '2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('123', '回复消息管理：信息批量转入回收站', '1537423424', '5,2', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('124', '回复消息管理：信息批量彻底删除', '1537423430', '2,5', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('125', '回复消息管理：信息添加', '1537423820', '6', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('126', '回复消息管理：信息添加', '1537424099', '7', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('127', '回复消息管理：信息添加', '1537434013', '8', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('128', '回复消息管理：信息添加', '1537434026', '9', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('129', '回复消息管理：信息更改', '1537435030', '6', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('130', '回复消息管理：信息更改', '1537435049', '6', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('131', '回复消息管理：信息添加', '1537438265', '11', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('132', '回复消息管理：信息添加', '1537438617', '12', 'admin', '1', '127.0.0.1');
-INSERT INTO `clt_opratelog` VALUES ('133', '回复消息管理：信息添加', '1537438650', '13', 'admin', '1', '127.0.0.1');
+INSERT INTO `clt_opratelog` VALUES ('140', '部门信件管理：信息更改', '1537775932', '2', 'admin', '1', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for clt_page
@@ -4376,6 +4302,35 @@ INSERT INTO `clt_region` VALUES ('3407', '3401', '肥东县', '3');
 INSERT INTO `clt_region` VALUES ('3408', '3401', '肥西县', '3');
 
 -- ----------------------------
+-- Table structure for clt_reply
+-- ----------------------------
+DROP TABLE IF EXISTS `clt_reply`;
+CREATE TABLE `clt_reply` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `userid` int(8) unsigned NOT NULL DEFAULT '0',
+  `username` varchar(40) NOT NULL DEFAULT '',
+  `listorder` int(10) unsigned NOT NULL DEFAULT '0',
+  `createtime` int(11) unsigned NOT NULL DEFAULT '0',
+  `updatetime` int(11) unsigned NOT NULL DEFAULT '0',
+  `deletetime` int(11) unsigned NOT NULL DEFAULT '0',
+  `lang` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `is_open` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `p_id` int(11) NOT NULL COMMENT '1',
+  `content` mediumtext NOT NULL,
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of clt_reply
+-- ----------------------------
+INSERT INTO `clt_reply` VALUES ('1', '0', '', '0', '1537515564', '0', '0', '0', '1', '1', '11111111111111111111111', '1');
+INSERT INTO `clt_reply` VALUES ('2', '0', '', '0', '1537516012', '0', '0', '0', '1', '1', '我的首长？是吗', '2');
+INSERT INTO `clt_reply` VALUES ('3', '0', '', '0', '1537516057', '0', '0', '0', '1', '1', '11111', '1');
+INSERT INTO `clt_reply` VALUES ('4', '0', '', '0', '1537516170', '0', '0', '0', '1', '1', '？？？？？？？？？？？？？？？？？？？', '2');
+INSERT INTO `clt_reply` VALUES ('5', '0', '', '0', '1537516184', '0', '0', '0', '1', '1', '11111111111111111111111111111222222', '1');
+
+-- ----------------------------
 -- Table structure for clt_role
 -- ----------------------------
 DROP TABLE IF EXISTS `clt_role`;
@@ -4448,7 +4403,7 @@ CREATE TABLE `clt_sys` (
 -- ----------------------------
 -- Records of clt_sys
 -- ----------------------------
-INSERT INTO `clt_sys` VALUES ('1', 'CLTLAYUI', 'http://www.cltphp.com/', 'CLTPHP后台管理系统', 'CLTPHP,CLTPHP后台管理系统，thinkphp,thinkphp后台管理系统', 'CLTPHP后台管理系统，微信公众平台、APP移动应用设计、HTML5网站API定制开发。大型企业网站、个人博客论坛、手机网站定制开发。更高效、更快捷的进行定制开发。', '1', '876902658@qq.com', 'maggie198586', 'smtp.qq.com', '876902658', '网站管理员', 'chichu', 'chichu12345', '12231231231231111', '1', '12312312312', '123123123123123', 'weixin', '陕ICP备15008093号', '2015-2020', '南京市白下区虎踞南路40-8号1-4楼', '025-86530015', '1109305987@qq.com');
+INSERT INTO `clt_sys` VALUES ('1', '上海空军', 'http://jq.meetv.com.cn/', '上海空军信件后台管理系统', '', '', '1', '876902658@qq.com', 'maggie198586', 'smtp.qq.com', '876902658', '网站管理员', 'chichu', 'chichu12345', '12231231231231111', '1', '12312312312', '123123123123123', 'weixin', '', '', '', '', '1109305987@qq.com');
 
 -- ----------------------------
 -- Table structure for clt_system
@@ -4473,4 +4428,4 @@ CREATE TABLE `clt_system` (
 -- ----------------------------
 -- Records of clt_system
 -- ----------------------------
-INSERT INTO `clt_system` VALUES ('1', 'MEETUUU.COM', 'http://kaoji.meetv.com.cn/', 'MEETUUU.COM', 'MEETUUU.COM', 'MEETUUU.COM', '陕ICP备15008093号-3', '2015-2020', '西安市雁塔区', '18792402229', '1109305987@qq.com', '/uploads/20170904/9f04d8be2a05d926bc3e328eded02378.png');
+INSERT INTO `clt_system` VALUES ('1', '信件', 'http://jq.meetv.com.cn/', '信件管理', '信件管理', '信件管理', '', '', '', '', '', '/uploads/20180924/e7ed9b6ccc1d248c041537cb53152c60.jpg');

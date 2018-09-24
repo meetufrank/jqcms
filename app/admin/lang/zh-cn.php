@@ -145,8 +145,9 @@ return [
     'Letter'=>'信件',
     'Letter id'=>'信件编号',
     'Letter type'=>'信件类型',
-    'Letter management'=>'信件管理',
+    'Letter management'=>'部门信件管理',
     'Letter view'=>'信件查看',
+    'You don\'t have permission to add other departmental letters'=>'您无权限添加其他部门信件',
     
     'Language Management'=>'语言管理',
     'Language'=>'语言',
@@ -156,6 +157,13 @@ return [
     'Message'=>'消息',
     'Message management'=>'回复消息管理',
     'Message type'=>'消息类型',
-    'Reply successfully'=>'回复成功'
+    'Reply successfully'=>'回复成功',
+    
+    
+    
+    //首长
+    'Head'=>'首长',
+    'Head Letter management'=>'首长信件管理',
+    'Head Message management'=>'回复消息管理',
     
 ];

@@ -1,0 +1,63 @@
+.mailbox-wraper {
+    background: #e9e9e9;
+}
+header{
+    margin-bottom: 30px;
+}
+.mailbox-right{
+    margin-top: 20px;
+}
+/*信件问题*/
+.custom-detail-header{
+    text-align: center;
+}
+.details-title{
+	font-size: 24px;
+	color: #333;
+    padding-top: 30px;
+}
+.question-content{
+	font-size: 16px;
+	color: #666;
+    padding: 0 20px 30px;
+    text-align: left;
+}
+.answer-title{
+	font-size: 18px;
+    color: #666;
+    width: 220px;
+    padding: 2px 15px;
+}
+.reply-button{
+	color: #1e64a4;
+    margin-right: 10px;
+}
+.answer-title span{
+	margin-left: 16px;
+    font-size: 14px;
+    color: #999;
+}
+.answer-content{
+	font-size: 16px;
+	color: #333;
+    padding: 20px;
+}
+.icon-question-sign{
+	margin-right: 10px;
+	font-size: 24px;
+    color: #1e64a4;
+}
+.letter-panel{
+    padding: 0 10px;
+}
+/*追问*/
+.question-content-zw{
+    font-size: 16px;
+    color: #666;
+    padding: 20px 20px 20px;
+    text-align: left;
+}
+.answer-content-wrap-bg{
+    background: #f7f7f7;
+    padding-top: 10px;
+}

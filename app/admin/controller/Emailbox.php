@@ -56,7 +56,10 @@ class Emailbox extends Common{
                $map['catid']=array('in',$catid);
             }
             $map['e.deletetime']=0;
-            
+             //加上特殊条件
+            if(session('grouptype')!=1){
+                $map['e.department']=session('groupid');
+            }
             $list = $model
                 ->alias('e')
                 ->join(config('database.prefix').'auth_group a','e.department = a.group_id','left')
@@ -124,6 +127,10 @@ class Emailbox extends Common{
                $map['e.catid']=array('in',$catid);
             }
             $map['e.deletetime']=['neq',0];
+            //加上特殊条件
+            if(session('grouptype')!=1){
+                $map['e.department']=session('groupid');
+            }
             $list = $model
                 ->alias('e')
                 ->join(config('database.prefix').'auth_group a','e.department = a.group_id','left')
@@ -202,12 +209,27 @@ class Emailbox extends Common{
             $result['code'] = 0;
             return $result;
         }
+        //判断是否添加了其他部门信件
         
+            if(session('grouptype')!=1){
+                if(isset($fields['department'])) {
+                    if($data['department']!=session('groupid')){
+                        $result['msg'] = lang('You don\'t have permission to add other departmental letters');
+                        $result['code'] = 0;
+                        return $result;
+                    }
+                   
+                }
+                
+            }
 
         if(isset($fields['updatetime'])) {
             $data['updatetime'] = time();
         }
-
+//密码
+         if(isset($data['pwd'])) {
+            $data['pwd'] = md5($data['pwd']);
+        }
         $title_style ='';
         if (isset($data['style_color'])) {
             $title_style .= 'color:' . $data['style_color'].';';
@@ -338,6 +360,19 @@ class Emailbox extends Common{
         if(isset($data['code']) && $data['code']==0){
             return $data;
         }
+        //判断是否添加了其他部门信件
+        
+            if(session('grouptype')!=1){
+                if(isset($fields['department'])) {
+                    if($data['department']!=session('groupid')){
+                        $result['msg'] = lang('You don\'t have permission to add other departmental letters');
+                        $result['code'] = 0;
+                        return $result;
+                    }
+                   
+                }
+                
+            }
         if($fields['createtime']  && empty($data['createtime']) ){
             $data['createtime'] = time();
         }
@@ -349,7 +384,10 @@ class Emailbox extends Common{
                 $data['updatetime'] = $data['createtime'];
             }
         }
-     
+     //密码
+         if(isset($data['pwd'])) {
+            $data['pwd'] = md5($data['pwd']);
+        }
         $title_style ='';
         if (isset($data['style_color'])) {
             $title_style .= 'color:' . $data['style_color'].';';
@@ -459,6 +497,7 @@ class Emailbox extends Common{
         }
         if($data['p_id']){
             $data['type']=1;
+            $data['is_open']=1;
             $data['createtime']=time();
             //db("dreply")->insert($data);
             $id= db("dreply")->insertGetId($data);

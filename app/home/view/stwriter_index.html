@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>写信</title>
+    <!-- zui -->
+    <link href="__STATIC__/index/css/zui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/st-common.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/index/css/st-write.css">
+    <link href="__STATIC__/index/lib/uploader/zui.uploader.min.css" rel="stylesheet">
+  </head>
+  <body>
+  {include file="stcommonhead" /}
+    <div class="mailbox-wraper">
+      <div class="container">
+        <div>
+          <div class="bread-current">
+            <i class="icon icon-home bread-icon"></i>
+            <span>当前位置：</span>
+          </div>
+          <!-- 面包屑导航 -->
+          <ol class="breadcrumb">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="st-mailbox.html">兵情直通车</a></li>
+            <li class="active">写信</li>
+          </ol>
+        </div>
+        <!-- 二级导航 -->
+        <div class="panel border-none">
+          <div class="panel-body custom-panel-body">
+            <a href="./st-writer.html" class="panel-heading custom-panel-heading">
+              <img src="__STATIC__/index/images/st-xx.png" class="st-xx">
+              写信
+            </a>
+          </div>
+          <div class="panel-footer custom-panel-footer">
+            <nav class="navbar" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <ul class="nav nav-secondary">
+                    <li class=""><a href="your/nice/url">首长信箱</a></li>
+                    <li><a href="your/nice/url">后勤部长信箱</a></li>
+                    <li><a href="your/nice/url">党委信箱</a></li>
+                    <li class="active"><a href="your/nice/url">首长信箱</a></li>
+                    <li><a href="your/nice/url">后勤部长信箱</a></li>
+                    <li><a href="your/nice/url">组织部信箱</a></li>
+                  </ul>
+                </div>
+                <div class="collapse navbar-collapse navbar-collapse-example">
+
+                  <!-- 导航中的表单 -->
+                  <form class="navbar-form custom-navbar-form" role="search">
+                    <div class="input-control search-box has-icon-left has-icon-right search-example" id="searchboxExample">
+                      <input id="inputSearchExample9" type="search" class="form-control search-input" placeholder="输入信件号">
+                      <label for="inputSearchExample9" class="input-control-icon-right search-icon"><i class="icon icon-search header-icon-search"></i></label>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <!-- 写信 -->
+        <div class="mailbox-right">
+          <div class="panel left-panel">
+            <div class="panel-body">
+              <div class="items">
+                <div class="item frist-item">
+                  <div class="item-content">
+                    <div class="text-title">写信</div>
+                  </div>
+                </div>
+              </div>
+              <div class="panel letter-panel">
+                <div class="panel-body custom-letter-panel-body">
+                  <form class="form-horizontal">
+                    <div class="form-group custom-form-group">
+                      <label for="write-title">
+                      <span class="letter-start">*</span>信件标题</label>
+                      <div class="custom-write-title">
+                        <input type="text" class="form-control name" id="write-title" placeholder="请输入信件标题">
+                      </div>
+                      <label for="letter-type">
+                      <span class="letter-start">*</span>信件类型</label>
+                      <div class="custom-letter-type">
+                        <select name="" class="form-control type" id="letter-type">
+                          <option value="">请选择</option>
+                          <option value="1">咨询</option>
+                          <option value="2">求助</option>
+                          <option value="3">举报</option>
+                        </select>
+                      </div>
+                      <label for="exampleInputAddress1">
+                      <span class="letter-start">*</span>选择部门</label>
+                      <div class="custom-headerid">
+                        <select class="form-control department" id="headerid">
+                          <option value="">请选择</option>
+                          <option value="1">首长</option>
+                          <option value="2">首长2</option>
+                          <option value="3">首长3</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group custom-form-group">
+                      <label for="exampleInputAddress1" class="">
+                      <span class="letter-start">*</span>信件内容</label>
+                        <textarea id="content" name="content" class="form-control kindeditor custom-textarea content" style="height:150px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <div id='myuploader' class="uploader" data-ride="uploader">
+                        <div class="uploader-message text-center">
+                          <div class="content"></div>
+                          <button type="button" class="close">×</button>
+                        </div>
+                        <div class="uploader-files file-list file-list-lg" data-drag-placeholder="请拖拽文件到此处"></div>
+                        <div class="uploader-actions">
+                          <div class="uploader-status pull-right text-muted"></div>
+                          <button type="button" class="btn btn-link uploader-btn-browse"><i class="icon icon-plus"></i> 选择文件</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="write-name" class="col-sm-1">姓名</label>
+                      <div class="col-md-2 col-sm-2">
+                        <input type="text" class="form-control username" id="write-name" placeholder="请输入姓名">
+                      </div>
+                      <label for="write-tall" class="" style="margin-left: 20px;">电话</label>
+                      <div class="" style="margin-left: 20px;display: inline-block;">
+                        <input type="text" class="form-control tel" id="write-tall" placeholder="请输入联系方式">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="write-name" class="col-sm-1">是否公开</label>
+                      <label class="radio-inline">
+                        <input type="radio" name="radioOptionsExample3" checked value="1">公开
+                      </label>
+                      <label class="radio-inline">
+                        <input type="radio" name="radioOptionsExample3" value="0"> 不公开
+                      </label>
+                      <input type="hidden" value="" class="filename" name="filename"/>
+                    </div>
+                  </form>
+                  <div class="form-group letter-btn-form-group">
+                      <button type="submit" id="submit-letter" class="btn btn-default btn-writer">提交</button>
+                      <button type="button" class="btn btn-default btn-writer-return" data-toggle="modal" data-target="#reset-letter">返回</button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="modal fade" id="reset-letter">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header open-common-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <div class="">提示</div>
+                    </div>
+                    <div class="modal-body return-modal">
+                      <p>信件还未发送，确定要返回吗？</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" id="reset-button" class="btn btn-return btn-return-qd">确定</button>
+                      <button type="button" class="btn btn-default btn-return" data-dismiss="modal">取消</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 点击提交公开 -->
+              <div class="modal fade" id="open-submit">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header open-common-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <div class="">
+                      提交成功
+                      </div>
+                    </div>
+                    <div class="modal-body return-modal">
+                      <img src="__STATIC__/index/images/st-xx.png" class="img-stxx">
+                      <p>我们会尽快回复您的问题，请妥善保存您的信件查询号：<span class="letter-number num"></span> &nbsp;用于查询自己的信件。</p>
+                    </div>
+                   <!-- <div class="modal-footer">
+                      <button type="button" id="open-button" class="btn btn-return btn-return-qd">确定</button>
+                      <button type="button" class="btn btn-default btn-return" data-dismiss="modal">取消</button>
+                    </div>-->
+                  </div>
+                </div>
+              </div>
+              <!-- 不公开 -->
+              <div class="modal fade" id="not-open">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                    <div class="modal-header open-common-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <div class="">
+                      提交成功
+                      </div>
+                    </div>
+                    <div class="modal-body return-modal">
+                      <img src="__STATIC__/index/images/st-xx.png" class="img-stxx">
+                      <p>我们会尽快回复您的问题,请妥善保存您的信件查询号:<span class="letter-number num"></span>用于查询自己的信件。</p>
+                      <p>请设置您的私密密码：</p>
+                      <input id="inputpassword" type="text" class="form-control" value="" placeholder="至少6位（允许数字、字母）">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" id="no-open-button" class="btn btn-return btn-return-qd">确定</button>
+                      <button type="button" class="btn btn-default btn-return" data-dismiss="modal">取消</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery (ZUI中的Javascript组件依赖于jQuery) -->
+    <script src="__STATIC__/index/js/jquery-3.3.1.min.js"></script>
+    <!-- ZUI Javascript组件 -->
+    <script src="__STATIC__/index/js/zui.min.js"></script>
+    <script src="__STATIC__/index/js/st-writer.js"></script>
+    <script src="__STATIC__/index/lib/uploader/zui.uploader.min.js"></script>
+    <script>
+
+
+
+        var options = {
+      // 初始化选项
+      autoUpload: true,     // 当选择文件后立即自动进行上传操作
+      url: "{:url('Stwriter/uploads')}",
+      deleteActionOnDone: function(file, doRemoveFile) {
+
+          doRemoveFile();
+
+      },
+
+            onUploadFile: function(file,data) {
+                console.log('上传成功', file,data);
+
+            },
+            responseHandler: function(responseObject, file) {
+                var filename = responseObject.response;
+                $(".filename").val(filename);
+
+
+                // 当服务器返回的文本内容包含 `'error'` 文本时视为上传失败
+               /* if(responseObject.response.indexOf('error')) {
+                    return '上传失败。服务器返回了一个错误：' + responseObject.response;
+                }*/
+            }
+        };
+  $('#myuploader').uploader(options);
+
+    </script>
+
+
+
+  </body>
+</html>
