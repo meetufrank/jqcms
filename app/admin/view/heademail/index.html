@@ -1,7 +1,7 @@
 {include file="common/head"/}
 <div class="admin-main layui-anim layui-anim-upbit">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>{:lang('Department')}{:lang('Letter')}{:lang('list')}</legend>
+        <legend>{:lang('Head')}{:lang('Letter')}{:lang('list')}</legend>
     </fieldset>
     <div class="demoTable">
         <div class="layui-inline">
@@ -10,10 +10,11 @@
        
         <button class="layui-btn" id="search" data-type="reload">{:lang('search')}</button>
         <a href="{:url('index',['catid'=>input('catid')])}" class="layui-btn">{:lang('display all')}</a>
+        {if condition="session('grouptype') eq 1"} 
         <button type="button" class="layui-btn layui-btn-danger" id="delAll">{:lang('batch deletion')}</button>
         <a href="{:url('recindex',array('catid'=>input('catid')))}" class="layui-btn layui-btn-danger" style="float:right;margin-right: 15px;">{:lang('recycle bin')}</a>
         <a href="{:url('add',array('catid'=>input('catid')))}" class="layui-btn" style="float:right;margin-right: 15px;">{:lang('add')}</a>
-        
+        {/if}
         <div style="clear: both;"></div>
     </div>
     <table class="layui-table" id="list" lay-filter="list"></table>
@@ -30,10 +31,12 @@
     {{# if(d.thumb){ }}<img src="__ADMIN__/images/image.gif" onmouseover="layer.tips('<img src=__PUBLIC__/{{d.thumb}}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();">{{# } }}
 </script>
 <script type="text/html" id="action">
-    <a href="{:url('emailbox/replymess')}?id={{d.id}}" class="layui-btn layui-btn-primary layui-btn-xs  ">{:lang('View')}</a>
-    <a href="{:url('Dreply/index')}?id={{d.id}}" class="layui-btn layui-btn-normal layui-btn-xs  ">{:lang('Management')}</a>
+    <a href="{:url('Heademail/replymess')}?id={{d.id}}" class="layui-btn layui-btn-primary layui-btn-xs  ">{:lang('View')}</a>
+    {if condition="session('grouptype') eq 1"} 
+    <a href="{:url('Reply/index')}?id={{d.id}}" class="layui-btn layui-btn-normal layui-btn-xs  ">{:lang('Management')}</a>
     <a href="{:url('edit')}?id={{d.id}}&catid={{d.catid}}" class="layui-btn layui-btn-xs">{:lang('edit')}</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">{:lang('del')}</a>
+    {/if}
 </script>
 <script type="text/html" id="is_reply">
     {{ d.is_reply == 1 ? '<span style="color:gray;">已回复</span>' : '<span style="color:red;">未回复</span>' }}
@@ -44,6 +47,7 @@
 <script>
     layui.use('table', function() {
         var table = layui.table, $ = layui.jquery,form = layui.form;
+        {if condition="session('grouptype') eq 1"}
         var tableIn = table.render({
             id: 'content',
             elem: '#list',
@@ -56,9 +60,11 @@
                 {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
                 {field: 'name', title: '{:lang("name")}', width: 400, templet: '#title'},
                 {field: 'typename', title: '{:lang("Letter type")}', width: 120},
-                {field: 'departmentname', title: '{:lang("Department")}{:lang("name")}', width: 120}, 
+                {field: 'headername', title: '{:lang("Head")}{:lang("name")}', width: 120}, 
+                
                 {field: 'is_reply', title: '{:lang("Reply status")}', width: 120, templet: '#is_reply'},
                 {field: 'is_public', title: '{:lang("Is public")}', width: 120, templet: '#is_public'},
+                
 //                {field: 'hits',  title: '{:lang("hit")}', width: 80},
                 {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180},
                 {field: 'listorder', align: 'center', title: '{:lang("order")}', width: 120, templet: '#order'},
@@ -67,6 +73,32 @@
             ]],
             limit: 10
         });
+        {else/}
+        var tableIn = table.render({
+            id: 'content',
+            elem: '#list',
+            url: '{:url("index")}',
+            where:{catid:'{:input("catid")}'},
+            method: 'post',
+            page: true,
+            cols: [[
+                {type: "checkbox", fixed: true},
+                {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
+                {field: 'name', title: '{:lang("name")}', width: 400, templet: '#title'},
+                {field: 'typename', title: '{:lang("Letter type")}', width: 120},
+                {field: 'headername', title: '{:lang("Head")}{:lang("name")}', width: 120}, 
+                
+                {field: 'is_reply', title: '{:lang("Reply status")}', width: 120, templet: '#is_reply'},
+                {field: 'is_public', title: '{:lang("Is public")}', width: 120, templet: '#is_public'},
+                
+//                {field: 'hits',  title: '{:lang("hit")}', width: 80},
+                {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180},
+               
+                {width: 240, align: 'center', toolbar: '#action',title:'{:lang("operating")}'}
+            ]],
+            limit: 10
+        });
+        {/if}
         form.on('switch(is_open)', function(obj){
             loading =layer.load(1, {shade: [0.1,'#fff']});
             var id = this.value;

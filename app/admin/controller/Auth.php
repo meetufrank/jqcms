@@ -123,6 +123,7 @@ class Auth extends Common
             return $result = ['code'=>1,'msg'=>'管理员修改成功!','url'=>url('adminList')];
         }else{
             $auth_group = AuthGroup::all();
+           
             $info = Admin::get(['admin_id'=>input('admin_id')]);
             $selected = db('auth_group')->where('group_id',$info['group_id'])->find();
             $this->assign('selected',json_encode($selected,true));
@@ -172,6 +173,7 @@ class Auth extends Common
         }else{
             $id = input('id');
             $info = AuthGroup::get(['group_id'=>$id]);
+            $this->assign('type', $info->type);
             $this->assign('info', json_encode($info,true));
             $this->assign('title','编辑用户组');
             return $this->fetch('groupForm');

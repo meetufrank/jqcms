@@ -1,19 +1,18 @@
 {include file="common/head"/}
 <div class="admin-main layui-anim layui-anim-upbit">
     <fieldset class="layui-elem-field layui-field-title">
-        <legend>{:lang('Department')}{:lang('Letter')}{:lang('list')}</legend>
+        <legend>{:lang('Head')}{:lang('Message')}{:lang('list')}</legend>
     </fieldset>
     <div class="demoTable">
-        <div class="layui-inline">
-            <input class="layui-input" name="key" id="key" placeholder="{:lang('pleaseEnter')}{:lang('Letter id')}">
+<!--        <div class="layui-inline">
+            <input class="layui-input" name="key" id="key" placeholder="{:lang('pleaseEnter')}{:lang('keywords')}">
         </div>
-       
         <button class="layui-btn" id="search" data-type="reload">{:lang('search')}</button>
-        <a href="{:url('index',['catid'=>input('catid')])}" class="layui-btn">{:lang('display all')}</a>
+        <a href="{:url('index',['catid'=>input('catid')])}" class="layui-btn">{:lang('display all')}</a>-->
         <button type="button" class="layui-btn layui-btn-danger" id="delAll">{:lang('batch deletion')}</button>
-        <a href="{:url('recindex',array('catid'=>input('catid')))}" class="layui-btn layui-btn-danger" style="float:right;margin-right: 15px;">{:lang('recycle bin')}</a>
-        <a href="{:url('add',array('catid'=>input('catid')))}" class="layui-btn" style="float:right;margin-right: 15px;">{:lang('add')}</a>
-        
+        <a href="{:url('recindex',array('id'=>input('id')))}" class="layui-btn layui-btn-danger" style="float:right;margin-right: 15px;">{:lang('recycle bin')}</a>
+        <a href="{:url('add',array('cid'=>input('id')))}" class="layui-btn" style="float:right;margin-right: 15px;">{:lang('add')}</a>
+        <a href="{:url('Heademail/index')}" class="layui-btn " style="float:right;margin-right: 15px;">{:lang('back to list')}</a>
         <div style="clear: both;"></div>
     </div>
     <table class="layui-table" id="list" lay-filter="list"></table>
@@ -25,21 +24,13 @@
 <script type="text/html" id="order">
     <input name="{{d.id}}" data-id="{{d.id}}" class="list_order layui-input" value=" {{d.listorder}}" size="10"/>
 </script>
-<script type="text/html" id="title">
-    <span style="{{d.title_style}}">{{d.name}}</span>
-    {{# if(d.thumb){ }}<img src="__ADMIN__/images/image.gif" onmouseover="layer.tips('<img src=__PUBLIC__/{{d.thumb}}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();">{{# } }}
-</script>
+
 <script type="text/html" id="action">
-    <a href="{:url('emailbox/replymess')}?id={{d.id}}" class="layui-btn layui-btn-primary layui-btn-xs  ">{:lang('View')}</a>
-    <a href="{:url('Dreply/index')}?id={{d.id}}" class="layui-btn layui-btn-normal layui-btn-xs  ">{:lang('Management')}</a>
-    <a href="{:url('edit')}?id={{d.id}}&catid={{d.catid}}" class="layui-btn layui-btn-xs">{:lang('edit')}</a>
+    <a href="{:url('edit')}?id={{d.id}}&catid={{d.catid}}&cid={:input('id')}" class="layui-btn layui-btn-xs">{:lang('edit')}</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">{:lang('del')}</a>
 </script>
-<script type="text/html" id="is_reply">
-    {{ d.is_reply == 1 ? '<span style="color:gray;">已回复</span>' : '<span style="color:red;">未回复</span>' }}
-</script>
-<script type="text/html" id="is_public">
-   {{ d.is_public == 1 ? '公开' : '不公开' }}
+<script type="text/html" id="type">
+    {{ d.type == 1 ? '<span style="color:gray;">回复</span>' : '<span style="color:red;">追问</span>' }}
 </script>
 <script>
     layui.use('table', function() {
@@ -48,22 +39,19 @@
             id: 'content',
             elem: '#list',
             url: '{:url("index")}',
-            where:{catid:'{:input("catid")}'},
+            where:{catid:'{:input("catid")}',id:'{:input("id")}'},
             method: 'post',
             page: true,
             cols: [[
                 {type: "checkbox", fixed: true},
                 {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
-                {field: 'name', title: '{:lang("name")}', width: 400, templet: '#title'},
-                {field: 'typename', title: '{:lang("Letter type")}', width: 120},
-                {field: 'departmentname', title: '{:lang("Department")}{:lang("name")}', width: 120}, 
-                {field: 'is_reply', title: '{:lang("Reply status")}', width: 120, templet: '#is_reply'},
-                {field: 'is_public', title: '{:lang("Is public")}', width: 120, templet: '#is_public'},
+                {field: 'content', title: '{:lang("Message")}', width: 600},
 //                {field: 'hits',  title: '{:lang("hit")}', width: 80},
+                {field: 'type', title: '{:lang("Message type")}', width: 120,templet: '#type'},
                 {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180},
                 {field: 'listorder', align: 'center', title: '{:lang("order")}', width: 120, templet: '#order'},
                 {field: 'is_open', align: 'center',title: '{:lang("Whether to enable")}', width: 120,toolbar: '#is_open'},
-                {width: 240, align: 'center', toolbar: '#action',title:'{:lang("operating")}'}
+                {width: 160, align: 'center', toolbar: '#action',title:'{:lang("operating")}'}
             ]],
             limit: 10
         });
@@ -89,14 +77,14 @@
                 return;
             }
             tableIn.reload({
-                where: {key: key,catid:'{:input("catid")}'}
+                where: {key: key,catid:'{:input("catid")}',id:'{:input("id")}'}
             });
         });
         $('body').on('blur','.list_order',function() {
             var id = $(this).attr('data-id');
             var listorder = $(this).val();
             var loading = layer.load(1, {shade: [0.1, '#fff']});
-            $.post('{:url("listorder")}',{id:id,listorder:listorder,catid:'{:input("catid")}'},function(res){
+            $.post('{:url("listorder")}',{id:id,listorder:listorder,catid:'{:input("catid")}',cid:'{:input("id")}'},function(res){
                 layer.close(loading);
                 if(res.code === 1){
                     layer.msg(res.msg, {time: 1000, icon: 1}, function () {
@@ -116,7 +104,7 @@
                         layer.close(loading);
                         if(res.code===1){
                             layer.msg(res.msg,{time:1000,icon:1});
-                            tableIn.reload({where:{catid:'{:input("catid")}'}});
+                            tableIn.reload({where:{catid:'{:input("catid")}',id:'{:input("id")}'}});
                         }else{
                             layer.msg('{:lang("operation failed")}',{time:1000,icon:2});
                         }
@@ -138,7 +126,7 @@
                     layer.close(loading);
                     if (data.code === 1) {
                         layer.msg(data.msg, {time: 1000, icon: 1});
-                        tableIn.reload({where:{catid:'{:input("catid")}'}});
+                        tableIn.reload({where:{catid:'{:input("catid")}',id:'{:input("id")}'}});
                     } else {
                         layer.msg(data.msg, {time: 1000, icon: 2});
                     }

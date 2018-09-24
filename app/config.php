@@ -100,7 +100,7 @@ return [
     // 域名部署
     'url_domain_deploy'      => false,
     // 域名根，如thinkphp.cn
-    'url_domain_root'        => 'cltphp.com',
+    'url_domain_root'        => 'meetv.com.cn',
     // 是否自动转换URL中的控制器和操作名
     'url_convert'            => true,
     // 默认的访问控制器层
@@ -257,7 +257,7 @@ return [
 
     'pageSize'=>15,
     //自定义配置
-    'sys_name' =>'CLTPHP',
+    'sys_name' =>'上海空军信件CMS',
     //文件上传
     'addwater'=>false,
     'watertext'=>'CLTPHP',

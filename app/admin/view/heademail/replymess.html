@@ -34,14 +34,10 @@
                   <header>
                     <p class="details-title">{$content.mess.name}</p>
                   </header>
-                   
                   <section class="content">
                     <p class="question-content">{$content.mess.content}</p>
-                    
                   </section>
-                    
                 </div>
-                  
                   {if condition="!empty($content.reply)"}
                 <section>
                     {if condition="$content.reply.type eq 1"}
@@ -87,13 +83,13 @@
     </div>
    
 </div>
-
+ 
     <div class="container">
         
       <form class="layui-form" method="post">
     
     <input TYPE="hidden" name="p_id" value="{:input('id')}">
-       {if condition="$content.mess.files neq ''"}
+        {if condition="$content.mess.files neq ''"}
         <div class="layui-form-item" >
                     <label class="layui-form-label">附件：</label>
                     <div style="line-height:40px;font-weight: bolder;"> <a href="/public{$content.mess.files}" >点击下载附件</a> </div>

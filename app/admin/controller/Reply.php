@@ -4,8 +4,7 @@ use think\Db;
 use think\Request;
 use clt\Form;
 use app\common\logic\OprateLogic;
-use app\common\logic\ReplymessLogic;
-class Emailbox extends Common{
+class Reply extends Common{
     protected  $dao,$fields;
     public function _initialize()
     {
@@ -32,7 +31,12 @@ class Emailbox extends Common{
             $keyword=input('post.key');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
-            $order = "e.is_open asc,e.is_reply asc,e.listorder desc,e.id desc";
+            $order = "listorder desc,is_open asc,id desc";
+            if(input('post.id')){
+                $map['p_id']=input('post.id');
+            }else{
+                $this->error('非法操作');
+            }
             if (input('post.catid')) {
                 $catids = db('category')->where('parentid',input('post.catid'))->column('id');
                 if($catids){
@@ -42,11 +46,6 @@ class Emailbox extends Common{
                 }
             }
 
-            if(!empty($keyword) ){
-               // $map['e.name']=array('like','%'.$keyword.'%');
-                $map['e.id']=$keyword;
-                
-            }
             $prefix=config('database.prefix');
             $Fields=Db::getFields($prefix.$modelname);
             foreach ($Fields as $k=>$v){
@@ -55,15 +54,8 @@ class Emailbox extends Common{
             if(in_array('catid',$field)){
                $map['catid']=array('in',$catid);
             }
-            $map['e.deletetime']=0;
-             //加上特殊条件
-            if(session('grouptype')!=1){
-                $map['e.department']=session('groupid');
-            }
+            $map['deletetime']=0;
             $list = $model
-                ->alias('e')
-                ->join(config('database.prefix').'auth_group a','e.department = a.group_id','left')
-                ->field('e.*,a.title as departmentname')
                 ->where($map)
                 ->order($order)
                 ->paginate(array('list_rows'=>$pageSize,'page'=>$page))
@@ -72,19 +64,9 @@ class Emailbox extends Common{
             $rsult['code'] = 0;
             $rsult['msg'] = lang('Get success');
             $lists = $list['data'];
-            $typeoptions = explode("\n",$this->fields['type']['setup']['options']);
-            foreach($typeoptions as $r) {
-                $v = explode("|",$r);
-                $k = trim($v[1]);
-                $optionsarr[$k] = $v[0];
-            }
-            
             foreach ($lists as $k=>$v ){
                 $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
-                $lists[$k]['typename'] = $optionsarr[$v['type']];
             }
-           //print_r($lists);exit;
-            
             $rsult['data'] = $lists;
             $rsult['count'] = $list['total'];
             $rsult['rel'] = 1;
@@ -104,7 +86,7 @@ class Emailbox extends Common{
             $keyword=input('post.key');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
-            $order = "e.listorder desc,e.deletetime desc";
+            $order = "listorder asc,deletetime desc";
             if (input('post.catid')) {
                 $catids = db('category')->where('parentid',input('post.catid'))->column('id');
                 if($catids){
@@ -114,27 +96,17 @@ class Emailbox extends Common{
                 }
             }
 
-            if(!empty($keyword) ){
-                //$map['e.name']=array('like','%'.$keyword.'%');
-                $map['e.id']=$keyword;
-            }
+           
             $prefix=config('database.prefix');
             $Fields=Db::getFields($prefix.$modelname);
             foreach ($Fields as $k=>$v){
                 $field[$k] = $k;
             }
             if(in_array('catid',$field)){
-               $map['e.catid']=array('in',$catid);
+               $map['catid']=array('in',$catid);
             }
-            $map['e.deletetime']=['neq',0];
-            //加上特殊条件
-            if(session('grouptype')!=1){
-                $map['e.department']=session('groupid');
-            }
+            $map['deletetime']=['neq',0];
             $list = $model
-                ->alias('e')
-                ->join(config('database.prefix').'auth_group a','e.department = a.group_id','left')
-                ->field('e.*,a.title as departmentname')
                 ->where($map)
                 ->order($order)
                 ->paginate(array('list_rows'=>$pageSize,'page'=>$page))
@@ -143,16 +115,8 @@ class Emailbox extends Common{
             $rsult['code'] = 0;
             $rsult['msg'] = lang('Get success');
             $lists = $list['data'];
-            $typeoptions = explode("\n",$this->fields['type']['setup']['options']);
-            foreach($typeoptions as $r) {
-                $v = explode("|",$r);
-                $k = trim($v[1]);
-                $optionsarr[$k] = $v[0];
-            }
-            
             foreach ($lists as $k=>$v ){
-                $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
-                $lists[$k]['typename'] = $optionsarr[$v['type']];
+                $lists[$k]['deletetime'] = date('Y-m-d H:i:s',$v['deletetime']);
             }
             $rsult['data'] = $lists;
             $rsult['count'] = $list['total'];
@@ -187,9 +151,7 @@ class Emailbox extends Common{
             }
         }
         $info = $this->dao->where('id',$id)->find();
-        
         $form=new Form($info);
-        
         $returnData['vo'] = $info;
         $returnData['form'] = $form;
         $this->assign ('info', $info );
@@ -209,19 +171,7 @@ class Emailbox extends Common{
             $result['code'] = 0;
             return $result;
         }
-        //判断是否添加了其他部门信件
         
-            if(session('grouptype')!=1){
-                if(isset($fields['department'])) {
-                    if($data['department']!=session('groupid')){
-                        $result['msg'] = lang('You don\'t have permission to add other departmental letters');
-                        $result['code'] = 0;
-                        return $result;
-                    }
-                   
-                }
-                
-            }
 
         if(isset($fields['updatetime'])) {
             $data['updatetime'] = time();
@@ -260,20 +210,14 @@ class Emailbox extends Common{
         $where=[
             'id'=>['neq',$data['id']]
         ];
-        
-        $only=$this->isonly($data,$where);
-        if(!$only){
-            $result['msg'] = lang('Letter management').lang('name').lang('Occupied');
-            $result['code'] = 0;
-            return $result;
-        }
+       
         $list=$model->update($data);
         if (false !== $list) {
-            OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Information changes'),$data['id']);   //存储操作日志
+            OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Information changes'),$data['id']);   //存储操作日志
             if($controllerName=='Page'){
                 $result['url'] = url("admin/category/index");
             }else{
-                $result['url'] = url("admin/".$controllerName."/index",array('catid'=>$data['catid']));
+                $result['url'] = url("admin/".$controllerName."/index",array('catid'=>$data['catid'],'id'=>$data['p_id']));
             }
             $result['msg'] = lang('Successfully modified');
             $result['code'] = 1;
@@ -341,7 +285,8 @@ class Emailbox extends Common{
         }
         return $post;
     }
-
+   
+    
     public function add(){
         $form=new Form();
         $this->assign ( 'form', $form );
@@ -357,19 +302,6 @@ class Emailbox extends Common{
         if(isset($data['code']) && $data['code']==0){
             return $data;
         }
-        //判断是否添加了其他部门信件
-        
-            if(session('grouptype')!=1){
-                if(isset($fields['department'])) {
-                    if($data['department']!=session('groupid')){
-                        $result['msg'] = lang('You don\'t have permission to add other departmental letters');
-                        $result['code'] = 0;
-                        return $result;
-                    }
-                   
-                }
-                
-            }
         if($fields['createtime']  && empty($data['createtime']) ){
             $data['createtime'] = time();
         }
@@ -412,22 +344,24 @@ class Emailbox extends Common{
                 $data[$v['field']] = $data['images'];
             }
         }
-        $only=$this->isonly($data);
-        if(!$only){
-            $result['msg'] = lang('Letter management').lang('name').lang('Occupied');
-            $result['code'] = 0;
-            return $result;
-        }
+       
         $id= $model->insertGetId($data);
         if ($id !==false) {
-            OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Information added'),$id);   //存储操作日志
+            OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Information added'),$id);   //存储操作日志
+            //修改根据添加的信件类型来修改信件的回复状态
+            if($data['type']==1){
+                db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
+            }else{
+                db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>0]);
+            }
+            
             $catid = $controllerName =='page' ? $id : $data['catid'];
 
             
             if($controllerName=='page'){
                 $result['url'] = url("admin/category/index");
             }else{
-                $result['url'] = url("admin/".$controllerName."/index",array('catid'=>$data['catid']));
+                $result['url'] = url("admin/".$controllerName."/index",array('catid'=>$data['catid'],'id'=>$data['p_id']));
             }
             $result['msg'] = lang('Added successfully');
             $result['code'] = 1;
@@ -439,75 +373,7 @@ class Emailbox extends Common{
         }
 
     }
-        /*
-     * 验证唯一操作
-     * 
-     */
-    public function isonly($data,$where=[]) {
-        $map=[
-            'deletetime'=>0
-        ];
-        if(!empty($where)){
-            foreach ($where as $key => $value) {
-                $map[$key]=$value;
-            }
-        }
-        $model=$this->dao;
-        $map['name']=$data['name'];    //类型名称唯一
-        $count=$model->where($map)->count();
-        if($count){
-            return false;
-        }else{
-            return true;
-        }
-    }
-     /*
-     * 信件回复消息查看
-     */
-    public function replymess(){
-        if(input('id')){
-            $id=input('id');
-            $content=ReplymessLogic::getInstance()->getMessContent($id);
-        
-          
-        
-            
-            $this->assign ( 'content', $content);
-            $this->assign ( 'title', lang('Letter view') );
-            return  $this->fetch();
-       }
-    }
-    /*
-     * 信件消息回复
-     */
-    public function reply(){
-        
-        
-        $data=input('post.');
-        
-        if(!$data['content']){
-            
-            return ['code'=>0,'msg'=>lang('Message').lang('content').lang('Can not be empty')];
-        }
-        if($data['p_id']){
-            $data['type']=1;
-            $data['is_open']=1;
-            $data['createtime']=time();
-            //db("dreply")->insert($data);
-            $id= db("dreply")->insertGetId($data);
-            OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Information added'),$id);   //存储操作日志
-            //修改根据添加的信件类型来修改信件的回复状态
-            
-                $this->dao->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
-           
-                $result['url'] = url("admin/".MODULE_NAME."/index");
-            
-                $result['msg'] = lang('Reply successfully');
-                $result['code'] = 1;
-                return $result;
-              
-            }
-    }
+    
 /*
  * 还原操作
  */
@@ -517,13 +383,11 @@ class Emailbox extends Common{
         }
         $id = input('post.id');
         $model = $this->dao;
-        
         $data=[
             'deletetime'=>0
         ];
-        
         $model->where(array('id'=>$id))->update($data);//还原
-        OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Information restoration'),$id);   //存储操作日志
+        OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Information restoration'),$id);   //存储操作日志
         return ['code'=>1,'msg'=>lang('Restored successfully')];
     }
     public function listDel(){
@@ -536,7 +400,7 @@ class Emailbox extends Common{
             'deletetime'=>time()
         ];
         $model->where(array('id'=>$id))->update($data);//转入回收站
-        OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Transferring information to recycle bin'),$id);   //存储操作日志
+        OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Transferring information to recycle bin'),$id);   //存储操作日志
         return ['code'=>1,'msg'=>lang('successfully deleted')];
     }
     public function delAll(){
@@ -552,7 +416,7 @@ class Emailbox extends Common{
             'deletetime'=>time()
         ];
         $model->where($map)->update($data);
-        OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Bulk transfer to recycle bin'), implode(',',input('param.ids/a')));   //存储操作日志
+        OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Bulk transfer to recycle bin'), implode(',',input('param.ids/a')));   //存储操作日志
         $result['code'] = 1;
         $result['msg'] = lang('failed to delete');
         $result['url'] = url('index',array('catid'=>input('post.catid')));
@@ -565,7 +429,7 @@ class Emailbox extends Common{
         $id = input('post.id');
         $model = $this->dao;
         $model->where(array('id'=>$id))->delete();//彻底删除
-        OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Delete information completely'),$id);   //存储操作日志
+        OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Delete information completely'),$id);   //存储操作日志
         return ['code'=>1,'msg'=>lang('Deleted completely')];
     }
     public function removeAll(){
@@ -579,7 +443,7 @@ class Emailbox extends Common{
         $model = $this->dao;
         
         $model->where($map)->delete();
-        OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Batch delete information completely'), implode(',',input('param.ids/a')));   //存储操作日志
+        OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Batch delete information completely'), implode(',',input('param.ids/a')));   //存储操作日志
         $result['code'] = 1;
         $result['msg'] = lang('Deleted completely');
         $result['url'] = url('index',array('catid'=>input('post.catid')));
@@ -601,7 +465,7 @@ class Emailbox extends Common{
             'deletetime'=>0
         ];
         $model->where($map)->update($data);
-        OprateLogic::getInstance()->insert(lang('Letter management').lang('colon').lang('Information batch restore'), implode(',',input('param.ids/a')));   //存储操作日志
+        OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Information batch restore'), implode(',',input('param.ids/a')));   //存储操作日志
         $result['code'] = 1;
         $result['msg'] = lang('Batch restore successful');
         $result['url'] = url('index',array('catid'=>input('post.catid')));
@@ -610,9 +474,10 @@ class Emailbox extends Common{
     public function listorder(){
         $model = $this->dao;
         $catid = input('catid');
+        $id = input('cid');
         $data = input('post.');
         $model->update($data);
-        $result = ['msg' => lang('Sorting success'),'url'=>url('index',array('catid'=>$catid)), 'code' => 1];
+        $result = ['msg' => lang('Sorting success'),'url'=>url('index',array('catid'=>$catid,'id'=>$id)), 'code' => 1];
         return $result;
     }
     public function delImg(){
