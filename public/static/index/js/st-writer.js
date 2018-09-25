@@ -51,10 +51,10 @@ $('#submit-letter').on('click',function(){
     var tel = $(".tel").val();
     var filename = $(".filename").val();
     var pwd = $(".bgkpwd").val();
-
+    
     $.ajax({
         type:"post",
-        url:"Stwriter/add",
+        url:window._wriurl_,
         dataType: "json",
         data:{"name":name,"type":type,"department":department,"content":content,"username":username,"tel":tel,"filename":filename,"pwd":pwd},
         success: function(data){
