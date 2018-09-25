@@ -15,50 +15,7 @@
   {include file="stcommonhead" /}
     <div class="mailbox-wraper">
       <div class="container">
-        <div>
-          <div class="bread-current">
-            <i class="icon icon-home bread-icon"></i>
-            <span>当前位置：</span>
-          </div>
-          <!-- 面包屑导航 -->
-          <ol class="breadcrumb">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="st-mailbox.html">兵情直通车</a></li>
-            <li class="active">写信</li>
-          </ol>
-        </div>
-        <!-- 二级导航 -->
-        <div class="panel border-none">
-          <div class="panel-body custom-panel-body">
-            <a href="./st-writer.html" class="panel-heading custom-panel-heading">
-              <img src="__STATIC__/index/images/st-xx.png" class="st-xx">
-              写信
-            </a>
-          </div>
-          <div class="panel-footer custom-panel-footer">
-            <nav class="navbar" role="navigation">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <ul class="nav nav-secondary">
-                    {volist name="bmlist" id="vo"}
-                       <li class=""><a href="your/nice/url">{$vo.title}</a></li>
-                    {/volist}
-                  </ul>
-                </div>
-                <div class="collapse navbar-collapse navbar-collapse-example">
-
-                  <!-- 导航中的表单 -->
-                  <form class="navbar-form custom-navbar-form" role="search">
-                    <div class="input-control search-box has-icon-left has-icon-right search-example" id="searchboxExample">
-                      <input id="inputSearchExample9" type="search" class="form-control search-input" placeholder="输入信件号">
-                      <label for="inputSearchExample9" class="input-control-icon-right search-icon"><i class="icon icon-search header-icon-search"></i></label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </nav>
-          </div>
-        </div>
+        {include file="emailbox" /}  
         <!-- 写信 -->
         <div class="mailbox-right">
           <div class="panel left-panel">
@@ -258,7 +215,7 @@
 
     </script>
 
-
+ {include file="commonfoot"/}
 
   </body>
 </html>

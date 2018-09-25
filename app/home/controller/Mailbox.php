@@ -11,6 +11,9 @@ use think\Controller;
 class Mailbox extends Controller
 {
     
+    public function _initialize() {
+        
+    }
    public function index($id=0){
      
        

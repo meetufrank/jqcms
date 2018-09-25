@@ -12,14 +12,14 @@
         <!-- 写信栏 -->
         <div class="mailbox-left">
           <div class="panel left-panel">
-            <a href="./writer.html" class="panel-heading panel-left-top" style="">
+            <a href="{:url('Writer/index')}" class="panel-heading panel-left-top" style="">
               <img src="__STATIC__/index/images/xx.png">
               写信
             </a>
             <div class="panel-body left-panel-body">
               <div class="mailbox-list mailbox-list-top">
                   {foreach name="bmlist" item="bm"}
-                <div {if condition="$bm.group_id eq $selectid"}class="mailbox-item active"{else/}class="mailbox-item"{/if}  ><a href="{:url('/headindex',array('id'=>$bm.group_id))}">{$bm.title}({$emaillist.total})</a></div>
+                <div {if condition="$bm.group_id eq $selectid"}class="mailbox-item active"{else/}class="mailbox-item"{/if}  ><a href="{:url('/headindex',array('id'=>$bm.group_id))}">{$bm.title}</a></div>
                  {/foreach}
                
               </div>

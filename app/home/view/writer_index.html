@@ -17,50 +17,7 @@
   {include file='hohead'/}
     <div class="mailbox-wraper">
       <div class="container">
-        <div>
-          <div class="bread-current">
-            <img class="bread-icon" src="__STATIC__/index/images/dqwz.png">
-            <span>当前位置：</span>
-          </div>
-          <!-- 面包屑导航 -->
-          <ol class="breadcrumb">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="mailbox.html">为兵服务</a></li>
-            <li class="active">写信</li>
-          </ol>
-        </div>
-        <!-- 写信栏 -->
-        <div class="mailbox-left">
-          <div class="panel left-panel">
-            <a href="./writer.html" class="panel-heading panel-left-top">
-              <img src="__STATIC__/index/images/xx.png">
-              写信
-            </a>
-            <div class="panel-body left-panel-body">
-              <div class="mailbox-list">
-                <div class="mailbox-item">首长信箱(12)</div>
-                <div class="mailbox-item">
-                  后勤部长信箱(12)</div>
-                <div class="mailbox-item active">
-                  党委信箱(20)</div>
-                <div class="mailbox-item">党委信箱(0)</div>
-                <div class="mailbox-item">组织部信箱(0)</div>
-                <div class="mailbox-item">首长信箱(0)</div>
-              </div>
-            </div>
-          </div>
-          <div class="panel left-panel">
-            <div class="panel-body">
-              <div class="mailbox-list">
-                <div class="">
-                  <p class="mailbox-title">根据信件号查询</p>
-                  <input type="text" class="form-control mailbox-input" placeholder="信件号">
-                  <button class="btn mailbox-button" type="button">查询</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {include file="heademailbox" /}  
         <!-- 写信 -->
         <div class="mailbox-right">
           <div class="panel left-panel">
@@ -253,5 +210,7 @@
       };
   $('#myuploader').uploader(options);
     </script>
+    
+     {include file="commonfoot"/}
   </body>
 </html>
