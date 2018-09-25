@@ -91,22 +91,22 @@ class Emailbox extends Common{
 //                        $lists[$k]['is_with'] = '<span style="color:red">（需要处理）</span>'; 
 //                    }
                    $lists[$k]['is_with'] = '<span style="color:red">（需要处理）</span>'; 
-                   $lists[$k]['withnum'] = 2; 
+                 //  $lists[$k]['withnum'] = 0; 
                 }elseif($replydata['type']==2){
                    $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
-                   $lists[$k]['withnum'] = 1; 
+                  // $lists[$k]['withnum'] = 1; 
                 }else{
                     $lists[$k]['is_with'] = '';
-                    $lists[$k]['withnum'] = 0;
+                   // $lists[$k]['withnum'] = 2;
                 }
                 $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
                 $lists[$k]['typename'] = $optionsarr[$v['type']];
             }
             
-            $numarr = array_column($lists, 'withnum');
-            array_multisort($numarr,SORT_DESC,$lists);
+//            $numarr = array_column($lists, 'withnum');
+//            array_multisort($numarr,SORT_ASC,$lists);
             
-            //print_r($lists);exit;
+            
             
             $rsult['data'] = $lists;
             $rsult['count'] = $list['total'];

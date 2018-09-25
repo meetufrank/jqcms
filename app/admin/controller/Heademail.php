@@ -93,26 +93,36 @@ class Heademail extends Common{
             foreach ($lists as $k=>$v ){
                 $replymap['p_id']=$v['id'];
                 $replydata = db('reply')->where($replymap)->order($replyorder)->find(); //查询一条即可
-                if($replydata['type']==2){
-                    if(session('grouptype')!=1){
-                        $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
-                        $lists[$k]['withnum'] = 1; 
-                    }else{
-                        $lists[$k]['is_with'] = '<span style="color:red">（需要处理）</span>';
-                        $lists[$k]['withnum'] = 2; 
-                    }
+                if($replydata['is_open']===0){
+                    $lists[$k]['is_with'] = '<span style="color:red">（需要审核）</span>';
+                }else{
                     
+               
+                if($replydata['type']==2){
+//                    if(session('grouptype')!=1){
+//                        $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
+//                        //$lists[$k]['withnum'] = 1; 
+//                    }else{
+//                        $lists[$k]['is_with'] = '<span style="color:red">（需要审核或回复）</span>';
+//                        //$lists[$k]['withnum'] = 0; 
+//                    }
+                    $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
                 }else{
                     $lists[$k]['is_with'] = '';
-                    $lists[$k]['withnum'] = 0; 
+                    //$lists[$k]['withnum'] = 2; 
                 }
-                
+                }
                 $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
                 $lists[$k]['typename'] = $optionsarr[$v['type']];
             }
-           //print_r($lists);exit;
-            $numarr = array_column($lists, 'withnum');
-            array_multisort($numarr,SORT_DESC,$lists);
+            
+//           $numarr = array_column($lists, 'withnum');
+//            array_multisort($numarr,SORT_ASC,$lists);
+            
+            
+            
+          
+            
             
             $rsult['data'] = $lists;
             $rsult['count'] = $list['total'];
