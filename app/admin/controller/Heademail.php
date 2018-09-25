@@ -33,7 +33,7 @@ class Heademail extends Common{
             $keyword=input('post.key');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
-            $order = "e.is_open asc,e.is_reply asc,e.listorder desc,e.id desc";
+            $order = "e.is_open asc,e.is_reply asc,e.id desc";
             if (input('post.catid')) {
                 $catids = db('category')->where('parentid',input('post.catid'))->column('id');
                 if($catids){
@@ -61,7 +61,16 @@ class Heademail extends Common{
             if(session('grouptype')!=1){
                 $map['e.header']=session('groupid');
                 $map['e.is_open']=1;
+                 //三思
+                $replyorder = "id desc";
+                $replymap=[
+                    'is_open'=>1
+                ];
+            }else{
+                $replyorder = "is_open asc,id desc";
+                
             }
+            
             $list = $model
                 ->alias('e')
                 ->join(config('database.prefix').'auth_group a','e.header = a.group_id','left')
@@ -82,10 +91,28 @@ class Heademail extends Common{
             }
             
             foreach ($lists as $k=>$v ){
+                $replymap['p_id']=$v['id'];
+                $replydata = db('reply')->where($replymap)->order($replyorder)->find(); //查询一条即可
+                if($replydata['type']==2){
+                    if(session('grouptype')!=1){
+                        $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
+                        $lists[$k]['withnum'] = 1; 
+                    }else{
+                        $lists[$k]['is_with'] = '<span style="color:red">（需要处理）</span>';
+                        $lists[$k]['withnum'] = 2; 
+                    }
+                    
+                }else{
+                    $lists[$k]['is_with'] = '';
+                    $lists[$k]['withnum'] = 0; 
+                }
+                
                 $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
                 $lists[$k]['typename'] = $optionsarr[$v['type']];
             }
            //print_r($lists);exit;
+            $numarr = array_column($lists, 'withnum');
+            array_multisort($numarr,SORT_DESC,$lists);
             
             $rsult['data'] = $lists;
             $rsult['count'] = $list['total'];
@@ -106,7 +133,7 @@ class Heademail extends Common{
             $keyword=input('post.key');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
-            $order = "e.listorder desc,e.deletetime desc";
+            $order = "e.deletetime desc";
             if (input('post.catid')) {
                 $catids = db('category')->where('parentid',input('post.catid'))->column('id');
                 if($catids){

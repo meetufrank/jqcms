@@ -142,6 +142,7 @@ return [
     'Department management'=>'部门管理',
     
     //信件管理
+    'Type'=>'类型',
     'Letter'=>'信件',
     'Letter id'=>'信件编号',
     'Letter type'=>'信件类型',

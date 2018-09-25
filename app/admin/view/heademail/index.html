@@ -39,7 +39,7 @@
     {/if}
 </script>
 <script type="text/html" id="is_reply">
-    {{ d.is_reply == 1 ? '<span style="color:gray;">已回复</span>' : '<span style="color:red;">未回复</span>' }}
+    {{ d.is_reply == 1 ? '<span style="color:gray;">已回复</span>'+d.is_with : '<span style="color:red;">未回复</span>'+d.is_with }}
 </script>
 <script type="text/html" id="is_public">
    {{ d.is_public == 1 ? '公开' : '不公开' }}
@@ -59,11 +59,11 @@
                 {type: "checkbox", fixed: true},
                 {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
                 {field: 'name', title: '{:lang("name")}', width: 400, templet: '#title'},
-                {field: 'typename', title: '{:lang("Letter type")}', width: 120},
+                {field: 'typename', title: '{:lang("Type")}', width: 60},
                 {field: 'headername', title: '{:lang("Head")}{:lang("name")}', width: 120}, 
                 
-                {field: 'is_reply', title: '{:lang("Reply status")}', width: 120, templet: '#is_reply'},
-                {field: 'is_public', title: '{:lang("Is public")}', width: 120, templet: '#is_public'},
+                {field: 'is_reply', title: '{:lang("Reply status")}', width: 200, templet: '#is_reply'},
+                {field: 'is_public', title: '{:lang("Is public")}', width: 100, templet: '#is_public'},
                 
 //                {field: 'hits',  title: '{:lang("hit")}', width: 80},
                 {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180},

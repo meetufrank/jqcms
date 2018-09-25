@@ -31,7 +31,7 @@ class Reply extends Common{
             $keyword=input('post.key');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
-            $order = "listorder desc,is_open asc,id desc";
+            $order = "listorder asc,is_open asc,id desc";
             if(input('post.id')){
                 $map['p_id']=input('post.id');
             }else{
@@ -65,6 +65,7 @@ class Reply extends Common{
             $rsult['msg'] = lang('Get success');
             $lists = $list['data'];
             foreach ($lists as $k=>$v ){
+               
                 $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
             }
             $rsult['data'] = $lists;
@@ -348,13 +349,14 @@ class Reply extends Common{
         $id= $model->insertGetId($data);
         if ($id !==false) {
             OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Information added'),$id);   //存储操作日志
-            //修改根据添加的信件类型来修改信件的回复状态
-            if($data['type']==1){
-                db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
-            }else{
-                db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>0]);
-            }
-            
+//            //修改根据添加的信件类型来修改信件的回复状态
+          db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
+//            if($data['type']==1){
+//                db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
+//            }else{
+//                db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>0]);
+//            }
+//            
             $catid = $controllerName =='page' ? $id : $data['catid'];
 
             

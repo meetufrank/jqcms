@@ -32,7 +32,7 @@ class Emailbox extends Common{
             $keyword=input('post.key');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
-            $order = "e.is_open asc,e.is_reply asc,e.listorder desc,e.id desc";
+            $order = "e.is_open asc,e.is_reply asc,e.id desc";
             if (input('post.catid')) {
                 $catids = db('category')->where('parentid',input('post.catid'))->column('id');
                 if($catids){
@@ -79,11 +79,34 @@ class Emailbox extends Common{
                 $optionsarr[$k] = $v[0];
             }
             
+            $replyorder = "is_open asc,id desc";
+            
             foreach ($lists as $k=>$v ){
+                $replymap['p_id']=$v['id'];
+                $replydata = db('reply')->where($replymap)->order($replyorder)->find(); //查询一条即可
+                if($replydata['is_open']===0){
+//                    if(session('grouptype')!=1){
+//                        $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
+//                    }else{
+//                        $lists[$k]['is_with'] = '<span style="color:red">（需要处理）</span>'; 
+//                    }
+                   $lists[$k]['is_with'] = '<span style="color:red">（需要处理）</span>'; 
+                   $lists[$k]['withnum'] = 2; 
+                }elseif($replydata['type']==2){
+                   $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
+                   $lists[$k]['withnum'] = 1; 
+                }else{
+                    $lists[$k]['is_with'] = '';
+                    $lists[$k]['withnum'] = 0;
+                }
                 $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
                 $lists[$k]['typename'] = $optionsarr[$v['type']];
             }
-           //print_r($lists);exit;
+            
+            $numarr = array_column($lists, 'withnum');
+            array_multisort($numarr,SORT_DESC,$lists);
+            
+            //print_r($lists);exit;
             
             $rsult['data'] = $lists;
             $rsult['count'] = $list['total'];

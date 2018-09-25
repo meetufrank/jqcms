@@ -33,7 +33,7 @@ class ReplymessLogic extends Logic {
            'is_open'=>1,
            'p_id'=>$id
        ];
-       $replydata=db('dreply')->where($map)->order('listorder asc,id asc')->select();
+       $replydata=db('dreply')->where($map)->order('listorder desc,id asc')->select();
        $count=0;//第一次消息视为跟随信件的回复消息或者追问消息
        foreach ($replydata as $key => $value) {
            $value['createtime'] = date('Y.m.d',$value['createtime']);
@@ -80,7 +80,7 @@ class ReplymessLogic extends Logic {
            'is_open'=>1,
            'p_id'=>$id
        ];
-       $replydata=db('reply')->where($map)->order('listorder asc,id asc')->select();
+       $replydata=db('reply')->where($map)->order('listorder desc,id asc')->select();
        $count=0;//第一次消息视为跟随信件的回复消息或者追问消息
        foreach ($replydata as $key => $value) {
            $value['createtime'] = date('Y.m.d',$value['createtime']);
