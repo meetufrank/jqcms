@@ -218,6 +218,7 @@ class Page extends Paginator {
                 height:40px;
                 padding:20px 0px;
                 border-radius：4px;
+                margin-left: 420px;
             }
             .pagination a{
                 display:block;
