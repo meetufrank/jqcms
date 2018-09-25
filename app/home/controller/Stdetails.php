@@ -73,8 +73,8 @@ class Stdetails extends Controller
     
     //提交提问
     public function submitQuestion() {
-        $data=input('post.');
-        
+         $data=request()->param();
+      
         if(!empty($data['content'])){
             
             if($data['p_id']){
@@ -85,12 +85,17 @@ class Stdetails extends Controller
             $id= db("dreply")->insertGetId($data);
            
             
-           
-            $this->success('追问成功,审核通过后将会回复并显示您的追问消息', url('home/Index/index'));
+           echo json_encode([
+                'code'=>1,
+                'msg'=>'追问成功,审核通过后将会回复并显示您的追问消息',
+                'url'=>url('/headindex')
+            ]);
+            
             
             exit;
             }
         }
+      
     }
     
     

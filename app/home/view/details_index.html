@@ -85,12 +85,12 @@
               <p class="">
                     <button class="btn inquiries" id="inquiries" type="button" data-toggle="collapse" data-target="#collapseExample12" data-id="1">继续追问</button>
                   </p>
-                  <form method="post" action="{:url('Details/submitQuestion')}">
+                  <form method="post" >
                   <div class="collapse" id="collapseExample12">
                     <div class="with-padding">
-                        <input TYPE='hidden' name="p_id"value="{$content.mess.id}"/>
-                      <textarea class="form-control" rows="10" placeholder="请输入问题" name="content"></textarea>
-                      <button class="btn inquiries-button" type="submit">提交</button>
+                       
+                      <textarea class="form-control" rows="10" placeholder="请输入问题" name="content" id="replycontent"></textarea>
+                      <button class="btn inquiries-button" type="button" id="replybutton">提交</button>
                       <a class="btn return-btn" href="">返回</a>
                     </div>
                   </div>
@@ -107,6 +107,7 @@
     <!-- ZUI Javascript组件 -->
     <script src="__STATIC__/index/js/zui.min.js"></script>
     <script type="text/javascript">
+        
       $('#inquiries').on('click',function(){
         var dataId = $(this).attr("data-id");
         console.log();
@@ -143,6 +144,25 @@
       $('.mailbox-list>.mailbox-item').on('click',function(){
         console.log($(this));
         $(this).addClass('active').siblings().removeClass('active');
+      })
+      
+      $('#replybutton').on('click',function(){
+         
+          var pid={$content.mess.id};
+          var content=$("#replycontent").val();
+          $.ajax({
+        type:"post",
+        url:'{:url(\'Details/submitQuestion\')}',
+        dataType: "json",
+        data:{"p_id":pid,"content":content},
+        success: function(data){
+            
+            if(data.code==1){
+                alert(data.msg);
+                window.location.href=data.url;
+            }
+        }
+       });
       })
     </script>
     {include file="commonfoot"/}
