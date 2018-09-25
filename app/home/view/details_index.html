@@ -14,50 +14,7 @@
   {include file='hohead'/}
     <div class="mailbox-wraper">
       <div class="container">
-        <div>
-          <div class="bread-current">
-            <img class="bread-icon" src="__STATIC__/index/images/dqwz.png">
-            <span>当前位置：</span>
-          </div>
-          <!-- 面包屑导航 -->
-          <ol class="breadcrumb">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="mailbox.html">为兵服务</a></li>
-            <li class="active">信件详情</li>
-          </ol>
-        </div>
-        <!-- 写信栏 -->
-        <div class="mailbox-left">
-          <div class="panel left-panel">
-            <a href="./writer.html" class="panel-heading panel-left-top">
-              <img src="__STATIC__/index/images/xx.png">
-              写信
-            </a>
-            <div class="panel-body left-panel-body">
-              <div class="mailbox-list">
-                <div class="mailbox-item">首长信箱(12)</div>
-                <div class="mailbox-item">
-                  后勤部长信箱(12)</div>
-                <div class="mailbox-item active">
-                  党委信箱(20)</div>
-                <div class="mailbox-item">党委信箱(0)</div>
-                <div class="mailbox-item">组织部信箱(0)</div>
-                <div class="mailbox-item">首长信箱(0)</div>
-              </div>
-            </div>
-          </div>
-          <div class="panel left-panel">
-            <div class="panel-body">
-              <div class="mailbox-list">
-                <div class="">
-                  <p class="mailbox-title">根据信件号查询</p>
-                  <input type="text" class="form-control mailbox-input" placeholder="信件号">
-                  <button class="btn mailbox-button" type="button">查询</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+       {include file='heademailbox'/}
         <!-- 党委信箱 -->
         <div class="mailbox-right">
           <div class="panel left-panel letter-panel">
@@ -73,34 +30,51 @@
               <div id="foldzone" class="foldzone">
                 
                 <header>
-                  <p class="details-title">您好，我想请教一下军人转业的问题？</p>
+                  <p class="details-title">{$content.mess.name}</p>
                   <div class="common-sub-title">
-                    <div class="letter-type">咨询</div>
+                    <div class="letter-type">{$content.mess.typename}</div>
                     <dl class="dl-inline">
                     <dt></dt>
-                    <dd class="letter-date">2016年8月12日</dd>
+                    <dd class="letter-date">{$content.mess.createtime}</dd>
                     <dt class="letter-questioner">被提问人：</dt>
-                    <dd class="">后勤部长</dd>
+                    <dd class="">{$content.mess.headername}</dd>
                   </dl>
                   </div>
                 </header>
                 <section class="content">
-                  <p class="question-content">HTML5是HTML最新的修订版本，2014年10月由（W3C）完成标准制定。目标是替换1999年所制定的HTML 4.01和XHTML 1.0标准。</p>
+                  <p class="question-content">{$content.mess.content}</p>
+                  {if condition="!empty($content.reply)"}
+                   {if condition="$content.reply.type eq 1"}
                   <div class="answer-content-wrap">
-                    <p class="answer-title"><i class="icon icon-reply reply-button"></i>信件回复<span>2018.07.02</span></p>
-                    <p class="answer-content">HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。</p>
+                    <p class="answer-title"><i class="icon icon-reply reply-button"></i>信件回复<span>{$content.reply.createtime}</span></p>
+                    <p class="answer-content">{$content.reply.content}</p>
                   </div>
+                  {else/}
+                  <div class="">
+                  <p class="answer-title"><i class="icon icon-question-sign" style="color: #c30d23"></i>追问<span>{$content.reply.createtime}</span></p>
+                      <p class="question-content">{$content.reply.content}</p>
+                  </div>
+                  {/if}
+                  {/if}
                 </section>
+                  
                 <section class="content">
                   <div class="hiddens-fold" id="hidden-fold">
-                    <div class="">
-                      <p class="answer-title"><i class="icon icon-question-sign" style="color: #c30d23"></i>追问<span>2018.07.02</span></p>
-                      <p class="question-content">HTML5是HTML最新的修订版本，2014年10月由（W3C）完成标准制定。目标是替换1999年所制定的HTML 4.01和XHTML 1.0标准，以期能在互联网应用迅速发展的时候，使网络标准达到匹配当代的网络需求。</p>
-                      <div class="answer-content-wrap">
-                        <p class="answer-title"><i class="icon icon-reply reply-button"></i>追问回复<span>2018.07.02</span></p>
-                        <p class="answer-content">HTML 5草案的前身名为Web Applications 1.0，是在2004年由WHATWG提出。2008年1月22日，第一份正式草案发布。</p>
-                      </div>
-                    </div>
+                      {foreach name="$content.other" item="co"}
+                        {if condition="$co.type eq 2"}
+                        <div class="" style="margin-top:20px;">
+                            <p class="answer-title"><i class="icon icon-question-sign" style="color: #c30d23;"></i>追问<span>{$co.createtime}</span></p>
+                            <p class="question-content">{$co.content}</p>
+                        </div>
+                        {else/}
+                        
+                         <div class="answer-content-wrap">
+                           <p class="answer-title"><i class="icon icon-reply reply-button"></i>追问回复<span>{$co.createtime}</span></p>
+                           <p class="answer-content">{$co.content}</p>
+                         </div>
+                        {/if}
+                    
+                      {/foreach}
                   </div>
                 </section>
               
@@ -111,14 +85,18 @@
               <p class="">
                     <button class="btn inquiries" id="inquiries" type="button" data-toggle="collapse" data-target="#collapseExample12" data-id="1">继续追问</button>
                   </p>
+                  <form method="post" action="{:url('Details/submitQuestion')}">
                   <div class="collapse" id="collapseExample12">
                     <div class="with-padding">
-                      <textarea class="form-control" rows="10" placeholder="请输入问题"></textarea>
-                      <button class="btn inquiries-button" type="button">提交</button>
-                      <a class="btn return-btn" href="mailbox.html">返回</a>
+                        <input TYPE='hidden' name="p_id"value="{$content.mess.id}"/>
+                      <textarea class="form-control" rows="10" placeholder="请输入问题" name="content"></textarea>
+                      <button class="btn inquiries-button" type="submit">提交</button>
+                      <a class="btn return-btn" href="">返回</a>
                     </div>
                   </div>
-                  <a class="btn return-btn" id="zone-return" href="mailbox.html">返回</a>
+                   
+                  <a class="btn return-btn" id="zone-return" href="{:url('/headindex',array('id'=>$selectid))}">返回</a>
+                  </form>
             </div>
           </div>
         </div>
@@ -167,5 +145,6 @@
         $(this).addClass('active').siblings().removeClass('active');
       })
     </script>
+    {include file="commonfoot"/}
   </body>
 </html>

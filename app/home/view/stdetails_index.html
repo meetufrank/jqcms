@@ -64,13 +64,15 @@
                   <div class="hiddens-fold" id="hidden-fold">
                     <div class="">
                         {foreach name="$content.other" item="co"}
-                        {if condition="$co.type eq 1"}
-                      <div class="">
-                          {else/}
+                        {if condition="$co.type eq 2"}
+                        <div class="">
+                          
                         <p class="answer-title"><i class="icon icon-question-sign"></i>追问<span>{$co.createtime}</span></p>
                         <p class="question-content-zw">{$co.content}
                         </p>
-                      </div>
+                         </div>
+                        {else/}
+                      
                       <div class="answer-content-wrap answer-content-wrap-bg">
                         <p class="answer-title custom-answer-title"><i class="icon icon-reply reply-button"></i>追问回复<span>{$co.createtime}</span></p>
                         <p class="answer-content custom-backcolor">{$co.content}</p>
@@ -148,5 +150,6 @@
         $(this).addClass('active').siblings().removeClass('active');
       })
     </script>
+    {include file="commonfoot"/}
   </body>
 </html>

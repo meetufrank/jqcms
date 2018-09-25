@@ -6,7 +6,7 @@ class Pageer extends Paginator {
 //首页
     protected function home() {
         if ($this->currentPage() > 1) {
-            return "<a  href='" . $this->url(1) . "' title='首页'>首页</a>";
+            return "<a class='sleft' href='" . $this->url(1) . "' title='首页'>首页</a>";
         } else {
             return "<p>首页</p>";
         }
@@ -45,7 +45,7 @@ class Pageer extends Paginator {
             "</b>页<b>" . $this->total . "</b>条数据</p>";*/
 
 
-          return "<p class='pageRemark'>每页10条数据/共<b>$this->lastPage</b>页<b>&nbsp;&nbsp;";
+        return "<form role=\"form\" method=\"post\" action=\"\"><p class='pageRemark'>共<b><input  type=\"text\" style='margin-left: 7px; width: 30px; height:28px;text-align: center;' class=\"\" name=\"pagelist\" value=\"\">&nbsp;&nbsp;/$this->lastPage</b>页<b>&nbsp;&nbsp;<input type=\"submit\" name=\"\" value=\"跳转\" class=\"btn btn-default custom-tz\"></form>";
     }
 
     /**
@@ -115,16 +115,13 @@ class Pageer extends Paginator {
             } else {
                 return sprintf(
                     '%s<div class="pagination">%s %s %s %s %s %s</div>',
-
                     $this->css(),
-
                     $this->home(),
                     $this->prev(),
                     $this->getLinks(),
                     $this->next(),
                     $this->last(),
                     $this->info()
-
                 );
             }
         }
@@ -212,6 +209,9 @@ class Pageer extends Paginator {
      */
     protected function css(){
         return '  <style type="text/css">
+  .sleft{
+  margin-left: 120px;
+  }
             .pagination p{
                 margin:0;
                 
@@ -262,13 +262,11 @@ class Pageer extends Paginator {
             .pagination p.pageRemark{
                 border-style:none;
                 background:none;
-                margin-right:-2000px;
-                margin-left: 0px;
+                margin-right:0px;
                 padding:0px 10px;
                 color:#666;
-                font-size: 14px;
+                font-size: 15px;
                 border-radius：4px;
-                line-height: 32px;
                 border-radius：4px
             }
             .pagination p.pageRemark b{

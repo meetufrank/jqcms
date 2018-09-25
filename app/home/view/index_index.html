@@ -37,7 +37,7 @@
                     <div class="item-content">
                       <div class="text-content-title" >
                          {if condition="$el.is_public neq 1"}
-                          <a  data-toggle="modal" data-target="#letter-query-button{$el.id}" >
+                          <a  data-toggle="modal" data-target="#letter-query-button{$el.id}" href="#" >
                           {$el.name}
                           
                           </a>
@@ -58,7 +58,7 @@
                   {/foreach}
                
               </div>
-                
+               
               <div class="page-wraper">
                   {$page}
 <!--                <ul class="pager pager-loose">
@@ -85,15 +85,15 @@
     <script src="__STATIC__/index/js/writer.js"></script>
     <script src="__STATIC__/index/lib/uploader/zui.uploader.min.js"></script>
     <script>
-      var options = {
-      // 初始化选项
-      autoUpload: true,            // 当选择文件后立即自动进行上传操作
-      url: './test.php',
-      deleteActionOnDone: function(file, doRemoveFile) {
-          doRemoveFile();
-      },
-      };
-  $('#myuploader').uploader(options);
+//      var options = {
+//      // 初始化选项
+//      autoUpload: true,            // 当选择文件后立即自动进行上传操作
+//      url: './test.php',
+//      deleteActionOnDone: function(file, doRemoveFile) {
+//          doRemoveFile();
+//      },
+//      };
+//  $('#myuploader').uploader(options);
   {foreach name="emaillist.data" item="el"}
     {if condition="$el.is_public neq 1"}
    $('#letter-query-button-submit{$el.id}').on('click',function(){
@@ -124,10 +124,9 @@
       {/if}
    {/foreach} 
       
-      $('#searchsubmit').on('click',function(){
-          $("#searchform").submit();
-      })
+      
 
     </script>
+    {include file="commonfoot"/}
   </body>
 </html>

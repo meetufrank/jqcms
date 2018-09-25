@@ -1,0 +1,66 @@
+ <div>
+          <div class="bread-current">
+            <img class="bread-icon" src="__STATIC__/index/images/dqwz.png">
+            <span>当前位置：</span>
+          </div>
+          <!-- 面包屑导航 -->
+          <ol class="breadcrumb">
+            <li><a href="">首页</a></li>
+            <li class="active">为兵服务</li>
+          </ol>
+        </div>
+        <!-- 写信栏 -->
+        <div class="mailbox-left">
+          <div class="panel left-panel">
+            <a href="./writer.html" class="panel-heading panel-left-top" style="">
+              <img src="__STATIC__/index/images/xx.png">
+              写信
+            </a>
+            <div class="panel-body left-panel-body">
+              <div class="mailbox-list mailbox-list-top">
+                  {foreach name="bmlist" item="bm"}
+                <div {if condition="$bm.group_id eq $selectid"}class="mailbox-item active"{else/}class="mailbox-item"{/if}  ><a href="{:url('/headindex',array('id'=>$bm.group_id))}">{$bm.title}({$emaillist.total})</a></div>
+                 {/foreach}
+               
+              </div>
+            </div>
+          </div>
+            <form action="{:url('/headindex')}" method="get" id="searchform">
+          <div class="panel left-panel">
+            <div class="panel-body">
+              <div class="mailbox-list">
+                <div class="">
+                  <p class="mailbox-title">根据信件号查询</p>
+                  <input type="text" class="form-control mailbox-input" placeholder="信件号" value="{$Request.get.keyword}" name="keyword" > 
+                  <button class="btn mailbox-button" type="button" id="searchsubmit" >查询</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+          <!-- 模态框 -->
+          {foreach name="emaillist.data" item="el"}
+                  {if condition="$el.is_public neq 1"}
+          <div class="modal fade" id="letter-query-button{$el.id}">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header open-common-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                  <div class="">
+                    输入密码
+                  </div>
+                </div>
+                <div class="modal-body return-modal">
+                  <p>您的不公开信件号为：<span class="letter-number">{$el.id}</span></p>
+                  <p>请输入您设置的私密密码：</p>
+                  <input id="inputpassword{$el.id}" type="text" class="form-control" placeholder="" name="pwd">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="letter-query-button-submit{$el.id}" class="btn btn-reset">确定</button>
+                </div>
+              </div>
+            </div>
+          </div>
+                  {/if}
+                  {/foreach}
+        </div>

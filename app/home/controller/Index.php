@@ -26,7 +26,7 @@ class Index extends Controller
         
         
         $pageSize =input('limit')?input('limit'):10;
-        $order = "listorder desc,id desc"; 
+        $order = "listorder desc,is_reply desc,id desc"; 
         if(input('post.pagelist')){
             $num=input('post.pagelist');//post和get需要和前台提交的时候保持一致否则无效
         }
