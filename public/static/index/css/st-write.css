@@ -145,3 +145,16 @@
     width: 910px;
     margin: 0 35px 0 10px;
 }
+/*设置密码*/
+.pass{
+	margin-left: 5px;
+	margin-top: 7px;
+}
+/*输入框*/
+#put{
+	margin-left: -13px;
+}
+/*提交按钮*/
+/*.anniu{*/
+	/*padding: 45px 0 0 87px;*/
+/*}*/

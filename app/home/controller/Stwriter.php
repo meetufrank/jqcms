@@ -9,13 +9,14 @@
 namespace app\home\controller;
 use think\Controller;
 use think\Validate;
-use think\Db;
+use think\Model;
 class Stwriter extends Controller
 {
     public function index(){
 
         //查询部门
-        db('auth_group')->where("")->select($data);
+        $bmlist = db('auth_group')->where(['type'=>2])->select();
+        $this->assign('bmlist',$bmlist);
 
         return $this -> fetch();
     }
@@ -26,6 +27,12 @@ class Stwriter extends Controller
     //添加写信
     public function add(){
 
+        if(input('pwd') == ''){
+            $pwd = input('pwd');
+        }else{
+            $pwd = md5(input('pwd'));
+        }
+
         $data = [
             'name' => input('name'),    //标题
             'type' => input('type'),    //信件类型
@@ -34,13 +41,13 @@ class Stwriter extends Controller
             'username' => input('username'),    //姓名
             'tel' => input('tel'),    //电话
             'files' => str_replace('"', '', input('filename')),    //上传名称
+            'pwd' => $pwd,    //密码
         ];
 
+
+
+
         $id = db('emailbox')->insertGetId($data);
-
-
-
-
         return $id;
 
     }
@@ -64,20 +71,4 @@ class Stwriter extends Controller
     }
 
 
-
-    //不公开
-    public function bgk(){
-
-        $id = $_POST['id'];
-        $pwd = md5($_POST['pwd']);
-        $data = [
-            'pwd' => $pwd,
-        ];
-/*print_r($id);
-        print_r($pwd);
-exit;*/
-        Db::name('emailbox')
-            ->where("id = $id")
-            ->update($data);
-    }
 }

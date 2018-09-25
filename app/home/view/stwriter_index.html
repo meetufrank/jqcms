@@ -40,12 +40,9 @@
               <div class="container-fluid">
                 <div class="navbar-header">
                   <ul class="nav nav-secondary">
-                    <li class=""><a href="your/nice/url">首长信箱</a></li>
-                    <li><a href="your/nice/url">后勤部长信箱</a></li>
-                    <li><a href="your/nice/url">党委信箱</a></li>
-                    <li class="active"><a href="your/nice/url">首长信箱</a></li>
-                    <li><a href="your/nice/url">后勤部长信箱</a></li>
-                    <li><a href="your/nice/url">组织部信箱</a></li>
+                    {volist name="bmlist" id="vo"}
+                       <li class=""><a href="your/nice/url">{$vo.title}</a></li>
+                    {/volist}
                   </ul>
                 </div>
                 <div class="collapse navbar-collapse navbar-collapse-example">
@@ -96,10 +93,10 @@
                       <span class="letter-start">*</span>选择部门</label>
                       <div class="custom-headerid">
                         <select class="form-control department" id="headerid">
-                          <option value="">请选择</option>
-                          <option value="1">首长</option>
-                          <option value="2">首长2</option>
-                          <option value="3">首长3</option>
+                          <option value="0">请选择</option>
+                          {volist name="bmlist" id="vo"}
+                             <option value="{$vo.group_id}">{$vo.title}</option>
+                          {/volist}
                         </select>
                       </div>
                     </div>
@@ -134,15 +131,27 @@
                     <div class="form-group">
                       <label for="write-name" class="col-sm-1">是否公开</label>
                       <label class="radio-inline">
-                        <input type="radio" name="radioOptionsExample3" checked value="1">公开
+                        <input class="gongkai" type="radio" name="radioOptionsExample3" checked value="1">公开
                       </label>
                       <label class="radio-inline">
-                        <input type="radio" name="radioOptionsExample3" value="0"> 不公开
+                        <input class="bugongkai" type="radio" name="radioOptionsExample3" value="0"> 不公开
                       </label>
                       <input type="hidden" value="" class="filename" name="filename"/>
+
                     </div>
+
+
+                    <div id="bgk" style="display:none;">
+                        <label for="write-name" class="col-sm-1 pass"> 设置密码</label>
+                        <div class="col-md-2 col-sm-2">
+                          <input type="text" class="form-control username bgkpwd" name="pwd" id="put" placeholder="请设置您的私密密码">
+                        </div>
+                    </div>
+                    <!--<br/><br/>-->
+
+
                   </form>
-                  <div class="form-group letter-btn-form-group">
+                  <div class="form-group letter-btn-form-group anniu">
                       <button type="submit" id="submit-letter" class="btn btn-default btn-writer">提交</button>
                       <button type="button" class="btn btn-default btn-writer-return" data-toggle="modal" data-target="#reset-letter">返回</button>
                   </div>
@@ -199,14 +208,14 @@
                     </div>
                     <div class="modal-body return-modal">
                       <img src="__STATIC__/index/images/st-xx.png" class="img-stxx">
-                      <p>我们会尽快回复您的问题,请妥善保存您的信件查询号:<span class="letter-number num"></span>用于查询自己的信件。</p>
-                      <p>请设置您的私密密码：</p>
+                      <p>我们会尽快回复您的问题,请妥善保存您的信件查询号:<span class="letter-number num gkid"></span>用于查询自己的信件。</p>
+                      <!--<p>请设置您的私密密码：</p>
                       <input id="inputpassword" type="text" class="form-control" value="" placeholder="至少6位（允许数字、字母）">
-                    </div>
-                    <div class="modal-footer">
+                    --></div>
+                   <!-- <div class="modal-footer">
                       <button type="button" id="no-open-button" class="btn btn-return btn-return-qd">确定</button>
                       <button type="button" class="btn btn-default btn-return" data-dismiss="modal">取消</button>
-                    </div>
+                    </div>-->
                   </div>
                 </div>
               </div>
@@ -243,11 +252,6 @@
                 var filename = responseObject.response;
                 $(".filename").val(filename);
 
-
-                // 当服务器返回的文本内容包含 `'error'` 文本时视为上传失败
-               /* if(responseObject.response.indexOf('error')) {
-                    return '上传失败。服务器返回了一个错误：' + responseObject.response;
-                }*/
             }
         };
   $('#myuploader').uploader(options);
