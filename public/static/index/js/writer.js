@@ -40,22 +40,59 @@ $('#submit-letter').on('click',function(){
         valid = false;
         var tips = "请选择是否公开";
     }
-    
-    if(valid){
-        //alert(requestData.radioval);
-    	if (requestData.radioval == "1") {
-            $('#open-submit').modal({
-                keyboard : false
-            })
-        }else{
-            $('#not-open').modal()
+
+
+    var name = $(".name").val();
+    var type = $(".type").val();
+    var department = $(".department").val();
+    var content = $(".content").val();
+    var username = $(".username").val();
+    var tel = $(".tel").val();
+    var filename = $(".filename").val();
+    var pwd = $(".bgkpwd").val();
+
+    $.ajax({
+        type:"post",
+        url:"Writer/add",
+        dataType: "json",
+        data:{"name":name,"type":type,"department":department,"content":content,"username":username,"tel":tel,"filename":filename,"pwd":pwd},
+        success: function(data){
+            var num = data;
+            $(".num").text(num);
+
+            if(valid){
+                //alert(requestData.radioval);
+                if (requestData.radioval == "1") {
+
+                    $('#open-submit').modal({
+                        keyboard : false
+                    })
+                }else{
+                    $('#not-open').modal()
+                }
+            }else{
+                new $.zui.Messager(tips, {
+                    placement: 'center' // 定义显示位置
+                }).show();
+            }
         }
-    }else{
-    	new $.zui.Messager(tips, {
-		    placement: 'center' // 定义显示位置
-		}).show();
-    }
+    });
+    
+
 })
+
+// 不公开显示密码框
+$('.gongkai').click(function(){
+    $('#bgk').hide();
+    /*$('.anniu').css('paddingTop','20px');*/
+})
+
+$('.bugongkai').click(function(){
+    $('#bgk').show();
+   /* $('.anniu').css('paddingTop','50px');*/
+})
+
+
 // 返回按钮
 $('#reset-button').on('click',function(){
 	$(location).attr('href', 'http://localhost/army/mailbox.html');

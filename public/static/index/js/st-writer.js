@@ -41,7 +41,7 @@ $('#submit-letter').on('click',function(){
         valid = false;
         var tips = "请选择是否公开";
     }
-if(valid){
+
 
     var name = $(".name").val();
     var type = $(".type").val();
@@ -50,12 +50,13 @@ if(valid){
     var username = $(".username").val();
     var tel = $(".tel").val();
     var filename = $(".filename").val();
+    var pwd = $(".bgkpwd").val();
 
     $.ajax({
         type:"post",
         url:"Stwriter/add",
         dataType: "json",
-        data:{"name":name,"type":type,"department":department,"content":content,"username":username,"tel":tel,"filename":filename},
+        data:{"name":name,"type":type,"department":department,"content":content,"username":username,"tel":tel,"filename":filename,"pwd":pwd},
         success: function(data){
             var num = data;
             $(".num").text(num);
@@ -77,7 +78,7 @@ if(valid){
             }
         }
     });
-}
+
 
 
 
@@ -90,6 +91,18 @@ if(valid){
 
 
 })
+
+// 不公开显示密码框
+$('.gongkai').click(function(){
+    $('#bgk').hide();
+    $('.anniu').css('paddingTop','20px');
+})
+
+$('.bugongkai').click(function(){
+    $('#bgk').show();
+    $('.anniu').css('paddingTop','50px');
+})
+
 // 返回按钮
 $('#reset-button').on('click',function(){
 	$(location).attr('href', 'http://localhost/army/st-mailbox.html');
@@ -101,10 +114,10 @@ $('#open-button').on('click',function(){
 // 不公开信件提交确定按钮
 $('#no-open-button').on('click',function(){
 
-    var id = $(".num").text();
+    var id = $(".gkid").text();
     var pwd = $("#inputpassword").val();
 
-  /*  $.ajax({
+    $.ajax({
         type:"post",
         url:"Stwriter/bgk",
         dataType: "json",
@@ -113,7 +126,7 @@ $('#no-open-button').on('click',function(){
 
 
         }
-    });*/
+    });
 
 
     //$(location).attr('href', 'http://localhost/army/st-mailbox.html');

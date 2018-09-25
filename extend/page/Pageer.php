@@ -210,7 +210,7 @@ class Pageer extends Paginator {
     protected function css(){
         return '  <style type="text/css">
   .sleft{
-  margin-left: 120px;
+  
   }
             .pagination p{
                 margin:0;
@@ -221,7 +221,13 @@ class Pageer extends Paginator {
                 height:40px;
                 padding:20px 0px;
                 border-radius：4px;
+                    margin-left: 120px;
             }
+            /*.pagination a:first-child{
+                border: 0;
+                padding: 0;
+                margin-right: 0px;
+            }*/
             .pagination a{
                 display:block;
                 float:left;
