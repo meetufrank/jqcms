@@ -33,7 +33,7 @@ class Heademail extends Common{
             $keyword=input('post.key');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
-            $order = "e.is_open asc,e.is_reply asc,e.id desc";
+            $order = "e.is_open asc,e.is_reply asc";
             if (input('post.catid')) {
                 $catids = db('category')->where('parentid',input('post.catid'))->column('id');
                 if($catids){
@@ -92,34 +92,43 @@ class Heademail extends Common{
             
             foreach ($lists as $k=>$v ){
                 $replymap['p_id']=$v['id'];
+                $replymap['deletetime']=0;
                 $replydata = db('reply')->where($replymap)->order($replyorder)->find(); //查询一条即可
                 if($replydata['is_open']===0){
                     $lists[$k]['is_with'] = '<span style="color:red">（需要审核）</span>';
+                    $lists[$k]['withnum'] = 2; 
                 }else{
                     
                
                 if($replydata['type']==2){
 //                    if(session('grouptype')!=1){
 //                        $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
-//                        //$lists[$k]['withnum'] = 1; 
+//                        $lists[$k]['withnum'] = 1; 
 //                    }else{
 //                        $lists[$k]['is_with'] = '<span style="color:red">（需要审核或回复）</span>';
-//                        //$lists[$k]['withnum'] = 0; 
+//                        $lists[$k]['withnum'] = 0; 
 //                    }
                     $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
+                    $lists[$k]['withnum'] = 1; 
                 }else{
-                    $lists[$k]['is_with'] = '';
-                    //$lists[$k]['withnum'] = 2; 
+                   if(empty($replydata)){
+                       $lists[$k]['is_with'] = '';
+                       $lists[$k]['withnum'] = 3; 
+                    }else{
+                        $lists[$k]['is_with'] = '';
+                        $lists[$k]['withnum'] = 0; 
+                    }
+                    
                 }
                 }
                 $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
                 $lists[$k]['typename'] = $optionsarr[$v['type']];
             }
             
-//           $numarr = array_column($lists, 'withnum');
-//            array_multisort($numarr,SORT_ASC,$lists);
+            $numarr = array_column($lists, 'withnum','id');
+            array_multisort($numarr,SORT_DESC,$lists);
             
-            
+           
             
           
             
