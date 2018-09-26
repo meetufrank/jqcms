@@ -34,7 +34,7 @@ Class Writer extends Controller{
             'header' => input('department'),    //首长
             'createtime' => $createtime,
             'content' => input('content'),    //内容
-            'username' => input('username'),    //姓名
+            'authorname' => input('username'),    //姓名
             'tel' => input('tel'),    //电话
             'files' => $fileyg,    //上传名称
             'pwd' => $pwd,    //密码
