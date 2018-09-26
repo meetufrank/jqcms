@@ -37,12 +37,14 @@ class Mailbox extends Controller
         if(input('keyword')){
            $map=[
            'deletetime'=>0,
-           'id'=>input('keyword')
+           'id'=>input('keyword'),
+           'is_open'=>1
           ]; 
         }else{
             $map=[
            'deletetime'=>0,
-           'header'=> $id
+           'header'=> $id,
+           'is_open'=>1
           ];
         }
          
