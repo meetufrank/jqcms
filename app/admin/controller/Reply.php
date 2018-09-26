@@ -350,7 +350,7 @@ class Reply extends Common{
         if ($id !==false) {
             OprateLogic::getInstance()->insert(lang('Message management').lang('colon').lang('Information added'),$id);   //存储操作日志
 //            //修改根据添加的信件类型来修改信件的回复状态
-          db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
+          db('heademail')->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
 //            if($data['type']==1){
 //                db('emailbox')->where(['id'=>$data['p_id']])->update(['is_reply'=>1]);
 //            }else{

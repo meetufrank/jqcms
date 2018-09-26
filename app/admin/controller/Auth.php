@@ -182,7 +182,7 @@ class Auth extends Common
     //分组配置规则
     public function groupAccess(){
         $nav = new Leftnav();
-        $admin_rule=db('auth_rule')->field('id,pid,title')->order('sort asc')->select();
+        $admin_rule=db('auth_rule')->field('id,pid,title')->where('status=1')->order('sort asc')->select();
         $rules = db('auth_group')->where('group_id',input('id'))->value('rules');
         $arr = $nav->auth($admin_rule,$pid=0,$rules);
         $arr[] = array(
@@ -191,6 +191,7 @@ class Auth extends Common
             "title"=>"全部",
             "open"=>true
         );
+        
         $this->assign('data',json_encode($arr,true));
         return $this->fetch('groupAccess');
     }
