@@ -84,9 +84,11 @@
                   </div>
                 </section>
               </div>
+                {if condition="!empty($content.other)"}
               <p class="fold-p">
                 <a id="fold-open-close-button" data-type="1" class="">展开全部 <i class="icon icon-chevron-down"></i></a>
               </p>
+              {/if}
               <div class="custom-footer-btn">
                 <button class="btn inquiries" id="inquiries" type="button" data-toggle="collapse" data-target="#collapseExample12" data-id="1">继续追问</button>
                 <a class="btn return-btn" id="zone-return" href="{:url('home/Index/index',array('id'=>$selectid))}">返回</a>

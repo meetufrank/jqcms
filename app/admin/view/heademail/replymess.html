@@ -92,7 +92,7 @@
         {if condition="$content.mess.files neq ''"}
         <div class="layui-form-item" >
                     <label class="layui-form-label">附件：</label>
-                    <div style="line-height:40px;font-weight: bolder;"> <a href="/public{$content.mess.files}" >点击下载附件</a> </div>
+                    <div style="line-height:40px;font-weight: bolder;"> <a href="{:url('replymess')}?download=/public{$content.mess.files}"  target="_blank" >点击下载附件</a> </div>
          </div>
       {/if}
         <div class="layui-form-item" >

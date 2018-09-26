@@ -495,6 +495,13 @@ class Heademail extends Common{
      * 信件回复消息查看
      */
     public function replymess(){
+        if(request()->param('download')){
+            
+          $fileurl=request()->param('download');
+          
+          download(ROOT_PATH.$fileurl);  
+           exit;
+        }else{
         if(input('id')){
             $id=input('id');
             $content=ReplymessLogic::getInstance()->getHeadMessContent($id);
@@ -506,6 +513,7 @@ class Heademail extends Common{
             $this->assign ( 'title', lang('Letter view') );
             return  $this->fetch();
        }
+        }
     }
     /*
      * 信件消息回复
