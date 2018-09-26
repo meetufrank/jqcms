@@ -65,12 +65,30 @@ $('#submit-letter').on('click',function(){
                 //alert(requestData.radioval);
                 if (requestData.radioval == "1") {
 
+
+
+
                     $('#open-submit').modal({
                         keyboard : false
                     })
+
+                    $('body').click(function(e){
+                        if($(e.target).closest('#gongkait').length==0){
+                            window.location.href = window._head;
+                        }
+
+                    })
+
                 }else{
 
-                    $('#not-open').modal()
+                    $('#not-open').modal();
+                    $('body').click(function(e){
+                        if($(e.target).closest('#bugongkai').length==0){
+                            window.location.href = window._head;
+                        }
+
+                    })
+
                 }
             }else{
                 new $.zui.Messager(tips, {

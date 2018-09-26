@@ -35,10 +35,11 @@ class Stwriter extends Controller
 
         $fileyh = str_replace('"', '', input('filename'));  //上传文件路径去除双引号
         $fileyg = stripslashes($fileyh);  //上传文件路径去除斜杠
-
+        $createtime = time();
         $data = [
             'name' => input('name'),    //标题
             'type' => input('type'),    //信件类型
+            'createtime' => $createtime,
             'department' => input('department'),    //部门
             'content' => input('content'),    //内容
             'username' => input('username'),    //姓名

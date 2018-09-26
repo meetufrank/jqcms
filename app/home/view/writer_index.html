@@ -130,7 +130,7 @@
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <button type="button" class="close guanbi" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                     </div>
                     <div class="modal-body return-modal">
                       <p>信件还未发送，确定要返回吗？</p>
@@ -144,11 +144,11 @@
               <!-- 点击提交公开 -->
               <div class="modal fade" id="open-submit">
                 <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
+                  <div class="modal-content" id="gongkait">
 
                           <div class="modal-header open-common-header">
 
-                            <button id="guanbi" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                            <button id="guanbi" type="button" class="close guanbi" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
 
                               <div class="">
                               <i class="icon icon-check-circle-o icon-2x icon-open-color"></i>提交成功
@@ -167,9 +167,9 @@
               <!-- 不公开 -->
               <div class="modal fade" id="not-open">
                 <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
+                  <div class="modal-content" id="bugongkai">
                     <div class="modal-header open-common-header">
-                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <button type="button" class="close guanbi" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                       <div class="">
                         <i class="icon icon-check-circle-o icon-2x icon-open-color"></i>提交成功
                       </div>
@@ -198,9 +198,9 @@
     <script>
         
          window._wriurl_='{:url(\'Writer/add\')}';
-
+         window._head ="{:url('/headindex')}";
          // ×关闭跳转
-         $('#guanbi').click(function(){
+         $('.guanbi').click(function(){
 
              window.location.href = "{:url('/headindex')}";
          })

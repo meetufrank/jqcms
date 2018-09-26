@@ -135,9 +135,9 @@
               <!-- 点击提交公开 -->
               <div class="modal fade" id="open-submit">
                 <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
+                  <div class="modal-content" id="gongkait">
                     <div class="modal-header open-common-header">
-                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <button type="button" class="close" data-dismiss="modal guanbi"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                       <div class="">
                       提交成功
                       </div>
@@ -156,9 +156,9 @@
               <!-- 不公开 -->
               <div class="modal fade" id="not-open">
                 <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
+                  <div class="modal-content" id="bugongkai">
                     <div class="modal-header open-common-header">
-                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                      <button type="button" class="close guanbi" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
                       <div class="">
                       提交成功
                       </div>
@@ -185,10 +185,17 @@
     <script src="__STATIC__/index/js/jquery-3.3.1.min.js"></script>
     <!-- ZUI Javascript组件 -->
     <script src="__STATIC__/index/js/zui.min.js"></script>
-    <script>
-        
-        window._wriurl_='{:url(\'Stwriter/add\')}';
-    </script>
+  <script>
+
+      window._wriurl_='{:url(\'Stwriter/add\')}';
+      window._head ="{:url('/index')}";
+      // ×关闭跳转
+      $('.guanbi').click(function(){
+
+          window.location.href = "{:url('/index')}";
+      })
+
+  </script>
     <script src="__STATIC__/index/js/st-writer.js"></script>
     <script src="__STATIC__/index/lib/uploader/zui.uploader.min.js"></script>
     <script>

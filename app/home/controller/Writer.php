@@ -24,7 +24,7 @@ Class Writer extends Controller{
 
         $fileyh = str_replace('"', '', input('filename'));  //上传文件路径去除双引号
         $fileyg = stripslashes($fileyh);  //上传文件路径去除斜杠
-
+        $createtime = time();
 
 
 
@@ -32,6 +32,7 @@ Class Writer extends Controller{
             'name' => input('name'),    //标题
             'type' => input('type'),    //信件类型
             'header' => input('department'),    //首长
+            'createtime' => $createtime,
             'content' => input('content'),    //内容
             'username' => input('username'),    //姓名
             'tel' => input('tel'),    //电话
