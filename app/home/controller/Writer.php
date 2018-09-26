@@ -22,6 +22,11 @@ Class Writer extends Controller{
             $pwd = md5(input('pwd'));
         }
 
+        $fileyh = str_replace('"', '', input('filename'));  //上传文件路径去除双引号
+        $fileyg = stripslashes($fileyh);  //上传文件路径去除斜杠
+
+
+
 
         $data = [
             'name' => input('name'),    //标题
@@ -30,7 +35,7 @@ Class Writer extends Controller{
             'content' => input('content'),    //内容
             'username' => input('username'),    //姓名
             'tel' => input('tel'),    //电话
-            'files' => str_replace('"', '', input('filename')),    //上传名称
+            'files' => $fileyg,    //上传名称
             'pwd' => $pwd,    //密码
         ];
 
@@ -53,7 +58,7 @@ Class Writer extends Controller{
             echo $file->getError();
         }
 
-        $filename = $info->getFilename();
+        $filename = "/uploads/".str_replace("\\","/",$info->getSaveName());;
         echo json_encode($filename);
 
     }

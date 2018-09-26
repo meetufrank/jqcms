@@ -136,7 +136,7 @@
                       <p>信件还未发送，确定要返回吗？</p>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" id="reset-button" class="btn btn-reset">确定</button>
+                      <a href="{:url('/headindex')}"><button type="button" id="reset-button" class="btn btn-reset">确定</button></a>
                     </div>
                   </div>
                 </div>
@@ -145,12 +145,16 @@
               <div class="modal fade" id="open-submit">
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
-                    <div class="modal-header open-common-header">
-                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                      <div class="">
-                        <i class="icon icon-check-circle-o icon-2x icon-open-color"></i>提交成功
-                      </div>
-                    </div>
+
+                          <div class="modal-header open-common-header">
+
+                            <button id="guanbi" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+
+                              <div class="">
+                              <i class="icon icon-check-circle-o icon-2x icon-open-color"></i>提交成功
+                            </div>
+                          </div>
+
                     <div class="modal-body return-modal">
                       <p>我们会尽快回复您的问题，请妥善保存您的信件查询号：<span class="letter-number num"></span>&nbsp;&nbsp;用于查询自己的信件。</p>
                     </div>
@@ -194,6 +198,13 @@
     <script>
         
          window._wriurl_='{:url(\'Writer/add\')}';
+
+         // ×关闭跳转
+         $('#guanbi').click(function(){
+
+             window.location.href = "{:url('/headindex')}";
+         })
+
     </script>
     <script src="__STATIC__/index/js/writer.js"></script>
     <script src="__STATIC__/index/lib/uploader/zui.uploader.min.js"></script>

@@ -69,18 +69,25 @@ $('#submit-letter').on('click',function(){
                         keyboard : false
                     })
                 }else{
+
                     $('#not-open').modal()
                 }
             }else{
                 new $.zui.Messager(tips, {
+
                     placement: 'center' // 定义显示位置
                 }).show();
+
             }
         }
     });
     
 
 })
+
+
+
+
 
 // 不公开显示密码框
 $('.gongkai').click(function(){
@@ -96,6 +103,7 @@ $('.bugongkai').click(function(){
 
 // 返回按钮
 $('#reset-button').on('click',function(){
+
 	$(location).attr('href', 'http://localhost/army/mailbox.html');
 })
 // 公开信件提交确定按钮
