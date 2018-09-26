@@ -530,9 +530,9 @@ class Form extends controller{
         $thumbstr .='<div class="layui-upload-list"><img class="layui-upload-img" id="'.$info['class'].'File" src="'.$value.'"><p id="thumbText"></p>';
         
         $thumbstr .='</div></div>';
-        if(!empty($this->data[$field])){
-           $thumbstr .='<button type="button" class="layui-btn layui-btn-primary" id="'.$info['class'].'_download" ><i class="icon icon-download"></i>点击下载</button>';
-        }
+//        if(!empty($this->data[$field])){
+//           $thumbstr .='<button type="button" class="layui-btn layui-btn-primary" id="'.$info['class'].'_download" ><i class="icon icon-download"></i>点击下载</button>';
+//        }
         
         $thumbstr .='</div>';
         
@@ -555,11 +555,11 @@ class Form extends controller{
                                     
                                 }
                             });";
-        if(!empty($this->data[$field])){
-            $thumbstr.="$('#".$info['class']."_download').click(function(){
-                                window.location.href='/public".$this->data[$field]."';
-                                });";
-        }
+//        if(!empty($this->data[$field])){
+//            $thumbstr.="$('#".$info['class']."_download').click(function(){
+//                                window.location.href='/public".$this->data[$field]."';
+//                                });";
+//        }
         $thumbstr.="  });
                     </script>";
         return $thumbstr;
