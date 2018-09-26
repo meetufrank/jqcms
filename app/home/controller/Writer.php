@@ -38,6 +38,8 @@ Class Writer extends Controller{
             'tel' => input('tel'),    //电话
             'files' => $fileyg,    //上传名称
             'pwd' => $pwd,    //密码
+            'is_public' => input('isgk'),    //是否公开
+
         ];
 
 

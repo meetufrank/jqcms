@@ -51,12 +51,13 @@ $('#submit-letter').on('click',function(){
     var tel = $(".tel").val();
     var filename = $(".filename").val();
     var pwd = $(".bgkpwd").val();
-    
+    var isgk = $("input[name='radioOptionsExample3']:checked").val();
+
     $.ajax({
         type:"post",
         url:window._wriurl_,
         dataType: "json",
-        data:{"name":name,"type":type,"department":department,"content":content,"username":username,"tel":tel,"filename":filename,"pwd":pwd},
+        data:{"name":name,"type":type,"department":department,"content":content,"username":username,"tel":tel,"filename":filename,"pwd":pwd,"isgk":isgk},
         success: function(data){
             var num = data;
             $(".num").text(num);
