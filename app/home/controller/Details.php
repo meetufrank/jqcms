@@ -54,7 +54,7 @@ class Details extends Controller
         $data['deletetime']=0;
         
         
-        $count=db('headmail')->where($data)->count();
+        $count=db('heademail')->where($data)->count();
         
         if($count>0){
             echo json_encode([

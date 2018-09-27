@@ -23,6 +23,9 @@
     <a  class="layui-btn layui-btn-xs" lay-event="reduction">{:lang('reduction')}</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">{:lang('Remove completely')}</a>
 </script>
+<script type="text/html" id="type">
+    {{ d.type == 1 ? '<span style="color:gray;">回复</span>' : '<span style="color:red;">追问</span>' }}
+</script>
 <script>
     layui.use('table', function() {
         var table = layui.table, $ = layui.jquery,form = layui.form;

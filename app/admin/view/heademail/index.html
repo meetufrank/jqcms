@@ -1,4 +1,16 @@
 {include file="common/head"/}
+<style type="text/css">
+    .select{
+       position: relative;
+    margin: 0 10px 0 10px;
+    height: 38px;
+    min-width: 120px;
+    max-width: 200px;
+    color: #888;
+    border: 1px solid #e6e6e6; 
+    }
+    
+</style>
 <div class="admin-main layui-anim layui-anim-upbit">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>{:lang('Head')}{:lang('Letter')}{:lang('list')}</legend>
@@ -7,7 +19,34 @@
         <div class="layui-inline">
             <input class="layui-input" name="key" id="key" placeholder="{:lang('pleaseEnter')}{:lang('Letter id')}">
         </div>
-       
+       <div class="layui-inline " >
+            <select id="form_type" name="type" class="select" >
+                <option   value="0">选择信件类型</option>
+                <option   value="1">咨询</option>
+                <option  value="2">求助</option>
+                <option  value="3">举报</option>
+            </select> 
+        </div>
+        {if condition="session('grouptype') eq 1"}
+        <div class="layui-inline " >
+            <select id="form_header" name="header" class="select" >
+                <option   value="0">选择首长</option>
+                {foreach name="bmlist" item="bl"}
+                <option   value="{$bl.group_id}">{$bl.title}</option>
+                {/foreach}
+                
+            </select> 
+        </div>
+        
+        <div class="layui-inline " >
+            <select id="form_open" name="is_open" class="select" >
+                <option   value="0">选择审核状态</option>
+                <option   value="1">禁用</option>
+                <option  value="2">启用</option>
+  
+            </select> 
+        </div>
+        {/if}
         <button class="layui-btn" id="search" data-type="reload">{:lang('search')}</button>
         <a href="{:url('index',['catid'=>input('catid')])}" class="layui-btn">{:lang('display all')}</a>
         {if condition="session('grouptype') eq 1"} 
@@ -56,20 +95,25 @@
             method: 'post',
             page: true,
             cols: [[
-                {type: "checkbox", fixed: true},
-                {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
-                {field: 'name', title: '{:lang("name")}', width: 400, templet: '#title'},
-                {field: 'typename', title: '{:lang("Type")}', width: 60},
-                {field: 'headername', title: '{:lang("Head")}{:lang("name")}', width: 120}, 
+               {type: "checkbox", fixed: true},
+                {field: 'id', title: '{:lang("id")}', width: 60, fixed: true},
                 
-                {field: 'is_reply', title: '{:lang("Reply status")}', width: 200, templet: '#is_reply'},
-                {field: 'is_public', title: '{:lang("Is public")}', width: 100, templet: '#is_public'},
+                { width: 200,align: 'center', toolbar: '#action',title:'{:lang("operating")}'},
+               
+                {field: 'is_open', align: 'center',title: '{:lang("Whether to enable")}', width: 80,toolbar: '#is_open'},
+                 {field: 'name', title: '{:lang("title")}',  templet: '#title'},
+                 {field: 'headername', title: '{:lang("Head")}', width: 100}, 
+                {field: 'typename', title: '{:lang("Type")}', width: 60},
+                
+                
+                {field: 'is_reply', title: '{:lang("Reply status")}',  templet: '#is_reply'},
+//                {field: 'is_public', title: '{:lang("Is public")}', width: 100, templet: '#is_public'},
                 
 //                {field: 'hits',  title: '{:lang("hit")}', width: 80},
-                {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180},
-                {field: 'listorder', align: 'center', title: '{:lang("order")}', width: 120, templet: '#order'},
-                {field: 'is_open', align: 'center',title: '{:lang("Whether to enable")}', width: 120,toolbar: '#is_open'},
-                {width: 240, align: 'center', toolbar: '#action',title:'{:lang("operating")}'}
+                {field: 'createtime', title: '{:lang("add")}{:lang("time")}'},
+                {field: 'listorder', align: 'center', title: '{:lang("order")}', width: 80, templet: '#order'}
+               
+                
             ]],
             limit: 10
         });
@@ -83,18 +127,20 @@
             page: true,
             cols: [[
                 {type: "checkbox", fixed: true},
-                {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
-                {field: 'name', title: '{:lang("name")}', width: 400, templet: '#title'},
-                {field: 'typename', title: '{:lang("Letter type")}', width: 120},
-                {field: 'headername', title: '{:lang("Head")}{:lang("name")}', width: 120}, 
+                {field: 'id', title: '{:lang("id")}', width: 60, fixed: true},
+                {width: 80, align: 'center', toolbar: '#action',title:'{:lang("operating")}'},
+                {field: 'name', title: '{:lang("title")}', width: 200, templet: '#title'},
+//                {field: 'headername', title: '{:lang("Head")}', width: 120}, 
+                {field: 'typename', title: '{:lang("Type")}', width: 60},
                 
-                {field: 'is_reply', title: '{:lang("Reply status")}', width: 120, templet: '#is_reply'},
-                {field: 'is_public', title: '{:lang("Is public")}', width: 120, templet: '#is_public'},
+                
+                {field: 'is_reply', title: '{:lang("Reply status")}', width: 160, templet: '#is_reply'},
+//                {field: 'is_public', title: '{:lang("Is public")}', width: 120, templet: '#is_public'},
                 
 //                {field: 'hits',  title: '{:lang("hit")}', width: 80},
-                {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180},
+                {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180}
                
-                {width: 240, align: 'center', toolbar: '#action',title:'{:lang("operating")}'}
+                
             ]],
             limit: 10
         });
@@ -116,12 +162,15 @@
         //搜索
         $('#search').on('click', function () {
             var key = $('#key').val();
-            if ($.trim(key) === '') {
-                layer.msg('{:lang("pleaseEnter")}{:lang("keywords")}！', {icon: 0});
-                return;
-            }
+            var type = $('#form_type').val();
+            var header = $('#form_header').val();
+            var is_open = $('#form_open').val();
+//            if ($.trim(key) === '') {
+//                layer.msg('{:lang("pleaseEnter")}{:lang("keywords")}！', {icon: 0});
+//                return;
+//            }
             tableIn.reload({
-                where: {key: key,catid:'{:input("catid")}'}
+                where: {key: key,type: type,header:header,is_open:is_open,catid:'{:input("catid")}'}
             });
         });
         $('body').on('blur','.list_order',function() {

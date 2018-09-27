@@ -1,4 +1,16 @@
 {include file="common/head"/}
+<style type="text/css">
+    .select{
+       position: relative;
+    margin: 0 10px 0 10px;
+    height: 38px;
+    min-width: 120px;
+    max-width: 200px;
+    color: #888;
+    border: 1px solid #e6e6e6; 
+    }
+    
+</style>
 <div class="admin-main layui-anim layui-anim-upbit">
     <fieldset class="layui-elem-field layui-field-title">
         <legend>{:lang('Department')}{:lang('Letter')}{:lang('list')}</legend>
@@ -7,7 +19,33 @@
         <div class="layui-inline">
             <input class="layui-input" name="key" id="key" placeholder="{:lang('pleaseEnter')}{:lang('Letter id')}">
         </div>
-       
+  
+        <div class="layui-inline " >
+            <select id="form_type" name="type" class="select" >
+                <option   value="0">选择信件类型</option>
+                <option   value="1">咨询</option>
+                <option  value="2">求助</option>
+                <option  value="3">举报</option>
+            </select> 
+        </div>
+        <div class="layui-inline " >
+            <select id="form_department" name="department" class="select" >
+                <option   value="0">选择所属部门</option>
+                {foreach name="bmlist" item="bl"}
+                <option   value="{$bl.group_id}">{$bl.title}</option>
+                {/foreach}
+                
+            </select> 
+        </div>
+        
+        <div class="layui-inline " >
+            <select id="form_open" name="is_open" class="select" >
+                <option   value="0">选择审核状态</option>
+                <option   value="1">禁用</option>
+                <option  value="2">启用</option>
+  
+            </select> 
+        </div>
         <button class="layui-btn" id="search" data-type="reload">{:lang('search')}</button>
         <a href="{:url('index',['catid'=>input('catid')])}" class="layui-btn">{:lang('display all')}</a>
         <button type="button" class="layui-btn layui-btn-danger" id="delAll">{:lang('batch deletion')}</button>
@@ -16,7 +54,7 @@
         
         <div style="clear: both;"></div>
     </div>
-    <table class="layui-table" id="list" lay-filter="list"></table>
+    <table class="layui-table" id="list" lay-filter="list" style="text-align:center;"></table>
 </div>
 {include file="common/foot"/}
 <script type="text/html" id="is_open">
@@ -53,17 +91,20 @@
             page: true,
             cols: [[
                 {type: "checkbox", fixed: true},
-                {field: 'id', title: '{:lang("id")}', width: 80, fixed: true},
-                {field: 'name', title: '{:lang("name")}', width: 400, templet: '#title'},
+                {field: 'id', title: '{:lang("id")}', width: 60, fixed: true},
+                {width: 200, align: 'center', toolbar: '#action',title:'{:lang("operating")}'},
+                {field: 'is_open', align: 'center',title: '{:lang("Whether to enable")}', width: 70,toolbar: '#is_open'},
+                {field: 'name', title: '{:lang("title")}', templet: '#title'},
+                {field: 'departmentname', title: '{:lang("Department")}', width: 80}, 
                 {field: 'typename', title: '{:lang("Type")}', width: 60},
-                {field: 'departmentname', title: '{:lang("Department")}{:lang("name")}', width: 120}, 
-                {field: 'is_reply', title: '{:lang("Reply status")}', width: 200, templet: '#is_reply'},
-                {field: 'is_public', title: '{:lang("Is public")}', width: 80, templet: '#is_public'},
+                
+                {field: 'is_reply', title: '{:lang("Reply status")}',templet: '#is_reply'},
+//                {field: 'is_public', title: '{:lang("Is public")}', width: 80, templet: '#is_public'},
 //                {field: 'hits',  title: '{:lang("hit")}', width: 80},
-                {field: 'createtime', title: '{:lang("add")}{:lang("time")}', width: 180},
-                {field: 'listorder', align: 'center', title: '{:lang("order")}', width: 120, templet: '#order'},
-                {field: 'is_open', align: 'center',title: '{:lang("Whether to enable")}', width: 120,toolbar: '#is_open'},
-                {width: 240, align: 'center', toolbar: '#action',title:'{:lang("operating")}'}
+                {field: 'createtime', title: '{:lang("add")}{:lang("time")}'},
+                {field: 'listorder', align: 'center', title: '{:lang("order")}', width: 80, templet: '#order'}
+                
+                
             ]],
             limit: 10
         });
@@ -84,12 +125,15 @@
         //搜索
         $('#search').on('click', function () {
             var key = $('#key').val();
-            if ($.trim(key) === '') {
-                layer.msg('{:lang("pleaseEnter")}{:lang("keywords")}！', {icon: 0});
-                return;
-            }
+            var type = $('#form_type').val();
+            var department = $('#form_department').val();
+            var is_open = $('#form_open').val();
+//            if ($.trim(key) === '') {
+//                layer.msg('{:lang("pleaseEnter")}{:lang("keywords")}！', {icon: 0});
+//                return;
+//            }
             tableIn.reload({
-                where: {key: key,catid:'{:input("catid")}'}
+                where: {key: key,type: type,department:department,is_open:is_open,catid:'{:input("catid")}'}
             });
         });
         $('body').on('blur','.list_order',function() {

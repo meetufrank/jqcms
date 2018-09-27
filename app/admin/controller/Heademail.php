@@ -31,6 +31,9 @@ class Heademail extends Common{
             $modelname = MODULE_NAME;
             $model = db($modelname);
             $keyword=input('post.key');
+            $type=input('post.type');
+            $header=input('post.header');
+            $is_open=input('post.is_open');
             $page =input('page')?input('page'):1;
             $pageSize =input('limit')?input('limit'):config('pageSize');
             $order = "e.is_open asc,e.is_reply asc";
@@ -48,6 +51,13 @@ class Heademail extends Common{
                 $map['e.id']=$keyword;
                 
             }
+            if(!empty($type) ){
+               // $map['e.name']=array('like','%'.$keyword.'%');
+                $map['e.type']=$type;
+                
+            }
+            !empty($header) && $map['e.header']=$header;
+            !empty($is_open) && $map['e.is_open']=$is_open-1;
             $prefix=config('database.prefix');
             $Fields=Db::getFields($prefix.$modelname);
             foreach ($Fields as $k=>$v){
@@ -89,14 +99,20 @@ class Heademail extends Common{
                 $k = trim($v[1]);
                 $optionsarr[$k] = $v[0];
             }
-            
+            $sharr=[];  //未回复数组
+            $clarr=[];  //已回复消息需要审核数组
+            $hfarr=[];  //有追问需要回复数组    
+            $yhfarr=[];  //正常状态数组
             foreach ($lists as $k=>$v ){
+                $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
+                $lists[$k]['typename'] = $optionsarr[$v['type']];
                 $replymap['p_id']=$v['id'];
                 $replymap['deletetime']=0;
                 $replydata = db('reply')->where($replymap)->order($replyorder)->find(); //查询一条即可
                 if($replydata['is_open']===0){
                     $lists[$k]['is_with'] = '<span style="color:red">（需要审核）</span>';
                     $lists[$k]['withnum'] = 2; 
+                    $clarr[]=$lists[$k];
                 }else{
                     
                
@@ -110,23 +126,51 @@ class Heademail extends Common{
 //                    }
                     $lists[$k]['is_with'] = '<span style="color:red">（需要回复）</span>';
                     $lists[$k]['withnum'] = 1; 
+                    $hfarr[]=$lists[$k];
                 }else{
                    if(empty($replydata)){
                        $lists[$k]['is_with'] = '';
                        $lists[$k]['withnum'] = 3; 
+                       $sharr[]=$lists[$k];
                     }else{
                         $lists[$k]['is_with'] = '';
                         $lists[$k]['withnum'] = 0; 
+                        $yhfarr[]=$lists[$k];
                     }
                     
                 }
                 }
-                $lists[$k]['createtime'] = date('Y-m-d H:i:s',$v['createtime']);
-                $lists[$k]['typename'] = $optionsarr[$v['type']];
+                
             }
             
-            $numarr = array_column($lists, 'withnum','id');
-            array_multisort($numarr,SORT_DESC,$lists);
+            if(!empty($sharr)){
+             $sharrsort=array_column($sharr, 'createtime','id');  //3
+             array_multisort($sharrsort,SORT_DESC,$sharr);
+             
+             }
+            
+            if(!empty($clarr)){
+             $clarrsort=array_column($clarr, 'createtime','id');   //2
+             array_multisort($clarrsort,SORT_DESC,$clarr);
+            }
+           
+            if(!empty($hfarr)){
+             $hfarrsort=array_column($hfarr, 'createtime','id');   //1
+             array_multisort($hfarrsort,SORT_DESC,$hfarr);
+            }
+           
+            if(!empty($yhfarr)){
+             $yhfarrsort=array_column($yhfarr, 'createtime','id');   //0
+             array_multisort($yhfarrsort,SORT_DESC,$yhfarr);
+            }
+            
+            
+            $lists=array_merge($sharr,$clarr,$hfarr,$yhfarr);
+            
+            
+            
+            
+           
             
            
             
@@ -138,6 +182,12 @@ class Heademail extends Common{
             $rsult['rel'] = 1;
             return $rsult;
         }else{
+            
+            //查询首长列表
+             $bmlist=db('auth_group')->where(['type'=>3])->select();
+             
+             $this->assign('bmlist',$bmlist);
+             
             return $this->fetch ();
         }
     }

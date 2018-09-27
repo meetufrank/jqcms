@@ -84,7 +84,7 @@ return [
     'normal'=>'正常',
     'disabled'=>'禁用',
     'operating'=>'操作',
-    'Whether to enable'=>'是否启用',
+    'Whether to enable'=>'状态',
     'operation failed'=>'操作失败',
     'Mass delete'=>'批量彻删',
     'Batch restore'=>'批量还原',
